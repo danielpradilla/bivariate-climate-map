@@ -1,0 +1,2937 @@
+{
+  "width": 1843,
+  "height": 2023,
+  "west": -25.354166666666657,
+  "north": 37.31250000000001,
+  "dx": 0.041666666666666664,
+  "dy": 0.041666666666666664,
+  "storedCells": 1473305,
+  "cellIndexFile": "regions/africa/cells.bin.gz",
+  "borderFile": "regions/africa/borders.geojson",
+  "temperatureLabel": "Annual mean monthly maximum temperature",
+  "temperatureUnits": "°C",
+  "precipitationLabel": "Annual accumulated precipitation",
+  "precipitationUnits": "mm",
+  "binary": {
+    "byteOrder": "little-endian",
+    "type": "int16",
+    "layout": "sparse sorted native row-major cell indices, interleaved [tmax × 100, ppt mm]",
+    "nodata": -32768,
+    "bytesPerCell": 4,
+    "temperaturePrecisionC": 0.01,
+    "precipitationPrecisionMm": 1
+  },
+  "temperaturePercentiles": [
+    0,
+    20,
+    45,
+    70,
+    100
+  ],
+  "precipitationPercentiles": [
+    0,
+    60,
+    78,
+    90,
+    100
+  ],
+  "equalPercentiles": [
+    0,
+    25,
+    50,
+    75,
+    100
+  ],
+  "scope": {
+    "label": "Africa",
+    "continentFilter": "Natural Earth CONTINENT == Africa",
+    "selection": "Unsimplified Natural Earth 1:10m country-continent polygons, including overseas country components tagged with their parent country. Asia additionally includes Russia east of 60°E and its eastern antimeridian components west of 160°W. Europe retains its original [-25,34,60,72] bbox and unchanged assets. European territory outside that bbox not allocated to eastern Russia (including Russia north of 72°N west of 60°E) is World-only. Continents therefore do not claim an exhaustive physical-geography partition. World includes all Natural Earth land and source-uncovered outlines.",
+    "countries": [
+      "Algeria",
+      "Angola",
+      "Benin",
+      "Bir Tawil",
+      "Botswana",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroon",
+      "Cape Verde",
+      "Central African Republic",
+      "Chad",
+      "Comoros",
+      "Democratic Republic of the Congo",
+      "Djibouti",
+      "Egypt",
+      "Equatorial Guinea",
+      "Eritrea",
+      "Eswatini",
+      "Ethiopia",
+      "Gabon",
+      "Ghana",
+      "Guinea",
+      "Guinea-Bissau",
+      "Ivory Coast",
+      "Kenya",
+      "Lesotho",
+      "Liberia",
+      "Libya",
+      "Madagascar",
+      "Malawi",
+      "Mali",
+      "Mauritania",
+      "Morocco",
+      "Mozambique",
+      "Namibia",
+      "Niger",
+      "Nigeria",
+      "Republic of the Congo",
+      "Rwanda",
+      "Senegal",
+      "Sierra Leone",
+      "Somalia",
+      "Somaliland",
+      "South Africa",
+      "South Sudan",
+      "Sudan",
+      "São Tomé and Príncipe",
+      "Tanzania",
+      "The Gambia",
+      "Togo",
+      "Tunisia",
+      "Uganda",
+      "Western Sahara",
+      "Zambia",
+      "Zimbabwe"
+    ],
+    "mask": "Both variables finite in all 12 months AND unsimplified selected land at grid-cell center; static sparse polygon cell map preserves annual missing cells.",
+    "landCells": 1473305,
+    "borderSimplificationDegrees": 0.01,
+    "borderWinding": "RFC7946 counterclockwise exterior rings",
+    "longitudeWrapping": "Columns ordered eastward across the minimal circular longitude interval; west and cell-center longitudes may be unwrapped past 180 degrees.",
+    "horizStride": 1,
+    "nominalResolutionKm": 4
+  },
+  "smoothing": {
+    "enabledByDefault": true,
+    "method": "scipy.ndimage.gaussian_filter",
+    "sigmaCells": 2,
+    "edgeMode": "reflect",
+    "truncate": 4.0,
+    "description": "Fill invalid/ocean/non-region cells with this region’s annual full-precision valid-field mean, Gaussian sigma2 on the region grid, then restore the original valid mask and quantize. World sigma2 is on the stride6 grid.",
+    "caveat": "Visual smoothing biases coastal and mask-edge values toward the region annual mean; inspection and thresholds use unsmoothed values."
+  },
+  "sources": {
+    "naturalEarth": {
+      "url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_countries.zip",
+      "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+      "bytes": 4930492,
+      "retrievedAt": "2026-10-03T13:41:48.406069+00:00",
+      "dataset": "Natural Earth 1:10m Admin 0 Countries",
+      "version": "5.1.1",
+      "license": "Public domain",
+      "homepage": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/",
+      "boundaries": "Natural Earth de facto country boundaries, not a statement on sovereignty."
+    },
+    "terraClimate": {
+      "dataset": "TerraClimate",
+      "version": "V1.1",
+      "catalog": "https://thredds.northwestknowledge.net/thredds/catalog/TERRACLIMATE_ALL/data/catalog.xml",
+      "homepage": "https://www.climatologylab.org/terraclimate.html",
+      "nativeResolutionDegrees": 0.041666666666666664,
+      "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)",
+      "citation": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+      "tmax": {
+        "url": "https://thredds.northwestknowledge.net/thredds/fileServer/TERRACLIMATE_ALL/data/TerraClimate_tmax_2025.nc",
+        "sha256": "8f70fff5bf50d0086f13a369fa06a20c59d139456d5e8889e5bfe00c87ab4a87",
+        "bytes": 97156966,
+        "retrievedAt": "2026-10-03T13:43:34.498157+00:00",
+        "dates": [
+          "2025-01-01",
+          "2025-02-01",
+          "2025-03-01",
+          "2025-04-01",
+          "2025-05-01",
+          "2025-06-01",
+          "2025-07-01",
+          "2025-08-01",
+          "2025-09-01",
+          "2025-10-01",
+          "2025-11-01",
+          "2025-12-01"
+        ],
+        "months": 12,
+        "cfPacking": {
+          "scale_factor": 0.01,
+          "add_offset": -99.0,
+          "_FillValue": -32768,
+          "missing_value": -32768
+        },
+        "units": "degC",
+        "description": "Maximum 2-m Temperature",
+        "globalAttributes": {
+          "method": "These layers from TerraClimate were creating using climatically aided interpolation of monthly anomalies from ERA5 with WorldClim v2.0 climatologies.",
+          "version": "V1.1",
+          "title": "TerraClimate: monthly climate and climatic water balance for global land surfaces",
+          "summary": "This archive contains a dataset of high-spatial resolution (1/24°, ~4-km) monthly climate and climatic water balance for global terrestrial surfaces from 1950-present. These data were created by using climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim version 1.4 and version 2 datasets, with coarser resolution time varying (i.e. monthly) data from ERA5 reanalyses produce a monthly dataset of precipitation, maximum and minimum temperature, wind speed, vapor pressure, and solar radiation. TerraClimate additionally produces monthly surface water balance datasets using a water balance model that incorporates reference evapotranspiration, precipitation, temperature, and interpolated plant extractable soil water capacity. Complementary datasets are also produced for 1950-2025 for counterfactual climate scenarios that remove the first-order influence of climate change, as well as a +2C and +4C scenario that apply a pseudo climate change experiment to observational data. These datasets preserve the observed variability during 1950-2025 but adjust individual climate variables monthly using ensemble median changes derived from CMIP6.",
+          "keywords": "WORLDCLIM,global,monthly, temperature,precipitation,wind,radiation,vapor pressure,evapotranspiration,water balance,soil water capacity,snow water equivalent,runoff",
+          "id": "Blank",
+          "naming_authority": "edu.uidaho.nkn",
+          "keywords_vocabulary": "None",
+          "cdm_data_type": "GRID",
+          "date_created": "2026-06-02",
+          "creator_name": "John Abatzoglou",
+          "creator_url": "https://www.climatologylab.org/terraclimate.html",
+          "creator_role": "Principal Investigator",
+          "creator_email": "jabatzoglou@ucmerced.edu",
+          "institution": "University of California Merced",
+          "project": "Global Dataset of Monthly Climate and Climatic Water Balance (1950-2025)",
+          "processing_level": "Gridded Climate Projections",
+          "acknowledgment": "Please cite the references included herein. We also acknowledge the WorldClim datasets (Fick and Hijmans, 2017; Hijmans et al., 2005) and the ERA5 (Hersbach et al., 2020) datasets.",
+          "geospatial_lat_min": -89.97916412353516,
+          "geospatial_lat_max": 89.97916412353516,
+          "geospatial_lon_min": -179.9791717529297,
+          "geospatial_lon_max": 179.9791717529297,
+          "geospatial_vertical_min": 0.0,
+          "geospatial_vertical_max": 0.0,
+          "time_coverage_start": "2025-01-01T00:0",
+          "time_coverage_end": "2025-12-01T00:0",
+          "time_coverage_duration": "P1Y",
+          "time_coverage_resolution": "P1M",
+          "standard_nam_vocabulary": "CF-1.0",
+          "contributor_name": "Katherine Hegewisch",
+          "contributor_role": "Postdoctoral Fellow",
+          "contributor_email": "khegewisch@ucmerced.edu",
+          "publisher_name": "Northwest Knowledge Network",
+          "publisher_url": "http://www.northwestknowledge.net",
+          "publisher_email": "info@northwestknowledge.net",
+          "date_modified": "2026-06-02",
+          "date_issued": "2026-06-02",
+          "geospatial_lat_units": "decimal degrees north",
+          "geospatial_lat_resolution": -0.0416666679084301,
+          "geospatial_lon_units": "decimal degrees east",
+          "geospatial_lon_resolution": 0.0416666679084301,
+          "geospatial_vertical_units": "None",
+          "geospatial_vertical_resolution": 0.0,
+          "geospatial_vertical_positive": "Up",
+          "Conventions": "CF-1.6",
+          "NCO": "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+          "source": "WorldClim v2.1, ERA5",
+          "references": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+          "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)"
+        },
+        "completeYearCellsBeforeRegionMask": 12532612,
+        "aggregation": "arithmetic mean of 12 monthly maximum-temperature fields; no day weighting"
+      },
+      "ppt": {
+        "url": "https://thredds.northwestknowledge.net/thredds/fileServer/TERRACLIMATE_ALL/data/TerraClimate_ppt_2025.nc",
+        "sha256": "7a3b4315e441c517f42f36a581ba471b45db9be611750bc17fa093caa50be1f4",
+        "bytes": 153384782,
+        "retrievedAt": "2026-10-03T13:43:35.514788+00:00",
+        "dates": [
+          "2025-01-01",
+          "2025-02-01",
+          "2025-03-01",
+          "2025-04-01",
+          "2025-05-01",
+          "2025-06-01",
+          "2025-07-01",
+          "2025-08-01",
+          "2025-09-01",
+          "2025-10-01",
+          "2025-11-01",
+          "2025-12-01"
+        ],
+        "months": 12,
+        "cfPacking": {
+          "scale_factor": 0.1,
+          "add_offset": 0.0,
+          "_FillValue": -2147483648,
+          "missing_value": -2147483648
+        },
+        "units": "mm",
+        "description": "Accumulated Precipitation",
+        "globalAttributes": {
+          "method": "These layers from TerraClimate were creating using climatically aided interpolation of monthly anomalies from ERA5 with WorldClim v2.0 climatologies.",
+          "version": "V1.1",
+          "title": "TerraClimate: monthly climate and climatic water balance for global land surfaces",
+          "summary": "This archive contains a dataset of high-spatial resolution (1/24°, ~4-km) monthly climate and climatic water balance for global terrestrial surfaces from 1950-present. These data were created by using climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim version 1.4 and version 2 datasets, with coarser resolution time varying (i.e. monthly) data from ERA5 reanalyses produce a monthly dataset of precipitation, maximum and minimum temperature, wind speed, vapor pressure, and solar radiation. TerraClimate additionally produces monthly surface water balance datasets using a water balance model that incorporates reference evapotranspiration, precipitation, temperature, and interpolated plant extractable soil water capacity. Complementary datasets are also produced for 1950-2025 for counterfactual climate scenarios that remove the first-order influence of climate change, as well as a +2C and +4C scenario that apply a pseudo climate change experiment to observational data. These datasets preserve the observed variability during 1950-2025 but adjust individual climate variables monthly using ensemble median changes derived from CMIP6.",
+          "keywords": "WORLDCLIM,global,monthly, temperature,precipitation,wind,radiation,vapor pressure,evapotranspiration,water balance,soil water capacity,snow water equivalent,runoff",
+          "id": "Blank",
+          "naming_authority": "edu.uidaho.nkn",
+          "keywords_vocabulary": "None",
+          "cdm_data_type": "GRID",
+          "date_created": "2026-06-02",
+          "creator_name": "John Abatzoglou",
+          "creator_url": "https://www.climatologylab.org/terraclimate.html",
+          "creator_role": "Principal Investigator",
+          "creator_email": "jabatzoglou@ucmerced.edu",
+          "institution": "University of California Merced",
+          "project": "Global Dataset of Monthly Climate and Climatic Water Balance (1950-2025)",
+          "processing_level": "Gridded Climate Projections",
+          "acknowledgment": "Please cite the references included herein. We also acknowledge the WorldClim datasets (Fick and Hijmans, 2017; Hijmans et al., 2005) and the ERA5 (Hersbach et al., 2020) datasets.",
+          "geospatial_lat_min": -89.97916412353516,
+          "geospatial_lat_max": 89.97916412353516,
+          "geospatial_lon_min": -179.9791717529297,
+          "geospatial_lon_max": 179.9791717529297,
+          "geospatial_vertical_min": 0.0,
+          "geospatial_vertical_max": 0.0,
+          "time_coverage_start": "2025-01-01T00:0",
+          "time_coverage_end": "2025-12-01T00:0",
+          "time_coverage_duration": "P1Y",
+          "time_coverage_resolution": "P1M",
+          "standard_nam_vocabulary": "CF-1.0",
+          "contributor_name": "Katherine Hegewisch",
+          "contributor_role": "Postdoctoral Fellow",
+          "contributor_email": "khegewisch@ucmerced.edu",
+          "publisher_name": "Northwest Knowledge Network",
+          "publisher_url": "http://www.northwestknowledge.net",
+          "publisher_email": "info@northwestknowledge.net",
+          "date_modified": "2026-06-02",
+          "date_issued": "2026-06-02",
+          "geospatial_lat_units": "decimal degrees north",
+          "geospatial_lat_resolution": -0.0416666679084301,
+          "geospatial_lon_units": "decimal degrees east",
+          "geospatial_lon_resolution": 0.0416666679084301,
+          "geospatial_vertical_units": "None",
+          "geospatial_vertical_resolution": 0.0,
+          "geospatial_vertical_positive": "Up",
+          "Conventions": "CF-1.6",
+          "NCO": "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+          "source": "WorldClim v2.1, ERA5",
+          "references": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+          "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)"
+        },
+        "completeYearCellsBeforeRegionMask": 12532612,
+        "aggregation": "sum of 12 monthly accumulated precipitation fields"
+      },
+      "antarcticaCompleteYearCells": 3484093
+    }
+  },
+  "percentileMethod": "Fixed pooled encoded raw land-cell/year histogram, NumPy linear interpolation; equal cell-year weighting, not area weighted.",
+  "generation": {
+    "script": "scripts/build_data.py --regions (scripts/build_regions.py)",
+    "generatorVersion": 1,
+    "scriptSha256": "241962fba890a774c5babb2528fe0fb290ccbf8f262a72cd985c10aaf40c1c5e",
+    "dependenciesSha256": "9303074d8b2afbfeb4edb85bb21f2714805ceaa642564af3654649a3a2c67047",
+    "acquisition": "Original compressed upstream HTTPServer annual files; only two source files staged per year in a newly owned temporary directory, removed after export; no existing cache deletion.",
+    "command": "uv run --with-requirements requirements-data.txt python scripts/build_data.py --regions"
+  },
+  "years": [
+    1950,
+    1951,
+    1952,
+    1953,
+    1954,
+    1955,
+    1956,
+    1957,
+    1958,
+    1959,
+    1960,
+    1961,
+    1962,
+    1963,
+    1964,
+    1965,
+    1966,
+    1967,
+    1968,
+    1969,
+    1970,
+    1971,
+    1972,
+    1973,
+    1974,
+    1975,
+    1976,
+    1977,
+    1978,
+    1979,
+    1980,
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "defaultYear": 2025,
+  "frames": {
+    "1950": {
+      "year": 1950,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1950/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1950/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1950/metadata.json",
+      "temperatureRange": [
+        3.75,
+        37.75
+      ],
+      "precipitationRange": [
+        0,
+        5497
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.7500000000000013,
+        37.75000000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5496.7
+      ]
+    },
+    "1951": {
+      "year": 1951,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1951/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1951/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1951/metadata.json",
+      "temperatureRange": [
+        3.75,
+        38.53
+      ],
+      "precipitationRange": [
+        0,
+        5100
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.7500000000000036,
+        38.53333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5100.300000000001
+      ]
+    },
+    "1952": {
+      "year": 1952,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1952/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1952/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1952/metadata.json",
+      "temperatureRange": [
+        4.25,
+        38.83
+      ],
+      "precipitationRange": [
+        0,
+        5612
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.250000000000001,
+        38.83333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5612.1
+      ]
+    },
+    "1953": {
+      "year": 1953,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1953/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1953/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1953/metadata.json",
+      "temperatureRange": [
+        3.66,
+        38.6
+      ],
+      "precipitationRange": [
+        0,
+        5270
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.658333333333337,
+        38.6
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.1,
+        5270.000000000001
+      ]
+    },
+    "1954": {
+      "year": 1954,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1954/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1954/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1954/metadata.json",
+      "temperatureRange": [
+        3.96,
+        38.14
+      ],
+      "precipitationRange": [
+        0,
+        6260
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.9583333333333357,
+        38.141666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        6260.2
+      ]
+    },
+    "1955": {
+      "year": 1955,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1955/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1955/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1955/metadata.json",
+      "temperatureRange": [
+        3.83,
+        39.03
+      ],
+      "precipitationRange": [
+        0,
+        5197
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.825000000000004,
+        39.025000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5196.9
+      ]
+    },
+    "1956": {
+      "year": 1956,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1956/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1956/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1956/metadata.json",
+      "temperatureRange": [
+        3.62,
+        38.55
+      ],
+      "precipitationRange": [
+        0,
+        5080
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.6166666666666685,
+        38.550000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5080.000000000001
+      ]
+    },
+    "1957": {
+      "year": 1957,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1957/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1957/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1957/metadata.json",
+      "temperatureRange": [
+        4.07,
+        38.38
+      ],
+      "precipitationRange": [
+        0,
+        6184
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.066666666666669,
+        38.38333333333335
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        6183.600000000001
+      ]
+    },
+    "1958": {
+      "year": 1958,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1958/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1958/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1958/metadata.json",
+      "temperatureRange": [
+        4.5,
+        39.38
+      ],
+      "precipitationRange": [
+        0,
+        5111
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.500000000000003,
+        39.37500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5110.6
+      ]
+    },
+    "1959": {
+      "year": 1959,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1959/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1959/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1959/metadata.json",
+      "temperatureRange": [
+        4.31,
+        38.43
+      ],
+      "precipitationRange": [
+        0,
+        4404
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.3083333333333345,
+        38.43333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4403.999999999999
+      ]
+    },
+    "1960": {
+      "year": 1960,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1960/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1960/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1960/metadata.json",
+      "temperatureRange": [
+        4.31,
+        39.5
+      ],
+      "precipitationRange": [
+        0,
+        4018
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.3083333333333345,
+        39.5
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4018.2000000000003
+      ]
+    },
+    "1961": {
+      "year": 1961,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1961/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1961/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1961/metadata.json",
+      "temperatureRange": [
+        4.25,
+        38.67
+      ],
+      "precipitationRange": [
+        0,
+        5838
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.250000000000003,
+        38.666666666666664
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5837.800000000001
+      ]
+    },
+    "1962": {
+      "year": 1962,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1962/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1962/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1962/metadata.json",
+      "temperatureRange": [
+        3.73,
+        39.13
+      ],
+      "precipitationRange": [
+        0,
+        4139
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.7250000000000036,
+        39.12500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4139.200000000001
+      ]
+    },
+    "1963": {
+      "year": 1963,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1963/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1963/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1963/metadata.json",
+      "temperatureRange": [
+        3.82,
+        39.38
+      ],
+      "precipitationRange": [
+        0,
+        5292
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.8166666666666678,
+        39.38333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.30000000000000004,
+        5292.5
+      ]
+    },
+    "1964": {
+      "year": 1964,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1964/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1964/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1964/metadata.json",
+      "temperatureRange": [
+        3.58,
+        38.81
+      ],
+      "precipitationRange": [
+        0,
+        4413
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.5833333333333357,
+        38.80833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4413.300000000001
+      ]
+    },
+    "1965": {
+      "year": 1965,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1965/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1965/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1965/metadata.json",
+      "temperatureRange": [
+        3.89,
+        38.49
+      ],
+      "precipitationRange": [
+        0,
+        4813
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.891666666666667,
+        38.491666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4813.400000000001
+      ]
+    },
+    "1966": {
+      "year": 1966,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1966/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1966/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1966/metadata.json",
+      "temperatureRange": [
+        3.87,
+        39.39
+      ],
+      "precipitationRange": [
+        0,
+        4498
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.8666666666666707,
+        39.39166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4497.8
+      ]
+    },
+    "1967": {
+      "year": 1967,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1967/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1967/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1967/metadata.json",
+      "temperatureRange": [
+        3.84,
+        38.34
+      ],
+      "precipitationRange": [
+        0,
+        4956
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.841666666666671,
+        38.34166666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.2,
+        4956.0
+      ]
+    },
+    "1968": {
+      "year": 1968,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1968/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1968/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1968/metadata.json",
+      "temperatureRange": [
+        3.61,
+        39.1
+      ],
+      "precipitationRange": [
+        0,
+        6023
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.6083333333333356,
+        39.1
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        6023.0
+      ]
+    },
+    "1969": {
+      "year": 1969,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1969/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1969/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1969/metadata.json",
+      "temperatureRange": [
+        4.24,
+        39.64
+      ],
+      "precipitationRange": [
+        0,
+        5412
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.241666666666668,
+        39.641666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5411.5
+      ]
+    },
+    "1970": {
+      "year": 1970,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1970/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1970/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1970/metadata.json",
+      "temperatureRange": [
+        4.04,
+        39.68
+      ],
+      "precipitationRange": [
+        0,
+        4337
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.0416666666666705,
+        39.675000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4337.200000000001
+      ]
+    },
+    "1971": {
+      "year": 1971,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1971/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1971/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1971/metadata.json",
+      "temperatureRange": [
+        3.82,
+        39.39
+      ],
+      "precipitationRange": [
+        0,
+        4090
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.8166666666666713,
+        39.39166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4089.5
+      ]
+    },
+    "1972": {
+      "year": 1972,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1972/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1972/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1972/metadata.json",
+      "temperatureRange": [
+        4.09,
+        39.22
+      ],
+      "precipitationRange": [
+        0,
+        4735
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.0916666666666694,
+        39.21666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4734.8
+      ]
+    },
+    "1973": {
+      "year": 1973,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1973/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1973/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1973/metadata.json",
+      "temperatureRange": [
+        4.17,
+        39.18
+      ],
+      "precipitationRange": [
+        0,
+        5007
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.166666666666669,
+        39.175000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5006.8
+      ]
+    },
+    "1974": {
+      "year": 1974,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1974/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1974/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1974/metadata.json",
+      "temperatureRange": [
+        3.75,
+        37.77
+      ],
+      "precipitationRange": [
+        0,
+        4253
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.7500000000000036,
+        37.766666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4252.9
+      ]
+    },
+    "1975": {
+      "year": 1975,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1975/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1975/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1975/metadata.json",
+      "temperatureRange": [
+        3.94,
+        38.35
+      ],
+      "precipitationRange": [
+        0,
+        3815
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.9416666666666678,
+        38.35
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        3815.3
+      ]
+    },
+    "1976": {
+      "year": 1976,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1976/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1976/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1976/metadata.json",
+      "temperatureRange": [
+        4.22,
+        38.8
+      ],
+      "precipitationRange": [
+        0,
+        4534
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.2166666666666694,
+        38.800000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4533.8
+      ]
+    },
+    "1977": {
+      "year": 1977,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1977/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1977/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1977/metadata.json",
+      "temperatureRange": [
+        4.24,
+        39.16
+      ],
+      "precipitationRange": [
+        0,
+        4431
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.241666666666668,
+        39.15833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4430.599999999999
+      ]
+    },
+    "1978": {
+      "year": 1978,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1978/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1978/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1978/metadata.json",
+      "temperatureRange": [
+        4.06,
+        39.24
+      ],
+      "precipitationRange": [
+        0,
+        4916
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.058333333333338,
+        39.241666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4916.3
+      ]
+    },
+    "1979": {
+      "year": 1979,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1979/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1979/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1979/metadata.json",
+      "temperatureRange": [
+        4.28,
+        39.19
+      ],
+      "precipitationRange": [
+        0,
+        5443
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.283333333333335,
+        39.191666666666656
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5443.0
+      ]
+    },
+    "1980": {
+      "year": 1980,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1980/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1980/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1980/metadata.json",
+      "temperatureRange": [
+        4.52,
+        39.38
+      ],
+      "precipitationRange": [
+        0,
+        4870
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.516666666666669,
+        39.38333333333335
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.1,
+        4869.5
+      ]
+    },
+    "1981": {
+      "year": 1981,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1981/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1981/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1981/metadata.json",
+      "temperatureRange": [
+        4.38,
+        39.2
+      ],
+      "precipitationRange": [
+        0,
+        4833
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.383333333333336,
+        39.2
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4832.699999999999
+      ]
+    },
+    "1982": {
+      "year": 1982,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1982/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1982/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1982/metadata.json",
+      "temperatureRange": [
+        4.3,
+        38.72
+      ],
+      "precipitationRange": [
+        0,
+        4500
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.300000000000002,
+        38.716666666666676
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.1,
+        4500.400000000001
+      ]
+    },
+    "1983": {
+      "year": 1983,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1983/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1983/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1983/metadata.json",
+      "temperatureRange": [
+        4.92,
+        39.7
+      ],
+      "precipitationRange": [
+        0,
+        4376
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.916666666666668,
+        39.699999999999996
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4376.2
+      ]
+    },
+    "1984": {
+      "year": 1984,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1984/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1984/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1984/metadata.json",
+      "temperatureRange": [
+        4.05,
+        39.37
+      ],
+      "precipitationRange": [
+        0,
+        4919
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.050000000000003,
+        39.366666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4919.4
+      ]
+    },
+    "1985": {
+      "year": 1985,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1985/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1985/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1985/metadata.json",
+      "temperatureRange": [
+        3.96,
+        38.62
+      ],
+      "precipitationRange": [
+        0,
+        4619
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.9583333333333357,
+        38.61666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4618.8
+      ]
+    },
+    "1986": {
+      "year": 1986,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1986/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1986/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1986/metadata.json",
+      "temperatureRange": [
+        4.43,
+        39.23
+      ],
+      "precipitationRange": [
+        0,
+        4343
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.4333333333333345,
+        39.225000000000016
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4342.8
+      ]
+    },
+    "1987": {
+      "year": 1987,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1987/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1987/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1987/metadata.json",
+      "temperatureRange": [
+        4.93,
+        40.13
+      ],
+      "precipitationRange": [
+        0,
+        4517
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.925000000000002,
+        40.13333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4517.4
+      ]
+    },
+    "1988": {
+      "year": 1988,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1988/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1988/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1988/metadata.json",
+      "temperatureRange": [
+        4.3,
+        39.04
+      ],
+      "precipitationRange": [
+        0,
+        5208
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.300000000000003,
+        39.041666666666664
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5207.7
+      ]
+    },
+    "1989": {
+      "year": 1989,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1989/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1989/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1989/metadata.json",
+      "temperatureRange": [
+        3.88,
+        39.31
+      ],
+      "precipitationRange": [
+        0,
+        4549
+      ],
+      "fullPrecisionTemperatureRange": [
+        3.8750000000000013,
+        39.30833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4549.300000000001
+      ]
+    },
+    "1990": {
+      "year": 1990,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1990/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1990/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1990/metadata.json",
+      "temperatureRange": [
+        4.13,
+        39.76
+      ],
+      "precipitationRange": [
+        0,
+        4456
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.133333333333337,
+        39.75833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4455.500000000001
+      ]
+    },
+    "1991": {
+      "year": 1991,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1991/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1991/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1991/metadata.json",
+      "temperatureRange": [
+        4.58,
+        39.13
+      ],
+      "precipitationRange": [
+        0,
+        4110
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.575000000000003,
+        39.12500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4109.700000000001
+      ]
+    },
+    "1992": {
+      "year": 1992,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1992/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1992/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1992/metadata.json",
+      "temperatureRange": [
+        4.25,
+        38.79
+      ],
+      "precipitationRange": [
+        0,
+        4434
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.250000000000004,
+        38.791666666666664
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4434.5
+      ]
+    },
+    "1993": {
+      "year": 1993,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1993/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1993/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1993/metadata.json",
+      "temperatureRange": [
+        4.37,
+        39.65
+      ],
+      "precipitationRange": [
+        0,
+        4324
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.366666666666668,
+        39.650000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4323.8
+      ]
+    },
+    "1994": {
+      "year": 1994,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1994/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1994/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1994/metadata.json",
+      "temperatureRange": [
+        4.35,
+        38.66
+      ],
+      "precipitationRange": [
+        0,
+        4216
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.350000000000004,
+        38.65833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4215.799999999999
+      ]
+    },
+    "1995": {
+      "year": 1995,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1995/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1995/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1995/metadata.json",
+      "temperatureRange": [
+        4.53,
+        38.98
+      ],
+      "precipitationRange": [
+        0,
+        4860
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.533333333333336,
+        38.98333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4860.1
+      ]
+    },
+    "1996": {
+      "year": 1996,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1996/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1996/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1996/metadata.json",
+      "temperatureRange": [
+        4.42,
+        39.48
+      ],
+      "precipitationRange": [
+        0,
+        5675
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.416666666666671,
+        39.475
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5675.0
+      ]
+    },
+    "1997": {
+      "year": 1997,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1997/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1997/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1997/metadata.json",
+      "temperatureRange": [
+        4.66,
+        39.06
+      ],
+      "precipitationRange": [
+        0,
+        3918
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.658333333333336,
+        39.05833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        3917.8
+      ]
+    },
+    "1998": {
+      "year": 1998,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1998/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1998/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1998/metadata.json",
+      "temperatureRange": [
+        4.79,
+        39.68
+      ],
+      "precipitationRange": [
+        0,
+        5136
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.791666666666669,
+        39.68333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5135.7
+      ]
+    },
+    "1999": {
+      "year": 1999,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/1999/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/1999/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/1999/metadata.json",
+      "temperatureRange": [
+        4.33,
+        39.52
+      ],
+      "precipitationRange": [
+        0,
+        4014
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.333333333333337,
+        39.525
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4014.1000000000004
+      ]
+    },
+    "2000": {
+      "year": 2000,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2000/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2000/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2000/metadata.json",
+      "temperatureRange": [
+        4.7,
+        39.5
+      ],
+      "precipitationRange": [
+        0,
+        4142
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.700000000000002,
+        39.5
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4142.3
+      ]
+    },
+    "2001": {
+      "year": 2001,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2001/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2001/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2001/metadata.json",
+      "temperatureRange": [
+        4.35,
+        40.13
+      ],
+      "precipitationRange": [
+        0,
+        4783
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.350000000000002,
+        40.12500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4783.000000000001
+      ]
+    },
+    "2002": {
+      "year": 2002,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2002/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2002/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2002/metadata.json",
+      "temperatureRange": [
+        4.68,
+        39.66
+      ],
+      "precipitationRange": [
+        0,
+        6062
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.683333333333336,
+        39.65833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        6062.1
+      ]
+    },
+    "2003": {
+      "year": 2003,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2003/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2003/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2003/metadata.json",
+      "temperatureRange": [
+        4.73,
+        40.01
+      ],
+      "precipitationRange": [
+        0,
+        5630
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.733333333333338,
+        40.00833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5630.099999999999
+      ]
+    },
+    "2004": {
+      "year": 2004,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2004/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2004/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2004/metadata.json",
+      "temperatureRange": [
+        4.58,
+        40.1
+      ],
+      "precipitationRange": [
+        0,
+        5068
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.583333333333335,
+        40.1
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5068.099999999999
+      ]
+    },
+    "2005": {
+      "year": 2005,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2005/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2005/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2005/metadata.json",
+      "temperatureRange": [
+        4.7,
+        39.79
+      ],
+      "precipitationRange": [
+        0,
+        4864
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.700000000000002,
+        39.79166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4864.099999999999
+      ]
+    },
+    "2006": {
+      "year": 2006,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2006/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2006/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2006/metadata.json",
+      "temperatureRange": [
+        4.41,
+        39.48
+      ],
+      "precipitationRange": [
+        0,
+        4700
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.408333333333335,
+        39.475
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4700.5
+      ]
+    },
+    "2007": {
+      "year": 2007,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2007/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2007/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2007/metadata.json",
+      "temperatureRange": [
+        4.71,
+        39.46
+      ],
+      "precipitationRange": [
+        0,
+        6505
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.708333333333336,
+        39.458333333333336
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        6505.1
+      ]
+    },
+    "2008": {
+      "year": 2008,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2008/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2008/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2008/metadata.json",
+      "temperatureRange": [
+        4.35,
+        39.7
+      ],
+      "precipitationRange": [
+        0,
+        5375
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.350000000000002,
+        39.70000000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5375.300000000001
+      ]
+    },
+    "2009": {
+      "year": 2009,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2009/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2009/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2009/metadata.json",
+      "temperatureRange": [
+        4.71,
+        40.43
+      ],
+      "precipitationRange": [
+        0,
+        5251
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.708333333333336,
+        40.42500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5251.300000000001
+      ]
+    },
+    "2010": {
+      "year": 2010,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2010/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2010/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2010/metadata.json",
+      "temperatureRange": [
+        4.88,
+        41.04
+      ],
+      "precipitationRange": [
+        0,
+        5271
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.875000000000003,
+        41.04166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5271.1
+      ]
+    },
+    "2011": {
+      "year": 2011,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2011/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2011/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2011/metadata.json",
+      "temperatureRange": [
+        4.83,
+        40.13
+      ],
+      "precipitationRange": [
+        0,
+        4652
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.8250000000000055,
+        40.13333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4651.5
+      ]
+    },
+    "2012": {
+      "year": 2012,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2012/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2012/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2012/metadata.json",
+      "temperatureRange": [
+        4.83,
+        39.68
+      ],
+      "precipitationRange": [
+        0,
+        4940
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.833333333333336,
+        39.68333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4939.5
+      ]
+    },
+    "2013": {
+      "year": 2013,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2013/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2013/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2013/metadata.json",
+      "temperatureRange": [
+        4.61,
+        40.1
+      ],
+      "precipitationRange": [
+        0,
+        4247
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.608333333333337,
+        40.10000000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4247.3
+      ]
+    },
+    "2014": {
+      "year": 2014,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2014/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2014/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2014/metadata.json",
+      "temperatureRange": [
+        4.53,
+        39.92
+      ],
+      "precipitationRange": [
+        0,
+        5271
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.525000000000003,
+        39.92499999999999
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5271.0
+      ]
+    },
+    "2015": {
+      "year": 2015,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2015/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2015/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2015/metadata.json",
+      "temperatureRange": [
+        4.98,
+        40.12
+      ],
+      "precipitationRange": [
+        0,
+        4645
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.975000000000002,
+        40.125
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4644.7
+      ]
+    },
+    "2016": {
+      "year": 2016,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2016/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2016/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2016/metadata.json",
+      "temperatureRange": [
+        4.85,
+        40.18
+      ],
+      "precipitationRange": [
+        0,
+        5246
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.850000000000002,
+        40.18333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5245.6
+      ]
+    },
+    "2017": {
+      "year": 2017,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2017/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2017/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2017/metadata.json",
+      "temperatureRange": [
+        4.88,
+        39.94
+      ],
+      "precipitationRange": [
+        0,
+        7339
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.875000000000003,
+        39.94166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        7339.0
+      ]
+    },
+    "2018": {
+      "year": 2018,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2018/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2018/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2018/metadata.json",
+      "temperatureRange": [
+        4.61,
+        40.22
+      ],
+      "precipitationRange": [
+        0,
+        5933
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.608333333333335,
+        40.21666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.2,
+        5933.3
+      ]
+    },
+    "2019": {
+      "year": 2019,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2019/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2019/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2019/metadata.json",
+      "temperatureRange": [
+        5.15,
+        40.01
+      ],
+      "precipitationRange": [
+        0,
+        5727
+      ],
+      "fullPrecisionTemperatureRange": [
+        5.150000000000003,
+        40.00833333333335
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5727.2
+      ]
+    },
+    "2020": {
+      "year": 2020,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2020/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2020/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2020/metadata.json",
+      "temperatureRange": [
+        4.99,
+        40.18
+      ],
+      "precipitationRange": [
+        0,
+        4757
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.99166666666667,
+        40.175000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4756.8
+      ]
+    },
+    "2021": {
+      "year": 2021,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2021/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2021/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2021/metadata.json",
+      "temperatureRange": [
+        4.73,
+        40.97
+      ],
+      "precipitationRange": [
+        0,
+        5452
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.733333333333335,
+        40.966666666666676
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5451.5
+      ]
+    },
+    "2022": {
+      "year": 2022,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2022/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2022/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2022/metadata.json",
+      "temperatureRange": [
+        4.77,
+        39.97
+      ],
+      "precipitationRange": [
+        0,
+        4818
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.766666666666672,
+        39.96666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        4817.8
+      ]
+    },
+    "2023": {
+      "year": 2023,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2023/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2023/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2023/metadata.json",
+      "temperatureRange": [
+        4.96,
+        40.75
+      ],
+      "precipitationRange": [
+        0,
+        5058
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.958333333333337,
+        40.75
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5057.9
+      ]
+    },
+    "2024": {
+      "year": 2024,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2024/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2024/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2024/metadata.json",
+      "temperatureRange": [
+        5.29,
+        40.78
+      ],
+      "precipitationRange": [
+        0,
+        5684
+      ],
+      "fullPrecisionTemperatureRange": [
+        5.2916666666666705,
+        40.78333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5684.5
+      ]
+    },
+    "2025": {
+      "year": 2025,
+      "validCells": 1473289,
+      "rawFile": "regions/africa/years/2025/climate.bin.gz",
+      "smoothedFile": "regions/africa/years/2025/smoothed.bin.gz",
+      "metadataFile": "regions/africa/years/2025/metadata.json",
+      "temperatureRange": [
+        4.85,
+        40.52
+      ],
+      "precipitationRange": [
+        0,
+        5716
+      ],
+      "fullPrecisionTemperatureRange": [
+        4.850000000000002,
+        40.525
+      ],
+      "fullPrecisionPrecipitationRange": [
+        0.0,
+        5716.5
+      ]
+    }
+  },
+  "baseline": {
+    "startYear": 1950,
+    "endYear": 2025,
+    "requestedYears": [
+      1950,
+      1951,
+      1952,
+      1953,
+      1954,
+      1955,
+      1956,
+      1957,
+      1958,
+      1959,
+      1960,
+      1961,
+      1962,
+      1963,
+      1964,
+      1965,
+      1966,
+      1967,
+      1968,
+      1969,
+      1970,
+      1971,
+      1972,
+      1973,
+      1974,
+      1975,
+      1976,
+      1977,
+      1978,
+      1979,
+      1980,
+      1981,
+      1982,
+      1983,
+      1984,
+      1985,
+      1986,
+      1987,
+      1988,
+      1989,
+      1990,
+      1991,
+      1992,
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "completedSourceYears": [
+      2025,
+      1950,
+      2024,
+      2023,
+      2022,
+      2021,
+      2020,
+      2019,
+      2018,
+      2017,
+      2016,
+      2015,
+      2014,
+      2013,
+      2012,
+      2011,
+      2010,
+      2009,
+      2008,
+      2007,
+      2006,
+      2005,
+      2004,
+      2003,
+      2002,
+      2001,
+      2000,
+      1999,
+      1998,
+      1997,
+      1996,
+      1995,
+      1994,
+      1993,
+      1992,
+      1991,
+      1990,
+      1989,
+      1988,
+      1987,
+      1986,
+      1985,
+      1984,
+      1983,
+      1982,
+      1981,
+      1980,
+      1979,
+      1978,
+      1977,
+      1976,
+      1975,
+      1974,
+      1973,
+      1972,
+      1971,
+      1970,
+      1969,
+      1968,
+      1967,
+      1966,
+      1965,
+      1964,
+      1963,
+      1962,
+      1961,
+      1960,
+      1959,
+      1958,
+      1957,
+      1956,
+      1955,
+      1954,
+      1953,
+      1952,
+      1951
+    ],
+    "complete": true
+  },
+  "coverageEvidence": {
+    "2025": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2025.json"
+    },
+    "1950": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1950.json"
+    },
+    "2024": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2024.json"
+    },
+    "2023": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2023.json"
+    },
+    "2022": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2022.json"
+    },
+    "2021": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2021.json"
+    },
+    "2020": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2020.json"
+    },
+    "2019": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2019.json"
+    },
+    "2018": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2018.json"
+    },
+    "2017": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2017.json"
+    },
+    "2016": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2016.json"
+    },
+    "2015": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2015.json"
+    },
+    "2014": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2014.json"
+    },
+    "2013": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2013.json"
+    },
+    "2012": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2012.json"
+    },
+    "2011": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2011.json"
+    },
+    "2010": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2010.json"
+    },
+    "2009": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2009.json"
+    },
+    "2008": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2008.json"
+    },
+    "2007": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2007.json"
+    },
+    "2006": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2006.json"
+    },
+    "2005": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2005.json"
+    },
+    "2004": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2004.json"
+    },
+    "2003": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2003.json"
+    },
+    "2002": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2002.json"
+    },
+    "2001": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2001.json"
+    },
+    "2000": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/2000.json"
+    },
+    "1999": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1999.json"
+    },
+    "1998": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1998.json"
+    },
+    "1997": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1997.json"
+    },
+    "1996": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1996.json"
+    },
+    "1995": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1995.json"
+    },
+    "1994": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1994.json"
+    },
+    "1993": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1993.json"
+    },
+    "1992": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1992.json"
+    },
+    "1991": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1991.json"
+    },
+    "1990": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1990.json"
+    },
+    "1989": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1989.json"
+    },
+    "1988": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1988.json"
+    },
+    "1987": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1987.json"
+    },
+    "1986": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1986.json"
+    },
+    "1985": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1985.json"
+    },
+    "1984": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1984.json"
+    },
+    "1983": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1983.json"
+    },
+    "1982": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1982.json"
+    },
+    "1981": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1981.json"
+    },
+    "1980": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1980.json"
+    },
+    "1979": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1979.json"
+    },
+    "1978": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1978.json"
+    },
+    "1977": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1977.json"
+    },
+    "1976": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1976.json"
+    },
+    "1975": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1975.json"
+    },
+    "1974": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1974.json"
+    },
+    "1973": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1973.json"
+    },
+    "1972": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1972.json"
+    },
+    "1971": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1971.json"
+    },
+    "1970": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1970.json"
+    },
+    "1969": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1969.json"
+    },
+    "1968": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1968.json"
+    },
+    "1967": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1967.json"
+    },
+    "1966": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1966.json"
+    },
+    "1965": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1965.json"
+    },
+    "1964": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1964.json"
+    },
+    "1963": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1963.json"
+    },
+    "1962": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1962.json"
+    },
+    "1961": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1961.json"
+    },
+    "1960": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1960.json"
+    },
+    "1959": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1959.json"
+    },
+    "1958": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1958.json"
+    },
+    "1957": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1957.json"
+    },
+    "1956": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1956.json"
+    },
+    "1955": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1955.json"
+    },
+    "1954": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1954.json"
+    },
+    "1953": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1953.json"
+    },
+    "1952": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1952.json"
+    },
+    "1951": {
+      "completeYearRegionCells": 1473289,
+      "sourceMetadataFile": "regions/provenance/1951.json"
+    }
+  },
+  "annualMaskVariation": "Each year independently requires all12 finite monthly values of both variables; raw and smoothed share the same annual mask.",
+  "assetSha256": {
+    "regions/africa/years/1950/climate.bin.gz": "d4a1b6fbdd9088ddaeab384a965718e228b950f3e768a36049ba3709fb454ead",
+    "regions/africa/years/1950/smoothed.bin.gz": "6b7c5ea82c3644fb59af850eb72a72a295d5760d6ab8c72e06cdb5c09d6e45e7",
+    "regions/africa/years/1951/climate.bin.gz": "81876bd61c640c4f25dd36585951fbae77a5fd7085a7705820cac5b867d45f35",
+    "regions/africa/years/1951/smoothed.bin.gz": "fcd4161de74ecbe688c5fe40a7c79fac33c23ab7368828093deabf52ec68635d",
+    "regions/africa/years/1952/climate.bin.gz": "4d1b3bad84f933ea6598b1b0872141b109d2c7e6437445a70c3dc763124c766d",
+    "regions/africa/years/1952/smoothed.bin.gz": "abe0566f0220a25208ad21645ce49f92028f872e5a9db55716da76c39c7b3af0",
+    "regions/africa/years/1953/climate.bin.gz": "024e9ee6f215221bf3b329c3c34563798a7e3a3b70776beb3e4f525a3640a3db",
+    "regions/africa/years/1953/smoothed.bin.gz": "ebff69fcf54c83195e9b4e0aa907e85b389f99fe7e89af0b9529b63aca29fa74",
+    "regions/africa/years/1954/climate.bin.gz": "3fac5d9a2ae7b1c0be60da979f29305f3571a815e9b90ebdd4ccbc61d579e80a",
+    "regions/africa/years/1954/smoothed.bin.gz": "e1507839bc52e07517c04b6f03a948107e3fdece405bc61299b94940ffce76ff",
+    "regions/africa/years/1955/climate.bin.gz": "43a11f45cb13306058d6c4ec811db05df8f5adb06b846dd8216538e1405739c7",
+    "regions/africa/years/1955/smoothed.bin.gz": "ec411280f52a395532331113787aefb4c2b38119d9ea12fdd2c48d402de60ecd",
+    "regions/africa/years/1956/climate.bin.gz": "b57053d7150aab71ed988122aceafa6e7c10c29bf6c7edd6a355dae6a63c7b3e",
+    "regions/africa/years/1956/smoothed.bin.gz": "00233c014afea7258f88fb426a9df5dddd345cad7888a09db1e0fe267846015c",
+    "regions/africa/years/1957/climate.bin.gz": "bb453e8bcbaa65dd059cf017fc8d5ba9aaa159341427ccff07ab246f67955e2f",
+    "regions/africa/years/1957/smoothed.bin.gz": "e856347319f0077f3fa9ea50284b0b2d437baf48340af1391282ccb1539abba5",
+    "regions/africa/years/1958/climate.bin.gz": "2d266ef68ab569897210e8c64e262e58c6073b0432ff8a6d432f56e685e645ce",
+    "regions/africa/years/1958/smoothed.bin.gz": "d276bc95090f4a26de5f57866e75f526873f89701b63f7b9a7d6d9b396d5adbb",
+    "regions/africa/years/1959/climate.bin.gz": "4420ac7028815af69f02d9879cb6b62c1c99c210b10c7b6980c8833ea70d3324",
+    "regions/africa/years/1959/smoothed.bin.gz": "c01b62d193937f535edc5b69dc6ca6e3ce9d521e3057fe4073e9ab87dcdec2e7",
+    "regions/africa/years/1960/climate.bin.gz": "47c5d97f2ca8d9c209d04d34e414e601bee4ecd538df2f0b3ac8a9ac9c4780cd",
+    "regions/africa/years/1960/smoothed.bin.gz": "3afa9ee478fb0d1b91775f08f50b9105bc295238b9123a5afc5acc97793aeeff",
+    "regions/africa/years/1961/climate.bin.gz": "77a135202d4b4da6e2b22d6e66bd6aaa57e4b1a80a7f71178c6e22541dd14c8f",
+    "regions/africa/years/1961/smoothed.bin.gz": "213b044a12284a870149b319e016f3eb567e14ef75041b09b0e229bdb71c8164",
+    "regions/africa/years/1962/climate.bin.gz": "07f960b1725315e3683a0ada7ce4624ddfbb36bb19cd8d47e81bae69ddd5368f",
+    "regions/africa/years/1962/smoothed.bin.gz": "f658a982c3f96aefddf8eb18ad8b91ced6a683a19d6eacdbde5f716c81f1c6aa",
+    "regions/africa/years/1963/climate.bin.gz": "44a2c18b1ebafcb64fd13388bf0c096e6fbac310914d41abf3dc5466b22d3163",
+    "regions/africa/years/1963/smoothed.bin.gz": "a750b4e249dccabd02f7860e85626ba527b674d10c13de8fb070ba15bcb1a51b",
+    "regions/africa/years/1964/climate.bin.gz": "76bbd01f91ee4860bd92fc6ba3be85430dfd808bfa43a69b435e3aa213bd3327",
+    "regions/africa/years/1964/smoothed.bin.gz": "4d7e348f98a7629f089adb1ed45880a9d4a1f6d94663a5de3eb04c58062cb913",
+    "regions/africa/years/1965/climate.bin.gz": "7ff20d3d3d23abbe3899444aec8f74ca5c5bca81f1a3e4833da71b08db89d883",
+    "regions/africa/years/1965/smoothed.bin.gz": "bff879dcd3485ab322008eb1dc039f6ee83510bb07f505f22f4cc7aed9b09a26",
+    "regions/africa/years/1966/climate.bin.gz": "3df60a8a5245867d9f00353223f96a7711139f5ed6de7e6f4b5145db45c67ac9",
+    "regions/africa/years/1966/smoothed.bin.gz": "db8cccde3f1cf8e0c0a5fa8af4f7d4cfee5d5308e7465e79e3446dc5fac5aabf",
+    "regions/africa/years/1967/climate.bin.gz": "44f4b0d6e9459cdd6e5b8a361e208c0f5a3d9a8b76a68cf27c1467adf94a3f35",
+    "regions/africa/years/1967/smoothed.bin.gz": "088e425686e4b8e470b2e43837313fe305f8eaed923493e2fd838224a3232eb4",
+    "regions/africa/years/1968/climate.bin.gz": "5f0944ea9de0657429806aa1efba0a41e8b670abb8cc143661140b076a83b90d",
+    "regions/africa/years/1968/smoothed.bin.gz": "c973b78738174a145c9899437442c5278f602546789d98c3c2a42a66e5b3806a",
+    "regions/africa/years/1969/climate.bin.gz": "ba2bec8f2a4dbdc259450c04e7c732ba694b05ffbd331482d0a888992e48ade9",
+    "regions/africa/years/1969/smoothed.bin.gz": "499c9b91504185e2a52d38db5b1de112f6c0c7070c34342d2352874a2cf3ce9a",
+    "regions/africa/years/1970/climate.bin.gz": "d016c1d6e3fb95f80d6a8f253e54a51afd79af4dd5ccf8031dfe06e750eababe",
+    "regions/africa/years/1970/smoothed.bin.gz": "130833a270660c3d40816c800750c9fa5a3c46ed4e66b4e6a7cc2f45971eb0db",
+    "regions/africa/years/1971/climate.bin.gz": "b0dc892116b3e5437835c012bcc345c568bacceb6a4946d18cc6e91878e04d98",
+    "regions/africa/years/1971/smoothed.bin.gz": "ee33c36681bd37f104fab8b7abc9cdeab6988931e6be1d91a430324800a258d0",
+    "regions/africa/years/1972/climate.bin.gz": "4ffd0529bca7436c20ef7e580a0802539bf32e8b9c1c6752e8b5e62cf8f68e7a",
+    "regions/africa/years/1972/smoothed.bin.gz": "87da9b3ab406058c7abc82693f123c2cabdaf5b403d4a45ad3e6a21dd059f158",
+    "regions/africa/years/1973/climate.bin.gz": "951dc64f42fde261c0c7c83c9e73f3bf7b06448671ee827118781e886a93c612",
+    "regions/africa/years/1973/smoothed.bin.gz": "08848791609a3bd9fc931de814953d3cc9ccc9e1192783d9795b536e11b9ac63",
+    "regions/africa/years/1974/climate.bin.gz": "9ee95bf7030cad7bdbff0232855b9deb81c8ae3a689143d413f0f8492f7b339f",
+    "regions/africa/years/1974/smoothed.bin.gz": "a6ec57dd759f9eee125d10f79db97347cb59d838f09e9839e73a1eb478eb19f7",
+    "regions/africa/years/1975/climate.bin.gz": "b6ef5c0e9c60abf4033557f86110f26ce4ba0639798d0f67a6b8fb47d838a4e7",
+    "regions/africa/years/1975/smoothed.bin.gz": "84ee93bcd109129cb07d89e38df3fa1c7fbf6fdea985aceaab5c71110366a178",
+    "regions/africa/years/1976/climate.bin.gz": "eba4e32f30412dda5be883a044e6169376941a680d01a0d6ecf87badd1aebee6",
+    "regions/africa/years/1976/smoothed.bin.gz": "be25c8f87ba9dd190647031a2e3cd5f9d01cc731d4bb25c0c8de5b2ef174d7dc",
+    "regions/africa/years/1977/climate.bin.gz": "b3a764e5eb55e88d1a57d6339fa56a3d6a82361ec1194c597f799ec2a1906b49",
+    "regions/africa/years/1977/smoothed.bin.gz": "d3039654799e9dc2bc8321465330972eeccc9789bb30d4b7bbb8373569e9651d",
+    "regions/africa/years/1978/climate.bin.gz": "bbb100c27f7e3677e77d42bd1e1ee9b1a2b0b1572277c9f8bf5664e2f15c6d66",
+    "regions/africa/years/1978/smoothed.bin.gz": "7b3dfe11de1d4f93e3c9fe82532a8818e712a5c694151e3ddbfbdc9d5777c37e",
+    "regions/africa/years/1979/climate.bin.gz": "55de44563aafd269339abfb8813b61af584924e464baf2f8c574ae88d5e224f1",
+    "regions/africa/years/1979/smoothed.bin.gz": "c47339f6b4647569c961e169dade744db49c2caf2164d129e4fcb537f9dc1483",
+    "regions/africa/years/1980/climate.bin.gz": "f55f37fe2c083ce8a3cbe218cd453ccab69122f5584f289eedd7f6f7a01d9c83",
+    "regions/africa/years/1980/smoothed.bin.gz": "912c8bda3337ecc4ec985946f216988296f2395ebb180d492f57bbf3b67ced64",
+    "regions/africa/years/1981/climate.bin.gz": "997d7d39ab43795678caa9380b780b391c3458b1d2d62be69fda5884bef1e9b1",
+    "regions/africa/years/1981/smoothed.bin.gz": "1e4a58838b4f9b1aba48a9f9cc2813981585b131299e9592cb08d80f2487b37d",
+    "regions/africa/years/1982/climate.bin.gz": "497cf6887b312989a5ef78c874a50ff99631f6e639a1ba8f66d92c2e82c11980",
+    "regions/africa/years/1982/smoothed.bin.gz": "82b89f9da29be7a48710e8a5e1ddc82af9bc548fa9084d7b18e1066e81ef1fed",
+    "regions/africa/years/1983/climate.bin.gz": "ee394669c82acb4f647535b98708b65d63a21577f0ffb15a708c5d7d5a0504b6",
+    "regions/africa/years/1983/smoothed.bin.gz": "dd3d5d20b3f87ea439492443c99837f68d04c91167fafe260c9618d4b16a6bb7",
+    "regions/africa/years/1984/climate.bin.gz": "df8cb0b414c926545079bde4d87fe3e83a96eeb60c74e2fb58ffd0dada2bf2aa",
+    "regions/africa/years/1984/smoothed.bin.gz": "c19c7da9bb6f8a11f99a8a4e1fc2a89329472c27cbb902db0b45cbe8834ff791",
+    "regions/africa/years/1985/climate.bin.gz": "f8bc4186907b1916d36643d04c6bd7d77872405d8937cf507bd9bb630f48080b",
+    "regions/africa/years/1985/smoothed.bin.gz": "f49774eef78f938c4aa3f4c388ee3f74cdf7cfbbca99603b48026f67bd629c2d",
+    "regions/africa/years/1986/climate.bin.gz": "3058b202385ba6f61d95a533915efea4822ca6310005c9b6b697ca18e00caa73",
+    "regions/africa/years/1986/smoothed.bin.gz": "30ec9efe0b1092f88c03cb5bb87699ebd7c05fb902bc2a54b8cb3c7e15c55efc",
+    "regions/africa/years/1987/climate.bin.gz": "d53a3bbed42bb6ca5471f3a25e370717bfd6e8fcb803b0446ca05c40dd04e89f",
+    "regions/africa/years/1987/smoothed.bin.gz": "735bcecf90a345a0729cfa01e137f746f833175169a5ac565454b9e4c1293e0f",
+    "regions/africa/years/1988/climate.bin.gz": "936220b532c2eb4f9a254921f859078c61c5a8c662eae2e134252c9c4214d3af",
+    "regions/africa/years/1988/smoothed.bin.gz": "49172bdfe55044399846d74e8214a1fccc747bd4ad2f9d5e07803661b2c5b967",
+    "regions/africa/years/1989/climate.bin.gz": "17516fdded22932d6790f24de538d169eac54d8b635e030efa10be96c8652ce8",
+    "regions/africa/years/1989/smoothed.bin.gz": "d91baefa371ef43b8841a436d812cab3574e63547c6b5827a8f595cdbb7ff513",
+    "regions/africa/years/1990/climate.bin.gz": "907f79fd475f710e5c1ba8778011f46bef149ae337b103755f78d009e5d450de",
+    "regions/africa/years/1990/smoothed.bin.gz": "e039e8f85d3d3bf2851d70013abbd47112ce1d1d61ef239a8c74d3705abc08d7",
+    "regions/africa/years/1991/climate.bin.gz": "3876119d407239a74e5ba89b43ec948811ff422f409c6030211c5d7092599d8d",
+    "regions/africa/years/1991/smoothed.bin.gz": "aaa91a432e792fa0f232b4676d9c31ec9abd0cf86201fb853623db2816e7e9a2",
+    "regions/africa/years/1992/climate.bin.gz": "9a09e7b220f01a1baa6f43f81f64c9435f15108f7a994d4e753d47230a9e760e",
+    "regions/africa/years/1992/smoothed.bin.gz": "708e7637198f5853ccd40310592411d742dd8a73c4c0929aa060cd72248d9ef6",
+    "regions/africa/years/1993/climate.bin.gz": "9a2e397bb334447176a9c2e0d8f03f9ceaddd66508e2199ba5657dac43e0ff45",
+    "regions/africa/years/1993/smoothed.bin.gz": "88a64f777493b410b0cc999c53b68e7680d17746ec9789b1b8be8146071c6d3f",
+    "regions/africa/years/1994/climate.bin.gz": "4a4ec50abd1969fd7a47b0ab68dd43131ba92454309e90064850a924aeff1170",
+    "regions/africa/years/1994/smoothed.bin.gz": "70b46391a5912a03bf20f0e9bd061b0ae7af71e59c9bef1585b8d7ae5b6b704d",
+    "regions/africa/years/1995/climate.bin.gz": "34d887a8dd909ce0f4814e2633db059d9dcf9530ff102b7bc4d0af9db9662a7a",
+    "regions/africa/years/1995/smoothed.bin.gz": "ae40064112a9244a46198b166d1bfa2c3a4c21529d372f417bc51bc7d057698d",
+    "regions/africa/years/1996/climate.bin.gz": "96a464f575875b4afaf08a85be31a2b5374cf6799adf29a78eda95ffef8cd209",
+    "regions/africa/years/1996/smoothed.bin.gz": "d319de2103cd0cd6ceb10838eaccbd4ca273469bf5c5c456cd07853fe7caa2fd",
+    "regions/africa/years/1997/climate.bin.gz": "ae079d089be2515255f62168730ef7bc5f01eba2758d6ed7ca32dc70c8fcd491",
+    "regions/africa/years/1997/smoothed.bin.gz": "d66ca76fbe9e3a8d2675f2b76dc1d75a38599f2b8469e6794957cf2ffc2b3fe3",
+    "regions/africa/years/1998/climate.bin.gz": "778511eb17667ec4cd24b5a489e4ec53f311f309ce451cb8e15bf459a0966280",
+    "regions/africa/years/1998/smoothed.bin.gz": "4fdfee246479a04fc0d7d5bb188c2c2c1b6d0417009388f99ae356b3cddd507a",
+    "regions/africa/years/1999/climate.bin.gz": "62ab76f49aad80b9bdae8d6524a6b75176ecdff1b2c93e9a0a0e616213dc8b5c",
+    "regions/africa/years/1999/smoothed.bin.gz": "45e11ba9bbf6e4ddedfb3ee0f2052f8b34a6b1fe65ea23681237cf9d84d34dbd",
+    "regions/africa/years/2000/climate.bin.gz": "fe349a86d99ddd0663bd2841ae455d83eb1c2fcff3f604bc2234b94d8daec404",
+    "regions/africa/years/2000/smoothed.bin.gz": "05df81eb8d4ae77c2e0a33f0739b20911bfaabfff33f03595aa608758a0bd0fa",
+    "regions/africa/years/2001/climate.bin.gz": "bb49a3eb77b06c02db93cd81e9329ce23d936eb57fe98e2151266955aa751034",
+    "regions/africa/years/2001/smoothed.bin.gz": "cc9cc2b650a8f4abfab83ee2ae1d2f5738f257755a6db02a78ed21cde8a6675e",
+    "regions/africa/years/2002/climate.bin.gz": "ff4f444982147148903d679317ba55bffa6aa38e789069ba270c6ce7f7349f40",
+    "regions/africa/years/2002/smoothed.bin.gz": "bd894d2f43e61b123d302d68a163926f8f95912e57b6ad567cf162f0e9eafe19",
+    "regions/africa/years/2003/climate.bin.gz": "74c77770d845ed150f0d16c77172570dd3f5801a1b875d61cdd8221e0e25bf5a",
+    "regions/africa/years/2003/smoothed.bin.gz": "e4e7aedae63fe843aa2be2944af6e3f0998cd4552a5642ff2d1c562a0fad4dcd",
+    "regions/africa/years/2004/climate.bin.gz": "daefb76832e018cfb3aadb9f4f95075adc3b167f20225ccaab7882b8d0ab45db",
+    "regions/africa/years/2004/smoothed.bin.gz": "216859345fd8010ba49fccef5b8e8fc2fb8efc320d59faefe5d5f524f6cf29cc",
+    "regions/africa/years/2005/climate.bin.gz": "9d197fd17b0f51a4d92c0cb7357e14649d956d4a0d2892838e9f64f96b6b79d0",
+    "regions/africa/years/2005/smoothed.bin.gz": "dffdd90de41d4434cfca69ff5be6abaafa0f4441a0b1b5188fdfc7e843c75282",
+    "regions/africa/years/2006/climate.bin.gz": "a5818a8addcb3e5dbaa715a1334499e047674b56b83043215ed543dd518a8b34",
+    "regions/africa/years/2006/smoothed.bin.gz": "416f430f9ceb1d4570f18f5b624c90078b7cc64d050fb491202e1bbe47af77bd",
+    "regions/africa/years/2007/climate.bin.gz": "e06e31da28b8f3ff99892604779ccb8ccdc96b79de536513f233211da336d5a6",
+    "regions/africa/years/2007/smoothed.bin.gz": "98fbe2431f4118ced1ea0c6665d720b5b4891bd7074fd9a2b3a9a2fbf624306e",
+    "regions/africa/years/2008/climate.bin.gz": "4e9e5f7dd43d9208bc201d599725d7d72fbe56785a2753648a32cefcaf1f1106",
+    "regions/africa/years/2008/smoothed.bin.gz": "9a6705477a9968454bf880191e6ddaeed7accf5672288d7ea155b4d96a7578a0",
+    "regions/africa/years/2009/climate.bin.gz": "893ef95051529a1ae3cfc9086a66347ecbfde9bbcd97c0a9478192c7fd57d906",
+    "regions/africa/years/2009/smoothed.bin.gz": "caf3ca8a11c7297304d95b4542401a16e45677b407ffe0ddb3a642293f1f459a",
+    "regions/africa/years/2010/climate.bin.gz": "780203a82c469dfd11e96050793a3580ede0562da37e3442fcf86b5483564430",
+    "regions/africa/years/2010/smoothed.bin.gz": "df85a3cfa4286111af2fa3fecd8d17b916c5125b4348bb9662a59972a1824dc9",
+    "regions/africa/years/2011/climate.bin.gz": "a7d7a036af09b136e882ed0eeab709770468dbe642e48d89a67e96c6b90984ba",
+    "regions/africa/years/2011/smoothed.bin.gz": "746ddf9c1aa453c9a0526f87286d017d7c73901dae69d3abd89c72f52aea8f7b",
+    "regions/africa/years/2012/climate.bin.gz": "2faf226feab71b1991cc1a47ab253f569f1591943c1c6a8b55e436fc55646338",
+    "regions/africa/years/2012/smoothed.bin.gz": "18fbcb9825b84f8ca18a93ed1cb2a4a2cbaca40164cd07538765f61f9df3bc87",
+    "regions/africa/years/2013/climate.bin.gz": "9658cb6643c27e7b47fe0e5d6701b738168436c187b88cbeb0bebdabeadfe69b",
+    "regions/africa/years/2013/smoothed.bin.gz": "198edad1fcfa70adfe0707ec1643a895c75448c7e19647dfe96b02ba79cc56bf",
+    "regions/africa/years/2014/climate.bin.gz": "4b8dc39b7304f1fff7e01f804d65af71a648d245699c9ae2336886ad229ed258",
+    "regions/africa/years/2014/smoothed.bin.gz": "7d6d413a6f9a8dd4cdedaac72aef9c0e37e275680e558d0856407804cf8954bb",
+    "regions/africa/years/2015/climate.bin.gz": "f5a1e7951adbe24b1ec30862bb9f584d7dae1357abed3e2c31c4fabf20c3d1f0",
+    "regions/africa/years/2015/smoothed.bin.gz": "a9446c1bd035ed2aad8d778c5a4206d28d75e4289397cdae93aa495099adf106",
+    "regions/africa/years/2016/climate.bin.gz": "8fa7ab6c2a990ba76539bb77a22a9ebe681ae03d5ae50ff93134865833074740",
+    "regions/africa/years/2016/smoothed.bin.gz": "e56cb2d63c5b7466b3af8a65919386ca9c32cc4c7017cef57a16705862ffdf02",
+    "regions/africa/years/2017/climate.bin.gz": "556a032df3eb408242456a88d83f103fadf83b9040dcffe59f72e85368f95879",
+    "regions/africa/years/2017/smoothed.bin.gz": "9db873892e3e2b151fbb1b3e3a320d855680a459a21c9ba4e407ba342f80c6e7",
+    "regions/africa/years/2018/climate.bin.gz": "69129717ed7cf437f5e1373597ae15dd1273e577ff64ea5d77c840e977a65004",
+    "regions/africa/years/2018/smoothed.bin.gz": "8df38c4027963226c941c3e8b8c1fbdec4393cd984e673ac17f2b95225c361a8",
+    "regions/africa/years/2019/climate.bin.gz": "0d96fddf7c2a9bcf7c7f870532b9b1aaf33b8152f7c11a79dcfcdbcf4e90d892",
+    "regions/africa/years/2019/smoothed.bin.gz": "2e4d0a1df2978256173c5420bf0c2a14fac5abfba6cb2d5ec8fb430a75d71f95",
+    "regions/africa/years/2020/climate.bin.gz": "86fe9be4b13a1a585ca983663d97a01197b5b141a59a2d122ce865213b519ae7",
+    "regions/africa/years/2020/smoothed.bin.gz": "183296f72c9482d83959c53193ac2afe418843014d303092ce209129965cf772",
+    "regions/africa/years/2021/climate.bin.gz": "f6a1a06e7604119970a4b492f568aa8a6a89f0d7b200ea281db720c8d2ab39c2",
+    "regions/africa/years/2021/smoothed.bin.gz": "7462b5e59283c3910aef15ad21f6acfb86c69fa3196601e6af8e841838edf8f5",
+    "regions/africa/years/2022/climate.bin.gz": "bb8f7a0e76697fb218266f69a035145cd2614761d82a9ffe1f312649caecb3e8",
+    "regions/africa/years/2022/smoothed.bin.gz": "189d4fd0deaa624addc4b08181fc20fd52115fae0fb8c3ea98d3ce026b448a3c",
+    "regions/africa/years/2023/climate.bin.gz": "dba310bce36f800c39c6faeb02fb7f231b92156694eb953fe553bc7318dd2659",
+    "regions/africa/years/2023/smoothed.bin.gz": "28b9e85c9417329e963cfb396b73e890f2a59ee228dea2ce7e0fdf4987d0906e",
+    "regions/africa/years/2024/climate.bin.gz": "7de0cee90f5afa40bdadc0f19a94bcb8f9e0f01d97d904cea1bdf01f063d0131",
+    "regions/africa/years/2024/smoothed.bin.gz": "4386bcbc5547897f85e215eb8645f6acaa2b1ac0bf74f1e81a0a3ab4f6038191",
+    "regions/africa/years/2025/climate.bin.gz": "a0b376c4f3d9855b96cd359ec8b89e20deb3f3c8c5f8e07bbc48ec881e544bb0",
+    "regions/africa/years/2025/smoothed.bin.gz": "7640058d2b105ba128f8ebede04247ff73878b729d966e2ee974342caae179e8",
+    "regions/africa/cells.bin.gz": "24fec1357655b6fd80ebf5722f561eec4d5dc9d3a48e993bf3c4860ed540bc83",
+    "regions/africa/borders.geojson": "42e047d802f0e7efef21a7504a46005818327ce43c06feed3cfd62d71d7637ea"
+  },
+  "totalCompressedBytes": 611624966,
+  "validCells": 1473289,
+  "rawFile": "regions/africa/years/2025/climate.bin.gz",
+  "smoothedFile": "regions/africa/years/2025/smoothed.bin.gz",
+  "metadataFile": "regions/africa/years/2025/metadata.json",
+  "temperatureRange": [
+    3.58,
+    41.04
+  ],
+  "precipitationRange": [
+    0.0,
+    7339.0
+  ],
+  "representativeValues": [
+    {
+      "name": "Cairo",
+      "requestedLongitude": 31.2357,
+      "requestedLatitude": 30.0444,
+      "longitude": 31.229166666666686,
+      "latitude": 30.062500000000007,
+      "row": 174,
+      "column": 1358,
+      "valid": true,
+      "tmaxC": 28.93,
+      "pptMm": 10
+    },
+    {
+      "name": "Lagos",
+      "requestedLongitude": 3.3792,
+      "requestedLatitude": 6.5244,
+      "longitude": 3.395833333333343,
+      "latitude": 6.520833333333343,
+      "row": 739,
+      "column": 690,
+      "valid": true,
+      "tmaxC": 31.52,
+      "pptMm": 1178
+    },
+    {
+      "name": "Nairobi",
+      "requestedLongitude": 36.8219,
+      "requestedLatitude": -1.2921,
+      "longitude": 36.8125,
+      "latitude": -1.3125,
+      "row": 927,
+      "column": 1492,
+      "valid": true,
+      "tmaxC": 26.76,
+      "pptMm": 789
+    },
+    {
+      "name": "Cape Town",
+      "requestedLongitude": 18.4241,
+      "requestedLatitude": -33.9249,
+      "longitude": 18.4375,
+      "latitude": -33.9375,
+      "row": 1710,
+      "column": 1051,
+      "valid": true,
+      "tmaxC": 21.48,
+      "pptMm": 452
+    },
+    {
+      "name": "Johannesburg",
+      "requestedLongitude": 28.0473,
+      "requestedLatitude": -26.2041,
+      "longitude": 28.0625,
+      "latitude": -26.1875,
+      "row": 1524,
+      "column": 1282,
+      "valid": true,
+      "tmaxC": 22.11,
+      "pptMm": 1308
+    },
+    {
+      "name": "Kinshasa",
+      "requestedLongitude": 15.2663,
+      "requestedLatitude": -4.4419,
+      "longitude": 15.270833333333341,
+      "latitude": -4.4375,
+      "row": 1002,
+      "column": 975,
+      "valid": true,
+      "tmaxC": 30.74,
+      "pptMm": 1636
+    },
+    {
+      "name": "Casablanca",
+      "requestedLongitude": -7.5898,
+      "requestedLatitude": 33.5731,
+      "longitude": -7.604166666666657,
+      "latitude": 33.56250000000001,
+      "row": 90,
+      "column": 426,
+      "valid": true,
+      "tmaxC": 24.37,
+      "pptMm": 458
+    },
+    {
+      "name": "Accra",
+      "requestedLongitude": -0.187,
+      "requestedLatitude": 5.6037,
+      "longitude": -0.18750000000000003,
+      "latitude": 5.604166666666671,
+      "row": 761,
+      "column": 604,
+      "valid": true,
+      "tmaxC": 31.93,
+      "pptMm": 723
+    },
+    {
+      "name": "Addis Ababa",
+      "requestedLongitude": 38.7578,
+      "requestedLatitude": 8.9806,
+      "longitude": 38.77083333333334,
+      "latitude": 8.979166666666671,
+      "row": 680,
+      "column": 1539,
+      "valid": true,
+      "tmaxC": 24.43,
+      "pptMm": 940
+    },
+    {
+      "name": "Antananarivo",
+      "requestedLongitude": 47.5079,
+      "requestedLatitude": -18.8792,
+      "longitude": 47.52083333333334,
+      "latitude": -18.89583333333333,
+      "row": 1349,
+      "column": 1749,
+      "valid": true,
+      "tmaxC": 25.81,
+      "pptMm": 1674
+    }
+  ],
+  "pooledValidCellYears": 111969964,
+  "thresholdReference": "Pooled annual Africa encoded raw land cells across available years 1950–2025; final target 1950–2025",
+  "temperatureBreaks": [
+    3.58,
+    27.73,
+    30.27,
+    33.08,
+    41.04
+  ],
+  "precipitationBreaks": [
+    0.0,
+    703.0,
+    1143.0,
+    1498.0,
+    7339.0
+  ],
+  "equalTemperatureBreaks": [
+    3.58,
+    28.38,
+    30.72,
+    33.76,
+    41.04
+  ],
+  "equalPrecipitationBreaks": [
+    0.0,
+    60.0,
+    462.0,
+    1069.0,
+    7339.0
+  ]
+}

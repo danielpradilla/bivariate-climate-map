@@ -1,0 +1,6 @@
+# Publish the reproducible data-preparation source, not a CGI endpoint.
+RemoveHandler .py
+<FilesMatch "^build_(data|regions)\.py$">
+  SetHandler none
+  ForceType text/plain
+</FilesMatch>

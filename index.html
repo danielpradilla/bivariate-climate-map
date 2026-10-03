@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffdf9">
+  <meta name="description" content="Animate Europe's annual temperature and precipitation from 1950 to 2025 using TerraClimate data and a fixed bivariate colour scale.">
+  <title>European bivariate climate map · 1950–2025</title>
+  <link rel="stylesheet" href="styles.css?v=20261004a">
+  <script data-cfasync="false" src="vendor/d3.min.js"></script>
+  <script data-cfasync="false" type="module" src="app.js?v=20261003c"></script>
+</head>
+<body>
+  <a class="skip-link" href="#explore">Skip to map controls</a>
+  <div class="app-shell">
+    <header class="dp-navbar">
+      <a class="dp-navbar-brand" href="https://www.danielpradilla.info/projects/">Daniel Pradilla</a>
+      <nav class="dp-navbar-links" aria-label="Site navigation">
+        <a href="https://www.danielpradilla.info/blog/">Blog</a>
+        <a href="#source-code">Source</a>
+      </nav>
+      <details class="dp-navbar-menu">
+        <summary aria-label="Site navigation menu">&#9776;</summary>
+        <nav aria-label="Site navigation (mobile)">
+          <a href="https://www.danielpradilla.info/blog/">Blog</a>
+          <a href="#source-code">Source</a>
+        </nav>
+      </details>
+    </header>
+    <div class="dp-project-header">
+      <h1><span class="region-choice"><select id="region-select" aria-label="Continent or World"><option value="europe">European</option><option value="asia">Asian</option><option value="africa">African</option><option value="north-america">North American</option><option value="south-america">South American</option><option value="oceania">Oceanian</option><option value="antarctica">Antarctic</option><option value="world">World</option></select><span aria-hidden="true">⌄</span></span> bivariate climate map</h1>
+    </div>
+
+    <main>
+      <section class="toolbar" id="explore" aria-label="Map display controls">
+        <div class="field">
+          <label for="mode">Map layer</label>
+          <select id="mode">
+            <option value="bivariate">Temperature × precipitation</option>
+            <option value="temperature">Maximum temperature</option>
+            <option value="precipitation">Precipitation</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="classification">Class boundaries</label>
+          <select id="classification">
+            <option value="original">Fixed · unequal percentiles</option>
+            <option value="equal">Fixed · quartiles</option>
+          </select>
+        </div>
+        <label class="checkbox-control" for="borders"><input type="checkbox" id="borders" checked> Country borders</label>
+        <label class="checkbox-control" for="smoothing"><input type="checkbox" id="smoothing" aria-describedby="smoothing-note" checked> Smooth zones</label>
+        <button class="download-button" id="download" type="button" aria-label="Download map as PNG">Download PNG <span aria-hidden="true">↓</span></button>
+      </section>
+
+      <section class="timeline" aria-label="Annual climate animation">
+        <div class="playback-buttons">
+          <button id="previous-year" type="button" aria-label="Previous year" title="Previous year">←</button>
+          <button id="play" type="button" aria-pressed="false">Play</button>
+          <button id="next-year" type="button" aria-label="Next year" title="Next year">→</button>
+        </div>
+        <div class="year-control">
+          <div class="year-control-label"><label for="year-slider">Year</label><output id="year-readout" for="year-slider">2025</output></div>
+          <input id="year-slider" type="range" min="1950" max="2025" step="1" value="2025" aria-label="Year">
+          <div class="year-extents" aria-hidden="true"><span id="year-start">1950</span><span id="year-end">2025</span></div>
+        </div>
+        <div class="field speed-field">
+          <label for="speed">Playback speed</label>
+          <select id="speed">
+            <option value="2000">0.5 year/s</option>
+            <option value="1000" selected>1 year/s</option>
+            <option value="500">2 years/s</option>
+          </select>
+        </div>
+        <p id="timeline-status" class="timeline-status" role="status" aria-live="polite">Loading 2025…</p>
+      </section>
+
+      <div class="workspace">
+        <section class="map-section" aria-label="European bivariate climate map">
+          <div id="map-wrap" class="map-wrap">
+            <canvas id="map" role="img" aria-label="Europe's annual temperature and precipitation map. Select a location on the map or use the city selector to inspect its climate values." aria-describedby="map-help">Your browser does not support canvas. Climate values can be explored using the city selector.</canvas>
+            <div id="city-ripple" class="city-ripple" aria-hidden="true" hidden><span class="ripple-ring"></span><span class="ripple-ring"></span></div>
+            <div class="map-stamp" aria-hidden="true"><span id="map-year">2025</span> / TerraClimate</div>
+            <div class="map-navigation" aria-label="Map navigation">
+              <div class="zoom-controls">
+                <button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+                <button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+              </div>
+              <button id="reset-view" type="button" title="Reset map view">Reset view</button>
+            </div>
+            <div id="loading" class="map-status" role="status" aria-live="polite"><span class="loading-mark" aria-hidden="true"></span>Loading European climate data…</div>
+            <div id="error" class="map-status error-message" role="alert" hidden></div>
+            <div class="map-attribution">Climate: TerraClimate · Boundaries: Natural Earth</div>
+          </div>
+          <div class="map-caption" id="map-help"><span>Drag to pan · scroll or pinch to zoom</span><span>Select a land cell to inspect</span></div>
+        </section>
+
+        <aside class="side-panel" aria-label="Legend and location details">
+          <section class="panel-section legend-section" aria-labelledby="legend-title">
+            <h2 id="legend-title">Temperature × precipitation</h2>
+            <div class="legend" aria-label="Bivariate color legend: temperature increases to the right and precipitation increases upward">
+              <div class="legend-y" id="legend-y-label"><span>Wetter</span><span aria-hidden="true">↑</span><span>Annual precipitation</span></div>
+              <div class="legend-grid" id="legend-grid" role="group" aria-label="Climate classes"></div>
+              <div class="legend-x" id="legend-x-label"><span>Maximum temperature</span><span>Warmer <span aria-hidden="true">→</span></span></div>
+            </div>
+            <div id="legend-detail" class="legend-detail" aria-live="polite"></div>
+            <details class="how-to-use">
+              <summary>How to use</summary>
+              <p class="legend-note">Select a colour to isolate its range. Select it again to show all cells.</p>
+              <p class="legend-note" id="legend-intro">Each cell combines warmth and rainfall, relative to the rest of Europe.</p>
+              <p class="legend-note" id="classification-note">Low and high are relative, not absolute. The original classes contain unequal shares of European cells.</p>
+              <p class="legend-note" id="smoothing-note">Gaussian σ=2 cells; inspection shows original values.</p>
+              <details id="thresholds" class="thresholds">
+                <summary>Class thresholds &amp; units</summary>
+                <div id="threshold-values"><p>Thresholds will appear when the data loads.</p></div>
+              </details>
+            </details>
+          </section>
+
+          <section class="panel-section location-section" aria-labelledby="location-title">
+            <h2 id="location-title">Inspect a location</h2>
+            <div class="field">
+              <label for="location-select">Click on the map or select</label>
+              <select id="location-select"><option value="">Choose a city…</option></select>
+            </div>
+            <div id="inspector" class="inspector" aria-live="polite" aria-atomic="true"></div>
+          </section>
+
+        </aside>
+      </div>
+
+      <section class="methodology" id="methodology" aria-labelledby="method-title">
+        <div class="method-heading"><span class="eyebrow">About this map</span><h2 id="method-title">Method &amp; sources</h2><p>An interactive adaptation of Milan Janosov’s bivariate climate map, using TerraClimate v1.1 for 1950–2025.</p><p class="method-links"><a href="https://github.com/danielpradilla/bivariate-climate-map">Code on GitHub</a><a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/climate-map.ipynb">Notebook: climate-map.ipynb</a></p></div>
+        <div class="method-copy">
+          <h3>Climate variables</h3>
+          <p><strong>Annual mean maximum temperature (°C)</strong> is the average of TerraClimate v1.1’s 12 monthly maximum-temperature values for the selected year. It is not annual mean temperature or the hottest temperature recorded. <strong>Annual precipitation (mm)</strong> is the sum of the 12 monthly precipitation totals. Each frame shows one year, not a long-term climate normal.</p>
+          <p>The animation covers 1950–2025, including all 12 months of 2025. It uses the revised TerraClimate v1.1 dataset; values can differ from the older dataset used in the original tutorial.</p>
+          <h3>How to read the classes</h3>
+          <p>Thresholds are calculated once from each region’s pooled annual land-cell values across 1950–2025 and remain fixed during playback. Within a region, a colour represents the same temperature and precipitation ranges in every year. Numeric thresholds differ between regions; compare readings or use World when comparing continents. The reference method uses temperature percentiles 0, 20, 45, 70 and 100 and precipitation percentiles 0, 60, 78, 90 and 100. The quartile option uses 0, 25, 50, 75 and 100 for both variables. These are unweighted grid-cell percentiles, not equal land-area shares. Warmer is right and wetter is up.</p>
+          <details class="method-details">
+            <summary>2024 Americas comparison</summary>
+            <p>The South America view uses the palette, percentile positions and smoothing from <a href="https://milanjanosov.substack.com/p/bivariate-climate-map-temperature">Janosov’s 2024 map</a>. With revised TerraClimate v1.1 data, annual-only thresholds and our fixed 1950–2025 thresholds assign the same class to 50.1% of South American cells and 80.9% of North American cells in 2024. This comparison measures the effect of the threshold baseline on the same smoothed cells, not pixel agreement with the published image. The original tutorial used an older dataset.</p>
+          </details>
+          <h3>Data coverage &amp; geographic scope</h3>
+          <p id="data-summary" class="data-summary" aria-live="polite">Preparing annual TerraClimate data.</p>
+          <p id="region-scope">The map uses Natural Earth’s Europe country selection, clipped to 25°W–60°E and 34°N–72°N. It includes Iceland and Russia inside this window. Turkey, Cyprus and the Caucasus countries are classified as Asia and excluded; this is not a physical Europe–Asia boundary. Overseas territories and islands outside the window are excluded. Country boundaries are geographic context, not a statement about sovereignty.</p>
+          <p id="region-method">The series contains 76 annual frames at native resolution (approximately 4 km). The fixed thresholds use 60,293,688 cell-year observations. See the <a id="frame-index-link" href="data/metadata.json">annual frame index and fixed thresholds</a> or the <a href="scripts/build_data.py">data preparation code</a> to reproduce the selection.</p>
+          <p>By default, Gaussian smoothing with <strong>σ = 2 cells</strong> is applied to the selected region’s climate fields before classification against its raw thresholds, following the reference method. Turn off “Smooth zones” to see the original cells. The original method’s mean-fill approach can affect coastlines. Location inspection always reports original, unsmoothed values. A city selection reads a grid cell, not a weather station; local conditions can differ.</p>
+          <p id="region-coverage">Each land cell requires all 12 months for both variables. The current data excludes 138 incomplete European land cells in every year. Annual values are stored at 0.01°C and 1 mm precision, and thresholds use these rounded raw values. The equal-area projection samples the nearest grid cell without blending class colours.</p>
+          <h3>Location inspection, playback and downloads</h3>
+          <p>Choose a continent or World in the title. Continents use the native approximately 4 km grid; World samples every sixth native cell, approximately 28 km at the equator. Small islands and coastal city centres can fall between land-cell centres, especially in World. Uncoloured land and locations without complete readings remain explicitly unavailable. No nearby value is substituted.</p>
+          <p>Click on the map or choose a city in “Inspect a location.” Its readings appear below the selector. Selecting a city highlights its dot with a three-second ripple, unless reduced motion is enabled. Antarctic options identify research stations. The selected frame’s data coverage is listed above. The legend’s “How to use” section explains colour selection, classification and smoothing.</p>
+          <p>Use the year slider or arrow buttons to inspect a year. Play advances one year at a time and stops at 2025; playing from the final year restarts at 1950. Changing the year pauses playback. Annual files load on demand, so a slow connection can reduce playback speed. The displayed year and location values change together once the next frame is ready. Download PNG saves the displayed frame with its year, legend and credits.</p>
+          <h3 id="source-code" tabindex="-1">Source code &amp; reproduction</h3>
+          <p>The code is public on GitHub at <a href="https://github.com/danielpradilla/bivariate-climate-map">danielpradilla/bivariate-climate-map</a>: <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/app.js">map and animation</a>, <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/index.html">page markup</a>, <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/styles.css">styles</a>, <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/scripts/build_data.py">European data preparation</a>, <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/scripts/build_regions.py">continent and World data preparation</a> and the <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/scripts/download_assets.py">asset downloader</a>. The original tutorials and data providers are credited alongside this section.</p>
+          <p>The <a href="https://github.com/danielpradilla/bivariate-climate-map/blob/main/climate-map.ipynb">climate-map.ipynb notebook</a> rebuilds one year’s maps for all eight views from TerraClimate’s monthly NetCDF files. It shows the source metadata, the annual mean and sum, the land selection, the fixed thresholds and the smoothing step, then saves each map as a PNG with a provenance file.</p>
+          <p>The repository does not contain the generated map assets. To run the app locally, download the published assets with <a href="https://docs.astral.sh/uv/">uv</a> and serve the project folder over HTTP:</p>
+          <pre><code>uv run --with-requirements requirements-data.txt python scripts/download_assets.py</code><code>python3 -m http.server 8000</code></pre>
+          <p>The <a href="https://github.com/danielpradilla/bivariate-climate-map#readme">README</a> lists the download size and options for selected regions and years. To rebuild Europe and then the other views from upstream monthly data instead:</p>
+          <pre><code>uv run --with-requirements requirements-data.txt python scripts/build_data.py</code><code>uv run --with-requirements requirements-data.txt python scripts/build_data.py --regions</code></pre>
+          <p>The region generator downloads compressed source rasters one year at a time, checks all 12 months, applies the land masks and writes sparse compressed annual assets. Source files use a temporary working directory and are removed after that year’s export; existing caches remain untouched. The <a href="data/regions/index.json">region index</a> links to each region’s frame index, thresholds and per-year provenance with download URLs, source hashes, revisions and processing details. Upstream revisions may change regenerated values.</p>
+        </div>
+        <div class="credits">
+          <h3>Method &amp; inspiration</h3>
+          <ul>
+            <li><a href="https://milanjanosov.substack.com/p/bivariate-climate-map-temperature">Milan Janosov: bivariate climate map</a><span>Python source, 4×4 palette, percentile choices and smoothing method · <a href="https://www.youtube.com/watch?v=iWRp_dciJsM">video walkthrough</a></span></li>
+            <li><a href="https://www.datawim.com/post/creating-professional-bivariate-maps-in-r/">Muhammad Mohsin Raza</a><span>Creating professional bivariate maps in R</span></li>
+            <li><a href="https://fil.github.io/pangea/plot/bivariate-map">Fil / Philippe Rivière: bivariate map</a><span>Observable / Pangea example · <a href="https://github.com/Fil/pangea">source code</a></span></li>
+          </ul>
+          <h3>Data &amp; boundaries</h3>
+          <ul>
+            <li><a href="https://www.climatologylab.org/terraclimate.html">TerraClimate v1.1 · CC0</a><span>Abatzoglou, Hegewisch, Yin &amp; Kalashinkov (2026), <cite>TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios</cite>, Scientific Data. Also see the <a href="https://doi.org/10.1038/sdata.2017.191">foundational 2018 paper</a>.</span></li>
+            <li><a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth</a><span>Public-domain geographic boundaries</span></li>
+            <li><a href="https://d3js.org/">D3 · Mike Bostock &amp; contributors</a><span>Map projection and interaction · <a href="vendor/d3.LICENSE">ISC license</a></span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <footer class="project-footer">
+      <div class="project-footer-meta">
+        <span>Europe · <span id="footer-year">2025</span></span>
+        <span>Annual mean maximum temperature × annual precipitation</span>
+      </div>
+      <div class="dp-footer">
+        <span>&copy; 2026 Daniel Pradilla</span>
+        <nav aria-label="Footer navigation">
+          <a href="https://www.danielpradilla.info/projects/">Projects</a>
+          <a href="https://www.danielpradilla.info/blog/">Blog</a>
+          <a href="#source-code">Source</a>
+          <a href="https://github.com/danielpradilla/bivariate-climate-map">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

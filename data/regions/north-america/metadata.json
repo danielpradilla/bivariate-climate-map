@@ -1,0 +1,2924 @@
+{
+  "width": 4227,
+  "height": 1875,
+  "west": 172.52083333333334,
+  "north": 83.60416666666667,
+  "dx": 0.041666666666666664,
+  "dy": 0.041666666666666664,
+  "storedCells": 2134220,
+  "cellIndexFile": "regions/north-america/cells.bin.gz",
+  "borderFile": "regions/north-america/borders.geojson",
+  "temperatureLabel": "Annual mean monthly maximum temperature",
+  "temperatureUnits": "°C",
+  "precipitationLabel": "Annual accumulated precipitation",
+  "precipitationUnits": "mm",
+  "binary": {
+    "byteOrder": "little-endian",
+    "type": "int16",
+    "layout": "sparse sorted native row-major cell indices, interleaved [tmax × 100, ppt mm]",
+    "nodata": -32768,
+    "bytesPerCell": 4,
+    "temperaturePrecisionC": 0.01,
+    "precipitationPrecisionMm": 1
+  },
+  "temperaturePercentiles": [
+    0,
+    20,
+    45,
+    70,
+    100
+  ],
+  "precipitationPercentiles": [
+    0,
+    60,
+    78,
+    90,
+    100
+  ],
+  "equalPercentiles": [
+    0,
+    25,
+    50,
+    75,
+    100
+  ],
+  "scope": {
+    "label": "North America",
+    "continentFilter": "Natural Earth CONTINENT == North America",
+    "selection": "Unsimplified Natural Earth 1:10m country-continent polygons, including overseas country components tagged with their parent country. Asia additionally includes Russia east of 60°E and its eastern antimeridian components west of 160°W. Europe retains its original [-25,34,60,72] bbox and unchanged assets. European territory outside that bbox not allocated to eastern Russia (including Russia north of 72°N west of 60°E) is World-only. Continents therefore do not claim an exhaustive physical-geography partition. World includes all Natural Earth land and source-uncovered outlines.",
+    "countries": [
+      "Anguilla",
+      "Antigua and Barbuda",
+      "Aruba",
+      "Bajo Nuevo Bank",
+      "Barbados",
+      "Belize",
+      "Bermuda",
+      "British Virgin Islands",
+      "Canada",
+      "Cayman Islands",
+      "Costa Rica",
+      "Cuba",
+      "Curaçao",
+      "Dominica",
+      "Dominican Republic",
+      "El Salvador",
+      "Greenland",
+      "Grenada",
+      "Guantanamo Bay Naval Base",
+      "Guatemala",
+      "Haiti",
+      "Honduras",
+      "Jamaica",
+      "Mexico",
+      "Montserrat",
+      "Nicaragua",
+      "Panama",
+      "Puerto Rico",
+      "Saint Barthélemy",
+      "Saint Kitts and Nevis",
+      "Saint Lucia",
+      "Saint Martin",
+      "Saint Pierre and Miquelon",
+      "Saint Vincent and the Grenadines",
+      "Serranilla Bank",
+      "Sint Maarten",
+      "The Bahamas",
+      "Trinidad and Tobago",
+      "Turks and Caicos Islands",
+      "United States Minor Outlying Islands",
+      "United States Virgin Islands",
+      "United States of America"
+    ],
+    "mask": "Both variables finite in all 12 months AND unsimplified selected land at grid-cell center; static sparse polygon cell map preserves annual missing cells.",
+    "landCells": 2134220,
+    "borderSimplificationDegrees": 0.01,
+    "borderWinding": "RFC7946 counterclockwise exterior rings",
+    "longitudeWrapping": "Columns ordered eastward across the minimal circular longitude interval; west and cell-center longitudes may be unwrapped past 180 degrees.",
+    "horizStride": 1,
+    "nominalResolutionKm": 4
+  },
+  "smoothing": {
+    "enabledByDefault": true,
+    "method": "scipy.ndimage.gaussian_filter",
+    "sigmaCells": 2,
+    "edgeMode": "reflect",
+    "truncate": 4.0,
+    "description": "Fill invalid/ocean/non-region cells with this region’s annual full-precision valid-field mean, Gaussian sigma2 on the region grid, then restore the original valid mask and quantize. World sigma2 is on the stride6 grid.",
+    "caveat": "Visual smoothing biases coastal and mask-edge values toward the region annual mean; inspection and thresholds use unsmoothed values."
+  },
+  "sources": {
+    "naturalEarth": {
+      "url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_countries.zip",
+      "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+      "bytes": 4930492,
+      "retrievedAt": "2026-10-03T13:41:48.406069+00:00",
+      "dataset": "Natural Earth 1:10m Admin 0 Countries",
+      "version": "5.1.1",
+      "license": "Public domain",
+      "homepage": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/",
+      "boundaries": "Natural Earth de facto country boundaries, not a statement on sovereignty."
+    },
+    "terraClimate": {
+      "dataset": "TerraClimate",
+      "version": "V1.1",
+      "catalog": "https://thredds.northwestknowledge.net/thredds/catalog/TERRACLIMATE_ALL/data/catalog.xml",
+      "homepage": "https://www.climatologylab.org/terraclimate.html",
+      "nativeResolutionDegrees": 0.041666666666666664,
+      "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)",
+      "citation": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+      "tmax": {
+        "url": "https://thredds.northwestknowledge.net/thredds/fileServer/TERRACLIMATE_ALL/data/TerraClimate_tmax_2025.nc",
+        "sha256": "8f70fff5bf50d0086f13a369fa06a20c59d139456d5e8889e5bfe00c87ab4a87",
+        "bytes": 97156966,
+        "retrievedAt": "2026-10-03T13:43:34.498157+00:00",
+        "dates": [
+          "2025-01-01",
+          "2025-02-01",
+          "2025-03-01",
+          "2025-04-01",
+          "2025-05-01",
+          "2025-06-01",
+          "2025-07-01",
+          "2025-08-01",
+          "2025-09-01",
+          "2025-10-01",
+          "2025-11-01",
+          "2025-12-01"
+        ],
+        "months": 12,
+        "cfPacking": {
+          "scale_factor": 0.01,
+          "add_offset": -99.0,
+          "_FillValue": -32768,
+          "missing_value": -32768
+        },
+        "units": "degC",
+        "description": "Maximum 2-m Temperature",
+        "globalAttributes": {
+          "method": "These layers from TerraClimate were creating using climatically aided interpolation of monthly anomalies from ERA5 with WorldClim v2.0 climatologies.",
+          "version": "V1.1",
+          "title": "TerraClimate: monthly climate and climatic water balance for global land surfaces",
+          "summary": "This archive contains a dataset of high-spatial resolution (1/24°, ~4-km) monthly climate and climatic water balance for global terrestrial surfaces from 1950-present. These data were created by using climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim version 1.4 and version 2 datasets, with coarser resolution time varying (i.e. monthly) data from ERA5 reanalyses produce a monthly dataset of precipitation, maximum and minimum temperature, wind speed, vapor pressure, and solar radiation. TerraClimate additionally produces monthly surface water balance datasets using a water balance model that incorporates reference evapotranspiration, precipitation, temperature, and interpolated plant extractable soil water capacity. Complementary datasets are also produced for 1950-2025 for counterfactual climate scenarios that remove the first-order influence of climate change, as well as a +2C and +4C scenario that apply a pseudo climate change experiment to observational data. These datasets preserve the observed variability during 1950-2025 but adjust individual climate variables monthly using ensemble median changes derived from CMIP6.",
+          "keywords": "WORLDCLIM,global,monthly, temperature,precipitation,wind,radiation,vapor pressure,evapotranspiration,water balance,soil water capacity,snow water equivalent,runoff",
+          "id": "Blank",
+          "naming_authority": "edu.uidaho.nkn",
+          "keywords_vocabulary": "None",
+          "cdm_data_type": "GRID",
+          "date_created": "2026-06-02",
+          "creator_name": "John Abatzoglou",
+          "creator_url": "https://www.climatologylab.org/terraclimate.html",
+          "creator_role": "Principal Investigator",
+          "creator_email": "jabatzoglou@ucmerced.edu",
+          "institution": "University of California Merced",
+          "project": "Global Dataset of Monthly Climate and Climatic Water Balance (1950-2025)",
+          "processing_level": "Gridded Climate Projections",
+          "acknowledgment": "Please cite the references included herein. We also acknowledge the WorldClim datasets (Fick and Hijmans, 2017; Hijmans et al., 2005) and the ERA5 (Hersbach et al., 2020) datasets.",
+          "geospatial_lat_min": -89.97916412353516,
+          "geospatial_lat_max": 89.97916412353516,
+          "geospatial_lon_min": -179.9791717529297,
+          "geospatial_lon_max": 179.9791717529297,
+          "geospatial_vertical_min": 0.0,
+          "geospatial_vertical_max": 0.0,
+          "time_coverage_start": "2025-01-01T00:0",
+          "time_coverage_end": "2025-12-01T00:0",
+          "time_coverage_duration": "P1Y",
+          "time_coverage_resolution": "P1M",
+          "standard_nam_vocabulary": "CF-1.0",
+          "contributor_name": "Katherine Hegewisch",
+          "contributor_role": "Postdoctoral Fellow",
+          "contributor_email": "khegewisch@ucmerced.edu",
+          "publisher_name": "Northwest Knowledge Network",
+          "publisher_url": "http://www.northwestknowledge.net",
+          "publisher_email": "info@northwestknowledge.net",
+          "date_modified": "2026-06-02",
+          "date_issued": "2026-06-02",
+          "geospatial_lat_units": "decimal degrees north",
+          "geospatial_lat_resolution": -0.0416666679084301,
+          "geospatial_lon_units": "decimal degrees east",
+          "geospatial_lon_resolution": 0.0416666679084301,
+          "geospatial_vertical_units": "None",
+          "geospatial_vertical_resolution": 0.0,
+          "geospatial_vertical_positive": "Up",
+          "Conventions": "CF-1.6",
+          "NCO": "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+          "source": "WorldClim v2.1, ERA5",
+          "references": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+          "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)"
+        },
+        "completeYearCellsBeforeRegionMask": 12532612,
+        "aggregation": "arithmetic mean of 12 monthly maximum-temperature fields; no day weighting"
+      },
+      "ppt": {
+        "url": "https://thredds.northwestknowledge.net/thredds/fileServer/TERRACLIMATE_ALL/data/TerraClimate_ppt_2025.nc",
+        "sha256": "7a3b4315e441c517f42f36a581ba471b45db9be611750bc17fa093caa50be1f4",
+        "bytes": 153384782,
+        "retrievedAt": "2026-10-03T13:43:35.514788+00:00",
+        "dates": [
+          "2025-01-01",
+          "2025-02-01",
+          "2025-03-01",
+          "2025-04-01",
+          "2025-05-01",
+          "2025-06-01",
+          "2025-07-01",
+          "2025-08-01",
+          "2025-09-01",
+          "2025-10-01",
+          "2025-11-01",
+          "2025-12-01"
+        ],
+        "months": 12,
+        "cfPacking": {
+          "scale_factor": 0.1,
+          "add_offset": 0.0,
+          "_FillValue": -2147483648,
+          "missing_value": -2147483648
+        },
+        "units": "mm",
+        "description": "Accumulated Precipitation",
+        "globalAttributes": {
+          "method": "These layers from TerraClimate were creating using climatically aided interpolation of monthly anomalies from ERA5 with WorldClim v2.0 climatologies.",
+          "version": "V1.1",
+          "title": "TerraClimate: monthly climate and climatic water balance for global land surfaces",
+          "summary": "This archive contains a dataset of high-spatial resolution (1/24°, ~4-km) monthly climate and climatic water balance for global terrestrial surfaces from 1950-present. These data were created by using climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim version 1.4 and version 2 datasets, with coarser resolution time varying (i.e. monthly) data from ERA5 reanalyses produce a monthly dataset of precipitation, maximum and minimum temperature, wind speed, vapor pressure, and solar radiation. TerraClimate additionally produces monthly surface water balance datasets using a water balance model that incorporates reference evapotranspiration, precipitation, temperature, and interpolated plant extractable soil water capacity. Complementary datasets are also produced for 1950-2025 for counterfactual climate scenarios that remove the first-order influence of climate change, as well as a +2C and +4C scenario that apply a pseudo climate change experiment to observational data. These datasets preserve the observed variability during 1950-2025 but adjust individual climate variables monthly using ensemble median changes derived from CMIP6.",
+          "keywords": "WORLDCLIM,global,monthly, temperature,precipitation,wind,radiation,vapor pressure,evapotranspiration,water balance,soil water capacity,snow water equivalent,runoff",
+          "id": "Blank",
+          "naming_authority": "edu.uidaho.nkn",
+          "keywords_vocabulary": "None",
+          "cdm_data_type": "GRID",
+          "date_created": "2026-06-02",
+          "creator_name": "John Abatzoglou",
+          "creator_url": "https://www.climatologylab.org/terraclimate.html",
+          "creator_role": "Principal Investigator",
+          "creator_email": "jabatzoglou@ucmerced.edu",
+          "institution": "University of California Merced",
+          "project": "Global Dataset of Monthly Climate and Climatic Water Balance (1950-2025)",
+          "processing_level": "Gridded Climate Projections",
+          "acknowledgment": "Please cite the references included herein. We also acknowledge the WorldClim datasets (Fick and Hijmans, 2017; Hijmans et al., 2005) and the ERA5 (Hersbach et al., 2020) datasets.",
+          "geospatial_lat_min": -89.97916412353516,
+          "geospatial_lat_max": 89.97916412353516,
+          "geospatial_lon_min": -179.9791717529297,
+          "geospatial_lon_max": 179.9791717529297,
+          "geospatial_vertical_min": 0.0,
+          "geospatial_vertical_max": 0.0,
+          "time_coverage_start": "2025-01-01T00:0",
+          "time_coverage_end": "2025-12-01T00:0",
+          "time_coverage_duration": "P1Y",
+          "time_coverage_resolution": "P1M",
+          "standard_nam_vocabulary": "CF-1.0",
+          "contributor_name": "Katherine Hegewisch",
+          "contributor_role": "Postdoctoral Fellow",
+          "contributor_email": "khegewisch@ucmerced.edu",
+          "publisher_name": "Northwest Knowledge Network",
+          "publisher_url": "http://www.northwestknowledge.net",
+          "publisher_email": "info@northwestknowledge.net",
+          "date_modified": "2026-06-02",
+          "date_issued": "2026-06-02",
+          "geospatial_lat_units": "decimal degrees north",
+          "geospatial_lat_resolution": -0.0416666679084301,
+          "geospatial_lon_units": "decimal degrees east",
+          "geospatial_lon_resolution": 0.0416666679084301,
+          "geospatial_vertical_units": "None",
+          "geospatial_vertical_resolution": 0.0,
+          "geospatial_vertical_positive": "Up",
+          "Conventions": "CF-1.6",
+          "NCO": "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+          "source": "WorldClim v2.1, ERA5",
+          "references": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+          "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)"
+        },
+        "completeYearCellsBeforeRegionMask": 12532612,
+        "aggregation": "sum of 12 monthly accumulated precipitation fields"
+      },
+      "antarcticaCompleteYearCells": 3484093
+    }
+  },
+  "percentileMethod": "Fixed pooled encoded raw land-cell/year histogram, NumPy linear interpolation; equal cell-year weighting, not area weighted.",
+  "generation": {
+    "script": "scripts/build_data.py --regions (scripts/build_regions.py)",
+    "generatorVersion": 1,
+    "scriptSha256": "241962fba890a774c5babb2528fe0fb290ccbf8f262a72cd985c10aaf40c1c5e",
+    "dependenciesSha256": "9303074d8b2afbfeb4edb85bb21f2714805ceaa642564af3654649a3a2c67047",
+    "acquisition": "Original compressed upstream HTTPServer annual files; only two source files staged per year in a newly owned temporary directory, removed after export; no existing cache deletion.",
+    "command": "uv run --with-requirements requirements-data.txt python scripts/build_data.py --regions"
+  },
+  "years": [
+    1950,
+    1951,
+    1952,
+    1953,
+    1954,
+    1955,
+    1956,
+    1957,
+    1958,
+    1959,
+    1960,
+    1961,
+    1962,
+    1963,
+    1964,
+    1965,
+    1966,
+    1967,
+    1968,
+    1969,
+    1970,
+    1971,
+    1972,
+    1973,
+    1974,
+    1975,
+    1976,
+    1977,
+    1978,
+    1979,
+    1980,
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "defaultYear": 2025,
+  "frames": {
+    "1950": {
+      "year": 1950,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1950/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1950/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1950/metadata.json",
+      "temperatureRange": [
+        -24.77,
+        37.63
+      ],
+      "precipitationRange": [
+        5,
+        6171
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.774999999999995,
+        37.63333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        5.0,
+        6170.700000000001
+      ]
+    },
+    "1951": {
+      "year": 1951,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1951/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1951/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1951/metadata.json",
+      "temperatureRange": [
+        -24.85,
+        36.22
+      ],
+      "precipitationRange": [
+        27,
+        8326
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.849999999999998,
+        36.216666666666676
+      ],
+      "fullPrecisionPrecipitationRange": [
+        26.799999999999997,
+        8325.999999999998
+      ]
+    },
+    "1952": {
+      "year": 1952,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1952/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1952/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1952/metadata.json",
+      "temperatureRange": [
+        -23.37,
+        35.88
+      ],
+      "precipitationRange": [
+        32,
+        6256
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.366666666666664,
+        35.87500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        31.6,
+        6255.700000000001
+      ]
+    },
+    "1953": {
+      "year": 1953,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1953/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1953/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1953/metadata.json",
+      "temperatureRange": [
+        -24.27,
+        36.11
+      ],
+      "precipitationRange": [
+        4,
+        6046
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.274999999999995,
+        36.10833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        4.1000000000000005,
+        6045.6
+      ]
+    },
+    "1954": {
+      "year": 1954,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1954/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1954/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1954/metadata.json",
+      "temperatureRange": [
+        -23.86,
+        36.48
+      ],
+      "precipitationRange": [
+        9,
+        6071
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.85833333333333,
+        36.48333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        8.7,
+        6070.7
+      ]
+    },
+    "1955": {
+      "year": 1955,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1955/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1955/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1955/metadata.json",
+      "temperatureRange": [
+        -24.63,
+        35.86
+      ],
+      "precipitationRange": [
+        12,
+        6859
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.633333333333326,
+        35.85833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        11.900000000000002,
+        6858.8
+      ]
+    },
+    "1956": {
+      "year": 1956,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1956/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1956/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1956/metadata.json",
+      "temperatureRange": [
+        -25.12,
+        36.38
+      ],
+      "precipitationRange": [
+        2,
+        7795
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.124999999999996,
+        36.37500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        1.5,
+        7794.799999999999
+      ]
+    },
+    "1957": {
+      "year": 1957,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1957/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1957/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1957/metadata.json",
+      "temperatureRange": [
+        -23.88,
+        36.45
+      ],
+      "precipitationRange": [
+        30,
+        8395
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.875000000000004,
+        36.449999999999996
+      ],
+      "fullPrecisionPrecipitationRange": [
+        30.000000000000004,
+        8395.1
+      ]
+    },
+    "1958": {
+      "year": 1958,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1958/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1958/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1958/metadata.json",
+      "temperatureRange": [
+        -23.43,
+        35.42
+      ],
+      "precipitationRange": [
+        22,
+        6922
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.433333333333326,
+        35.416666666666664
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.2,
+        6922.4
+      ]
+    },
+    "1959": {
+      "year": 1959,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1959/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1959/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1959/metadata.json",
+      "temperatureRange": [
+        -23.82,
+        35.29
+      ],
+      "precipitationRange": [
+        31,
+        6089
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.816666666666663,
+        35.291666666666664
+      ],
+      "fullPrecisionPrecipitationRange": [
+        30.700000000000003,
+        6088.799999999999
+      ]
+    },
+    "1960": {
+      "year": 1960,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1960/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1960/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1960/metadata.json",
+      "temperatureRange": [
+        -22.64,
+        35.31
+      ],
+      "precipitationRange": [
+        18,
+        6301
+      ],
+      "fullPrecisionTemperatureRange": [
+        -22.641666666666666,
+        35.30833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        18.5,
+        6301.1
+      ]
+    },
+    "1961": {
+      "year": 1961,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1961/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1961/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1961/metadata.json",
+      "temperatureRange": [
+        -24.82,
+        35.75
+      ],
+      "precipitationRange": [
+        16,
+        6361
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.816666666666666,
+        35.75
+      ],
+      "fullPrecisionPrecipitationRange": [
+        16.3,
+        6361.300000000001
+      ]
+    },
+    "1962": {
+      "year": 1962,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1962/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1962/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1962/metadata.json",
+      "temperatureRange": [
+        -24.01,
+        35.85
+      ],
+      "precipitationRange": [
+        24,
+        6497
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.00833333333333,
+        35.85
+      ],
+      "fullPrecisionPrecipitationRange": [
+        23.5,
+        6496.8
+      ]
+    },
+    "1963": {
+      "year": 1963,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1963/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1963/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1963/metadata.json",
+      "temperatureRange": [
+        -24.1,
+        35.82
+      ],
+      "precipitationRange": [
+        15,
+        7302
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.099999999999998,
+        35.81666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        14.800000000000002,
+        7302.5
+      ]
+    },
+    "1964": {
+      "year": 1964,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1964/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1964/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1964/metadata.json",
+      "temperatureRange": [
+        -25.37,
+        35.9
+      ],
+      "precipitationRange": [
+        12,
+        5887
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.374999999999996,
+        35.900000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        12.5,
+        5886.6
+      ]
+    },
+    "1965": {
+      "year": 1965,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1965/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1965/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1965/metadata.json",
+      "temperatureRange": [
+        -23.42,
+        36.02
+      ],
+      "precipitationRange": [
+        40,
+        7283
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.416666666666657,
+        36.016666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        40.3,
+        7283.099999999999
+      ]
+    },
+    "1966": {
+      "year": 1966,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1966/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1966/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1966/metadata.json",
+      "temperatureRange": [
+        -25.06,
+        35.24
+      ],
+      "precipitationRange": [
+        22,
+        5803
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.058333333333334,
+        35.24166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.200000000000003,
+        5803.0
+      ]
+    },
+    "1967": {
+      "year": 1967,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1967/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1967/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1967/metadata.json",
+      "temperatureRange": [
+        -24.5,
+        35.65
+      ],
+      "precipitationRange": [
+        35,
+        6152
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.5,
+        35.650000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        35.4,
+        6151.500000000001
+      ]
+    },
+    "1968": {
+      "year": 1968,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1968/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1968/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1968/metadata.json",
+      "temperatureRange": [
+        -23.73,
+        35.08
+      ],
+      "precipitationRange": [
+        8,
+        8584
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.73333333333333,
+        35.083333333333336
+      ],
+      "fullPrecisionPrecipitationRange": [
+        7.6000000000000005,
+        8583.7
+      ]
+    },
+    "1969": {
+      "year": 1969,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1969/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1969/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1969/metadata.json",
+      "temperatureRange": [
+        -23.79,
+        36.02
+      ],
+      "precipitationRange": [
+        19,
+        6273
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.791666666666668,
+        36.01666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        18.6,
+        6273.3
+      ]
+    },
+    "1970": {
+      "year": 1970,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1970/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1970/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1970/metadata.json",
+      "temperatureRange": [
+        -24.06,
+        35.48
+      ],
+      "precipitationRange": [
+        8,
+        6609
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.058333333333326,
+        35.48333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        8.0,
+        6608.6
+      ]
+    },
+    "1971": {
+      "year": 1971,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1971/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1971/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1971/metadata.json",
+      "temperatureRange": [
+        -25.49,
+        35.29
+      ],
+      "precipitationRange": [
+        16,
+        5777
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.49166666666667,
+        35.291666666666664
+      ],
+      "fullPrecisionPrecipitationRange": [
+        15.900000000000002,
+        5776.800000000001
+      ]
+    },
+    "1972": {
+      "year": 1972,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1972/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1972/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1972/metadata.json",
+      "temperatureRange": [
+        -25.35,
+        35.81
+      ],
+      "precipitationRange": [
+        28,
+        6436
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.349999999999994,
+        35.80833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        28.0,
+        6436.100000000001
+      ]
+    },
+    "1973": {
+      "year": 1973,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1973/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1973/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1973/metadata.json",
+      "temperatureRange": [
+        -24.55,
+        34.98
+      ],
+      "precipitationRange": [
+        16,
+        6594
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.55,
+        34.975
+      ],
+      "fullPrecisionPrecipitationRange": [
+        15.9,
+        6593.5
+      ]
+    },
+    "1974": {
+      "year": 1974,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1974/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1974/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1974/metadata.json",
+      "temperatureRange": [
+        -25.25,
+        35.38
+      ],
+      "precipitationRange": [
+        13,
+        6312
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.249999999999996,
+        35.37500000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        13.4,
+        6311.600000000001
+      ]
+    },
+    "1975": {
+      "year": 1975,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1975/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1975/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1975/metadata.json",
+      "temperatureRange": [
+        -24.66,
+        35.33
+      ],
+      "precipitationRange": [
+        14,
+        5431
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.658333333333335,
+        35.325
+      ],
+      "fullPrecisionPrecipitationRange": [
+        13.899999999999999,
+        5431.3
+      ]
+    },
+    "1976": {
+      "year": 1976,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1976/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1976/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1976/metadata.json",
+      "temperatureRange": [
+        -23.97,
+        36.07
+      ],
+      "precipitationRange": [
+        36,
+        6137
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.966666666666665,
+        36.074999999999996
+      ],
+      "fullPrecisionPrecipitationRange": [
+        35.900000000000006,
+        6136.9000000000015
+      ]
+    },
+    "1977": {
+      "year": 1977,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1977/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1977/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1977/metadata.json",
+      "temperatureRange": [
+        -24.15,
+        36.72
+      ],
+      "precipitationRange": [
+        20,
+        5422
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.150000000000002,
+        36.71666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        19.800000000000004,
+        5422.4
+      ]
+    },
+    "1978": {
+      "year": 1978,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1978/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1978/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1978/metadata.json",
+      "temperatureRange": [
+        -24.1,
+        36.28
+      ],
+      "precipitationRange": [
+        45,
+        6006
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.099999999999994,
+        36.28333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        44.7,
+        6005.6
+      ]
+    },
+    "1979": {
+      "year": 1979,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1979/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1979/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1979/metadata.json",
+      "temperatureRange": [
+        -24.67,
+        36.74
+      ],
+      "precipitationRange": [
+        30,
+        6820
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.666666666666668,
+        36.74166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        30.400000000000006,
+        6819.8
+      ]
+    },
+    "1980": {
+      "year": 1980,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1980/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1980/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1980/metadata.json",
+      "temperatureRange": [
+        -23.59,
+        37.5
+      ],
+      "precipitationRange": [
+        12,
+        5779
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.591666666666658,
+        37.50000000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        11.600000000000001,
+        5779.299999999999
+      ]
+    },
+    "1981": {
+      "year": 1981,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1981/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1981/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1981/metadata.json",
+      "temperatureRange": [
+        -25.36,
+        36.81
+      ],
+      "precipitationRange": [
+        13,
+        6769
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.35833333333333,
+        36.80833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        12.900000000000002,
+        6769.0
+      ]
+    },
+    "1982": {
+      "year": 1982,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1982/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1982/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1982/metadata.json",
+      "temperatureRange": [
+        -24.91,
+        37.45
+      ],
+      "precipitationRange": [
+        32,
+        9573
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.90833333333333,
+        37.45000000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        31.900000000000002,
+        9573.2
+      ]
+    },
+    "1983": {
+      "year": 1983,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1983/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1983/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1983/metadata.json",
+      "temperatureRange": [
+        -25.5,
+        36.4
+      ],
+      "precipitationRange": [
+        50,
+        5680
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.499999999999996,
+        36.4
+      ],
+      "fullPrecisionPrecipitationRange": [
+        50.0,
+        5680.200000000001
+      ]
+    },
+    "1984": {
+      "year": 1984,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1984/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1984/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1984/metadata.json",
+      "temperatureRange": [
+        -24.88,
+        36.13
+      ],
+      "precipitationRange": [
+        57,
+        7004
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.875,
+        36.13333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        56.50000000000001,
+        7003.7
+      ]
+    },
+    "1985": {
+      "year": 1985,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1985/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1985/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1985/metadata.json",
+      "temperatureRange": [
+        -24.08,
+        36.2
+      ],
+      "precipitationRange": [
+        25,
+        5192
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.083333333333332,
+        36.2
+      ],
+      "fullPrecisionPrecipitationRange": [
+        25.100000000000005,
+        5192.0
+      ]
+    },
+    "1986": {
+      "year": 1986,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1986/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1986/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1986/metadata.json",
+      "temperatureRange": [
+        -25.44,
+        36.98
+      ],
+      "precipitationRange": [
+        20,
+        5947
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.441666666666663,
+        36.975
+      ],
+      "fullPrecisionPrecipitationRange": [
+        20.000000000000004,
+        5946.800000000001
+      ]
+    },
+    "1987": {
+      "year": 1987,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1987/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1987/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1987/metadata.json",
+      "temperatureRange": [
+        -24.86,
+        36.98
+      ],
+      "precipitationRange": [
+        30,
+        6762
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.858333333333338,
+        36.983333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        29.800000000000004,
+        6761.5
+      ]
+    },
+    "1988": {
+      "year": 1988,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1988/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1988/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1988/metadata.json",
+      "temperatureRange": [
+        -23.78,
+        36.95
+      ],
+      "precipitationRange": [
+        12,
+        6260
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.783333333333335,
+        36.95
+      ],
+      "fullPrecisionPrecipitationRange": [
+        11.9,
+        6260.0
+      ]
+    },
+    "1989": {
+      "year": 1989,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1989/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1989/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1989/metadata.json",
+      "temperatureRange": [
+        -24.68,
+        36.73
+      ],
+      "precipitationRange": [
+        18,
+        7622
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.683333333333337,
+        36.73333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        17.500000000000004,
+        7622.0
+      ]
+    },
+    "1990": {
+      "year": 1990,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1990/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1990/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1990/metadata.json",
+      "temperatureRange": [
+        -24.5,
+        37.19
+      ],
+      "precipitationRange": [
+        27,
+        6675
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.499999999999996,
+        37.19166666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        27.200000000000003,
+        6675.3
+      ]
+    },
+    "1991": {
+      "year": 1991,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1991/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1991/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1991/metadata.json",
+      "temperatureRange": [
+        -24.09,
+        37.31
+      ],
+      "precipitationRange": [
+        40,
+        6639
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.09166666666667,
+        37.30833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        40.2,
+        6639.400000000001
+      ]
+    },
+    "1992": {
+      "year": 1992,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1992/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1992/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1992/metadata.json",
+      "temperatureRange": [
+        -24.78,
+        36.43
+      ],
+      "precipitationRange": [
+        48,
+        5933
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.775000000000002,
+        36.425000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        47.900000000000006,
+        5932.6
+      ]
+    },
+    "1993": {
+      "year": 1993,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1993/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1993/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1993/metadata.json",
+      "temperatureRange": [
+        -24.32,
+        37.27
+      ],
+      "precipitationRange": [
+        44,
+        4803
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.316666666666663,
+        37.266666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        43.900000000000006,
+        4803.400000000001
+      ]
+    },
+    "1994": {
+      "year": 1994,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1994/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1994/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1994/metadata.json",
+      "temperatureRange": [
+        -23.98,
+        38.51
+      ],
+      "precipitationRange": [
+        18,
+        5468
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.974999999999998,
+        38.50833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        18.400000000000002,
+        5468.4
+      ]
+    },
+    "1995": {
+      "year": 1995,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1995/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1995/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1995/metadata.json",
+      "temperatureRange": [
+        -23.44,
+        36.74
+      ],
+      "precipitationRange": [
+        23,
+        5651
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.441666666666666,
+        36.741666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.800000000000004,
+        5650.800000000001
+      ]
+    },
+    "1996": {
+      "year": 1996,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1996/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1996/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1996/metadata.json",
+      "temperatureRange": [
+        -23.39,
+        36.89
+      ],
+      "precipitationRange": [
+        5,
+        6506
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.391666666666666,
+        36.89166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        5.4,
+        6506.5
+      ]
+    },
+    "1997": {
+      "year": 1997,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1997/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1997/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1997/metadata.json",
+      "temperatureRange": [
+        -23.76,
+        37.22
+      ],
+      "precipitationRange": [
+        43,
+        6559
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.758333333333326,
+        37.21666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        42.9,
+        6558.6
+      ]
+    },
+    "1998": {
+      "year": 1998,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1998/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1998/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1998/metadata.json",
+      "temperatureRange": [
+        -23.23,
+        37.62
+      ],
+      "precipitationRange": [
+        22,
+        6351
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.23333333333333,
+        37.625
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.200000000000003,
+        6351.400000000001
+      ]
+    },
+    "1999": {
+      "year": 1999,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/1999/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/1999/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/1999/metadata.json",
+      "temperatureRange": [
+        -24.16,
+        37.85
+      ],
+      "precipitationRange": [
+        10,
+        7124
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.158333333333328,
+        37.85
+      ],
+      "fullPrecisionPrecipitationRange": [
+        10.200000000000001,
+        7123.800000000001
+      ]
+    },
+    "2000": {
+      "year": 2000,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2000/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2000/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2000/metadata.json",
+      "temperatureRange": [
+        -24.31,
+        37.84
+      ],
+      "precipitationRange": [
+        17,
+        6005
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.308333333333334,
+        37.84166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        17.400000000000006,
+        6005.299999999999
+      ]
+    },
+    "2001": {
+      "year": 2001,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2001/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2001/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2001/metadata.json",
+      "temperatureRange": [
+        -24.2,
+        38.04
+      ],
+      "precipitationRange": [
+        16,
+        6200
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.2,
+        38.04166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        15.799999999999999,
+        6200.100000000001
+      ]
+    },
+    "2002": {
+      "year": 2002,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2002/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2002/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2002/metadata.json",
+      "temperatureRange": [
+        -23.5,
+        38.22
+      ],
+      "precipitationRange": [
+        9,
+        7046
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.499999999999996,
+        38.21666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        8.8,
+        7046.300000000001
+      ]
+    },
+    "2003": {
+      "year": 2003,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2003/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2003/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2003/metadata.json",
+      "temperatureRange": [
+        -23.32,
+        37.89
+      ],
+      "precipitationRange": [
+        40,
+        6390
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.325,
+        37.89166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        40.0,
+        6390.200000000001
+      ]
+    },
+    "2004": {
+      "year": 2004,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2004/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2004/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2004/metadata.json",
+      "temperatureRange": [
+        -25.35,
+        37.68
+      ],
+      "precipitationRange": [
+        32,
+        7312
+      ],
+      "fullPrecisionTemperatureRange": [
+        -25.349999999999998,
+        37.68333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        32.1,
+        7312.000000000001
+      ]
+    },
+    "2005": {
+      "year": 2005,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2005/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2005/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2005/metadata.json",
+      "temperatureRange": [
+        -23.36,
+        38.1
+      ],
+      "precipitationRange": [
+        38,
+        7474
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.35833333333333,
+        38.1
+      ],
+      "fullPrecisionPrecipitationRange": [
+        38.0,
+        7473.500000000001
+      ]
+    },
+    "2006": {
+      "year": 2006,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2006/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2006/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2006/metadata.json",
+      "temperatureRange": [
+        -23.04,
+        37.28
+      ],
+      "precipitationRange": [
+        4,
+        7048
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.041666666666668,
+        37.275000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        3.6999999999999997,
+        7048.199999999999
+      ]
+    },
+    "2007": {
+      "year": 2007,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2007/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2007/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2007/metadata.json",
+      "temperatureRange": [
+        -23.9,
+        37.68
+      ],
+      "precipitationRange": [
+        21,
+        5696
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.89999999999999,
+        37.675000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        20.8,
+        5696.100000000001
+      ]
+    },
+    "2008": {
+      "year": 2008,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2008/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2008/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2008/metadata.json",
+      "temperatureRange": [
+        -23.43,
+        37.67
+      ],
+      "precipitationRange": [
+        20,
+        6282
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.433333333333334,
+        37.66666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        19.599999999999998,
+        6282.299999999999
+      ]
+    },
+    "2009": {
+      "year": 2009,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2009/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2009/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2009/metadata.json",
+      "temperatureRange": [
+        -24.08,
+        38.13
+      ],
+      "precipitationRange": [
+        10,
+        6576
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.075,
+        38.13333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        9.500000000000002,
+        6576.200000000001
+      ]
+    },
+    "2010": {
+      "year": 2010,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2010/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2010/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2010/metadata.json",
+      "temperatureRange": [
+        -21.33,
+        36.64
+      ],
+      "precipitationRange": [
+        18,
+        8059
+      ],
+      "fullPrecisionTemperatureRange": [
+        -21.333333333333332,
+        36.64166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        17.900000000000002,
+        8058.8
+      ]
+    },
+    "2011": {
+      "year": 2011,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2011/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2011/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2011/metadata.json",
+      "temperatureRange": [
+        -23.92,
+        37.47
+      ],
+      "precipitationRange": [
+        8,
+        6179
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.924999999999997,
+        37.474999999999994
+      ],
+      "fullPrecisionPrecipitationRange": [
+        7.5,
+        6178.6
+      ]
+    },
+    "2012": {
+      "year": 2012,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2012/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2012/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2012/metadata.json",
+      "temperatureRange": [
+        -22.53,
+        37.61
+      ],
+      "precipitationRange": [
+        21,
+        5380
+      ],
+      "fullPrecisionTemperatureRange": [
+        -22.53333333333333,
+        37.60833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        21.0,
+        5380.4000000000015
+      ]
+    },
+    "2013": {
+      "year": 2013,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2013/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2013/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2013/metadata.json",
+      "temperatureRange": [
+        -24.41,
+        37.58
+      ],
+      "precipitationRange": [
+        30,
+        7639
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.40833333333333,
+        37.58333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        29.500000000000004,
+        7638.900000000001
+      ]
+    },
+    "2014": {
+      "year": 2014,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2014/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2014/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2014/metadata.json",
+      "temperatureRange": [
+        -23.3,
+        37.53
+      ],
+      "precipitationRange": [
+        22,
+        8250
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.299999999999997,
+        37.53333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.3,
+        8250.5
+      ]
+    },
+    "2015": {
+      "year": 2015,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2015/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2015/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2015/metadata.json",
+      "temperatureRange": [
+        -24.01,
+        37.8
+      ],
+      "precipitationRange": [
+        34,
+        6682
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.00833333333333,
+        37.80000000000001
+      ],
+      "fullPrecisionPrecipitationRange": [
+        33.50000000000001,
+        6681.5
+      ]
+    },
+    "2016": {
+      "year": 2016,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2016/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2016/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2016/metadata.json",
+      "temperatureRange": [
+        -21.73,
+        37.67
+      ],
+      "precipitationRange": [
+        26,
+        5661
+      ],
+      "fullPrecisionTemperatureRange": [
+        -21.73333333333333,
+        37.66666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        25.8,
+        5660.599999999999
+      ]
+    },
+    "2017": {
+      "year": 2017,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2017/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2017/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2017/metadata.json",
+      "temperatureRange": [
+        -23.99,
+        37.03
+      ],
+      "precipitationRange": [
+        34,
+        6280
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.991666666666664,
+        37.03333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        33.900000000000006,
+        6279.7
+      ]
+    },
+    "2018": {
+      "year": 2018,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2018/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2018/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2018/metadata.json",
+      "temperatureRange": [
+        -24.1,
+        36.81
+      ],
+      "precipitationRange": [
+        24,
+        8071
+      ],
+      "fullPrecisionTemperatureRange": [
+        -24.099999999999998,
+        36.80833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        24.5,
+        8071.4
+      ]
+    },
+    "2019": {
+      "year": 2019,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2019/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2019/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2019/metadata.json",
+      "temperatureRange": [
+        -22.17,
+        37.3
+      ],
+      "precipitationRange": [
+        41,
+        6307
+      ],
+      "fullPrecisionTemperatureRange": [
+        -22.166666666666668,
+        37.3
+      ],
+      "fullPrecisionPrecipitationRange": [
+        41.10000000000001,
+        6306.799999999999
+      ]
+    },
+    "2020": {
+      "year": 2020,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2020/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2020/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2020/metadata.json",
+      "temperatureRange": [
+        -23.82,
+        38.13
+      ],
+      "precipitationRange": [
+        19,
+        5838
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.825,
+        38.13333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        19.1,
+        5838.1
+      ]
+    },
+    "2021": {
+      "year": 2021,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2021/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2021/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2021/metadata.json",
+      "temperatureRange": [
+        -22.26,
+        36.78
+      ],
+      "precipitationRange": [
+        22,
+        5538
+      ],
+      "fullPrecisionTemperatureRange": [
+        -22.25833333333333,
+        36.775000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.400000000000002,
+        5538.099999999999
+      ]
+    },
+    "2022": {
+      "year": 2022,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2022/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2022/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2022/metadata.json",
+      "temperatureRange": [
+        -23.37,
+        37.17
+      ],
+      "precipitationRange": [
+        22,
+        5743
+      ],
+      "fullPrecisionTemperatureRange": [
+        -23.366666666666664,
+        37.16666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        22.1,
+        5742.6
+      ]
+    },
+    "2023": {
+      "year": 2023,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2023/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2023/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2023/metadata.json",
+      "temperatureRange": [
+        -22.49,
+        37.99
+      ],
+      "precipitationRange": [
+        38,
+        6635
+      ],
+      "fullPrecisionTemperatureRange": [
+        -22.491666666666664,
+        37.991666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        38.2,
+        6635.100000000001
+      ]
+    },
+    "2024": {
+      "year": 2024,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2024/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2024/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2024/metadata.json",
+      "temperatureRange": [
+        -22.64,
+        38.39
+      ],
+      "precipitationRange": [
+        3,
+        6185
+      ],
+      "fullPrecisionTemperatureRange": [
+        -22.641666666666666,
+        38.391666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        2.9000000000000004,
+        6184.500000000001
+      ]
+    },
+    "2025": {
+      "year": 2025,
+      "validCells": 2126994,
+      "rawFile": "regions/north-america/years/2025/climate.bin.gz",
+      "smoothedFile": "regions/north-america/years/2025/smoothed.bin.gz",
+      "metadataFile": "regions/north-america/years/2025/metadata.json",
+      "temperatureRange": [
+        -21.76,
+        38.66
+      ],
+      "precipitationRange": [
+        21,
+        6371
+      ],
+      "fullPrecisionTemperatureRange": [
+        -21.758333333333336,
+        38.65833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        20.6,
+        6371.299999999999
+      ]
+    }
+  },
+  "baseline": {
+    "startYear": 1950,
+    "endYear": 2025,
+    "requestedYears": [
+      1950,
+      1951,
+      1952,
+      1953,
+      1954,
+      1955,
+      1956,
+      1957,
+      1958,
+      1959,
+      1960,
+      1961,
+      1962,
+      1963,
+      1964,
+      1965,
+      1966,
+      1967,
+      1968,
+      1969,
+      1970,
+      1971,
+      1972,
+      1973,
+      1974,
+      1975,
+      1976,
+      1977,
+      1978,
+      1979,
+      1980,
+      1981,
+      1982,
+      1983,
+      1984,
+      1985,
+      1986,
+      1987,
+      1988,
+      1989,
+      1990,
+      1991,
+      1992,
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "completedSourceYears": [
+      2025,
+      1950,
+      2024,
+      2023,
+      2022,
+      2021,
+      2020,
+      2019,
+      2018,
+      2017,
+      2016,
+      2015,
+      2014,
+      2013,
+      2012,
+      2011,
+      2010,
+      2009,
+      2008,
+      2007,
+      2006,
+      2005,
+      2004,
+      2003,
+      2002,
+      2001,
+      2000,
+      1999,
+      1998,
+      1997,
+      1996,
+      1995,
+      1994,
+      1993,
+      1992,
+      1991,
+      1990,
+      1989,
+      1988,
+      1987,
+      1986,
+      1985,
+      1984,
+      1983,
+      1982,
+      1981,
+      1980,
+      1979,
+      1978,
+      1977,
+      1976,
+      1975,
+      1974,
+      1973,
+      1972,
+      1971,
+      1970,
+      1969,
+      1968,
+      1967,
+      1966,
+      1965,
+      1964,
+      1963,
+      1962,
+      1961,
+      1960,
+      1959,
+      1958,
+      1957,
+      1956,
+      1955,
+      1954,
+      1953,
+      1952,
+      1951
+    ],
+    "complete": true
+  },
+  "coverageEvidence": {
+    "2025": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2025.json"
+    },
+    "1950": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1950.json"
+    },
+    "2024": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2024.json"
+    },
+    "2023": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2023.json"
+    },
+    "2022": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2022.json"
+    },
+    "2021": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2021.json"
+    },
+    "2020": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2020.json"
+    },
+    "2019": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2019.json"
+    },
+    "2018": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2018.json"
+    },
+    "2017": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2017.json"
+    },
+    "2016": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2016.json"
+    },
+    "2015": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2015.json"
+    },
+    "2014": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2014.json"
+    },
+    "2013": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2013.json"
+    },
+    "2012": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2012.json"
+    },
+    "2011": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2011.json"
+    },
+    "2010": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2010.json"
+    },
+    "2009": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2009.json"
+    },
+    "2008": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2008.json"
+    },
+    "2007": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2007.json"
+    },
+    "2006": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2006.json"
+    },
+    "2005": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2005.json"
+    },
+    "2004": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2004.json"
+    },
+    "2003": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2003.json"
+    },
+    "2002": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2002.json"
+    },
+    "2001": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2001.json"
+    },
+    "2000": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/2000.json"
+    },
+    "1999": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1999.json"
+    },
+    "1998": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1998.json"
+    },
+    "1997": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1997.json"
+    },
+    "1996": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1996.json"
+    },
+    "1995": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1995.json"
+    },
+    "1994": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1994.json"
+    },
+    "1993": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1993.json"
+    },
+    "1992": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1992.json"
+    },
+    "1991": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1991.json"
+    },
+    "1990": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1990.json"
+    },
+    "1989": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1989.json"
+    },
+    "1988": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1988.json"
+    },
+    "1987": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1987.json"
+    },
+    "1986": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1986.json"
+    },
+    "1985": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1985.json"
+    },
+    "1984": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1984.json"
+    },
+    "1983": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1983.json"
+    },
+    "1982": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1982.json"
+    },
+    "1981": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1981.json"
+    },
+    "1980": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1980.json"
+    },
+    "1979": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1979.json"
+    },
+    "1978": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1978.json"
+    },
+    "1977": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1977.json"
+    },
+    "1976": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1976.json"
+    },
+    "1975": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1975.json"
+    },
+    "1974": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1974.json"
+    },
+    "1973": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1973.json"
+    },
+    "1972": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1972.json"
+    },
+    "1971": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1971.json"
+    },
+    "1970": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1970.json"
+    },
+    "1969": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1969.json"
+    },
+    "1968": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1968.json"
+    },
+    "1967": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1967.json"
+    },
+    "1966": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1966.json"
+    },
+    "1965": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1965.json"
+    },
+    "1964": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1964.json"
+    },
+    "1963": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1963.json"
+    },
+    "1962": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1962.json"
+    },
+    "1961": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1961.json"
+    },
+    "1960": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1960.json"
+    },
+    "1959": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1959.json"
+    },
+    "1958": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1958.json"
+    },
+    "1957": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1957.json"
+    },
+    "1956": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1956.json"
+    },
+    "1955": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1955.json"
+    },
+    "1954": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1954.json"
+    },
+    "1953": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1953.json"
+    },
+    "1952": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1952.json"
+    },
+    "1951": {
+      "completeYearRegionCells": 2126994,
+      "sourceMetadataFile": "regions/provenance/1951.json"
+    }
+  },
+  "annualMaskVariation": "Each year independently requires all12 finite monthly values of both variables; raw and smoothed share the same annual mask.",
+  "assetSha256": {
+    "regions/north-america/years/1950/climate.bin.gz": "0e57eaeff64f09ad13fcde166f7fe3e3c1f13820625dcd27d1df9846b8956af4",
+    "regions/north-america/years/1950/smoothed.bin.gz": "c5390bce7c798c3b8cd00407c4eece96caa755eb0b991fa69f614f5cf93f0399",
+    "regions/north-america/years/1951/climate.bin.gz": "24a962ec8cf185a5ec3773b71dac06e092a633d7a68d12787c98c3420461a717",
+    "regions/north-america/years/1951/smoothed.bin.gz": "5923a96faa25466706066de143c5b686379c7e7c906ada75a7a9431f6ee4724b",
+    "regions/north-america/years/1952/climate.bin.gz": "76dbf2cfcc89eb4ed4405d5cd08916247700408aba474b3ed86ed6a12766c267",
+    "regions/north-america/years/1952/smoothed.bin.gz": "6e63062de0d830e66c81d755d153562eb5db6bc7f92f82e8e0d7d8d30115c1f0",
+    "regions/north-america/years/1953/climate.bin.gz": "a638e3dc79d41f7028af7676c22d3ed085db0f126468c8d6d900460c497d60ac",
+    "regions/north-america/years/1953/smoothed.bin.gz": "2b9a520f51136642daa623f2c365d58a4409088116602ccc73d6a1542812a840",
+    "regions/north-america/years/1954/climate.bin.gz": "f7a26915cd98d9d03e11301208c91743dbd4c17300178fab07321db663ceb59e",
+    "regions/north-america/years/1954/smoothed.bin.gz": "c7bd7144ae402bc272a5b2438ca1ec646b4f8242374bf91d64f59f7c942e596b",
+    "regions/north-america/years/1955/climate.bin.gz": "42ad944aa2e0a086810d154a4299466163dd97106a7b88073778bece812bc75d",
+    "regions/north-america/years/1955/smoothed.bin.gz": "4a8a718b03a34b1ffb2786223f922ee13ad759a99b89943f3df80d08b34195f5",
+    "regions/north-america/years/1956/climate.bin.gz": "11ff6af41cb05eae4b669b046612880c57c0d2fff0f760165ff1957f20f5e8fb",
+    "regions/north-america/years/1956/smoothed.bin.gz": "0eaa18907b65d5b542a787b71ba445e3c1f6d8b37abe6edcc2155c451140ad10",
+    "regions/north-america/years/1957/climate.bin.gz": "5c5385ad788789f83f3a1f7bea5b85705288e71649902524075ab73e51ff1ac1",
+    "regions/north-america/years/1957/smoothed.bin.gz": "f2a200663f15673ebfcaa3349d745f42aed35e72c17c64b849591fcdc6903200",
+    "regions/north-america/years/1958/climate.bin.gz": "45ef38541d4db6dd46501bb6657d27967e8dc423fb144d3c4c19c21547fb6774",
+    "regions/north-america/years/1958/smoothed.bin.gz": "539a140f13ad48db159071738eb32f09a8bbfe534293e3becf6d0b09aa9d48f8",
+    "regions/north-america/years/1959/climate.bin.gz": "f966594cd47114400a1790e260e8cbb01af618321e8e8fe7d6ee94196016b257",
+    "regions/north-america/years/1959/smoothed.bin.gz": "b6335027da7d703d1e3d095f7c27b0f94f3c86ce7267b9e37d36ea8ca84809de",
+    "regions/north-america/years/1960/climate.bin.gz": "6d8ba29018b108425dc310eb028570c49223a9393046ad9d1a8da75cf49d4ec1",
+    "regions/north-america/years/1960/smoothed.bin.gz": "456c09dc830383ffe5a965019e1d7dde3f2c68b52ccda3f0c552f5c5fa9c51e2",
+    "regions/north-america/years/1961/climate.bin.gz": "7aa87742a33728ff10185c9a623b94b79686d33eb4ba98af8b03b30faed18da5",
+    "regions/north-america/years/1961/smoothed.bin.gz": "fc0e2a7d0465c59c5b3930aa3028904e4b2fbdf995f54fc205f99d00e7dbb12b",
+    "regions/north-america/years/1962/climate.bin.gz": "06dd4a59a758222b9cedb761858ec88fe79d6255d225bc11dac3f6b22eaf32fd",
+    "regions/north-america/years/1962/smoothed.bin.gz": "8673275af3c0d06dd12e32fb9a22d5f0c4e2e94b3aac536973db70ae4f3b1716",
+    "regions/north-america/years/1963/climate.bin.gz": "26f9bd54c1bc9bf4bf592437eecd14a4ad58121fad023972ad623ada73db50df",
+    "regions/north-america/years/1963/smoothed.bin.gz": "800712e176ae67dd955b83d9e964ceb0c8ff948e62c9ba18febe2a47c438f3b8",
+    "regions/north-america/years/1964/climate.bin.gz": "16cfa357c072988f5b0f1cfa265878de5d8ca19c230bb6ad5ed0d955773f2e7b",
+    "regions/north-america/years/1964/smoothed.bin.gz": "fd0b54ed1a9008b7d8a5972db96f1bc8131e49d162296197b31099c009ae0d2a",
+    "regions/north-america/years/1965/climate.bin.gz": "295fd740a6d8599702f0a21ef8e13dd2d8adf3a1c9bfa99aed4bdb492bbd19fe",
+    "regions/north-america/years/1965/smoothed.bin.gz": "045c37a676f5594c0eec5c78a03802fead3f18b4c7c8d9f73d86e5e31f6c3048",
+    "regions/north-america/years/1966/climate.bin.gz": "cd42a432f0c2c27c730750c3ad11d94ffd5fbdf3ad2fdfec5a1c12561898d415",
+    "regions/north-america/years/1966/smoothed.bin.gz": "6f585ffbbe1833d5b4a2b904df8b4a43a72aa41cbe3a4bcb5a0fbe6dcb86c9c3",
+    "regions/north-america/years/1967/climate.bin.gz": "4fb953b2e82988eaca9e2d5b85bff94d1be51ca615d8ea7f1650e71ccd10a1f1",
+    "regions/north-america/years/1967/smoothed.bin.gz": "f0527dbf65ab2da892db1cb3a7d2b295abf0b2dc6559f741aba7e40308ed4435",
+    "regions/north-america/years/1968/climate.bin.gz": "0efb90af733489fe2f7f33cb68d66117b9ece8b7e83d859f5afc59e6e6f9a280",
+    "regions/north-america/years/1968/smoothed.bin.gz": "736cf0a73fdffd82fcc7b9884f7a7f265020204ceafd48391e793bae30ec670f",
+    "regions/north-america/years/1969/climate.bin.gz": "ee0e8d910d11719121c83951b64b43839631f5509bab85c261818e04ae7e60c2",
+    "regions/north-america/years/1969/smoothed.bin.gz": "3aa2a193a83a17c159b202195375893c08ba0bf937cdf9db2493be626da940c0",
+    "regions/north-america/years/1970/climate.bin.gz": "03b313752c90818da54980512713d1a8713a974a6a861ccb269620bff4c50035",
+    "regions/north-america/years/1970/smoothed.bin.gz": "62526d1118b7f74933c47a45e877a5f88447163c9f3b0cd36d7eaa0b0b319c4e",
+    "regions/north-america/years/1971/climate.bin.gz": "78cdb7fae66ac8c141dc84257490cbaf09109d68cdcf5988ec099334628c3ad5",
+    "regions/north-america/years/1971/smoothed.bin.gz": "c23e7ac1751bc696df9fa8493b10359be8068e018add3fba4466b63eba9c79a2",
+    "regions/north-america/years/1972/climate.bin.gz": "322e04aa07e752a6045968aae5e72400d18850164dda28cb535b6fbf8e34546d",
+    "regions/north-america/years/1972/smoothed.bin.gz": "949d150fe2f9b3dee4802acc3e90996273b4c2a46a94265c1dc453b74f9bb2f1",
+    "regions/north-america/years/1973/climate.bin.gz": "d8c469171ec7f6738ed089fc5cc1b672c4e963b08072acd30f340b13aaadb1fb",
+    "regions/north-america/years/1973/smoothed.bin.gz": "11cf9299cdc0550aebafa217795849910383ee591f17c1354e0b72d5618b688e",
+    "regions/north-america/years/1974/climate.bin.gz": "d629afef0969a125b0626d265438d7307dace356cfc71dcc3ddc2bef0dda4a67",
+    "regions/north-america/years/1974/smoothed.bin.gz": "987263d9fe0a4c0af4fc17eb0a581a72ae6db3d27722542d714cfaa5d70daf8c",
+    "regions/north-america/years/1975/climate.bin.gz": "80de2e0929a6507d56518e05e50152d3004256716afdb9bf61f50668d436dcf1",
+    "regions/north-america/years/1975/smoothed.bin.gz": "cfeceef7e0237319789098cf6b7509ca28f1954651cbb08449e86f2edd3e2e2f",
+    "regions/north-america/years/1976/climate.bin.gz": "95caa4badd08e4644877e7565a918e0cea1258762d7d89e0ec5388fd76c89c83",
+    "regions/north-america/years/1976/smoothed.bin.gz": "4b174064d2e0548a16133b50ce7898836dbddf6102e40794c657056c9707ef2d",
+    "regions/north-america/years/1977/climate.bin.gz": "15adf31157ac960cba5799d944dc857a0685b4662b743cb65df27a524ea827c3",
+    "regions/north-america/years/1977/smoothed.bin.gz": "ebea316b4d8afa05b80328ed4a52b79e87012ff7f561235fe730ed56041556a9",
+    "regions/north-america/years/1978/climate.bin.gz": "ac24999dc232d75b30399e1d085e61fe72e160afbc330b5cdfdc057041c1117a",
+    "regions/north-america/years/1978/smoothed.bin.gz": "147bd52c45ba7b01de55568a8cd6198e5a77e046f7f03ef024a0d38e6ed27a15",
+    "regions/north-america/years/1979/climate.bin.gz": "5ef22e8278150a921496abbdce6b4642e9edc3bc0984a5e928d15dc13f427d67",
+    "regions/north-america/years/1979/smoothed.bin.gz": "b5a9a112078d0c0b703d4c7fe8a04e3139f6facfade12a619fe44a306a5d23be",
+    "regions/north-america/years/1980/climate.bin.gz": "4af2c7bf51e47d93a22e289b012ce5a346b9ff415584d641f5b4bdd2795db744",
+    "regions/north-america/years/1980/smoothed.bin.gz": "c7cded964812ba85133231035a59f9a121f2e1c3743a446da0e0bb56bd069e3f",
+    "regions/north-america/years/1981/climate.bin.gz": "feccf9ec2ff1cf1aabda33773a6cb4114c633b7257e402e3ee1ee6a83733d313",
+    "regions/north-america/years/1981/smoothed.bin.gz": "bf7b07d02832db30a4c966c9549bb7ed4b180a896827d8beef3f786627384f77",
+    "regions/north-america/years/1982/climate.bin.gz": "a9f89ec873a0ea9fc593390edca2f62e8c30e48e44fef45f882326bdd3888ebd",
+    "regions/north-america/years/1982/smoothed.bin.gz": "3b768b266e306becae0d33e94a9f9b17b5b23856a0be3147b9369c14205757a9",
+    "regions/north-america/years/1983/climate.bin.gz": "0f11d81a98cc02b9d21e9e03e13f620163f219fd6735212981f8d48b7c988387",
+    "regions/north-america/years/1983/smoothed.bin.gz": "8d137aa6b50c24fea2c0a8519ee0d6d1a79290d5f6fee3ca3cee7f2a50d0e9b1",
+    "regions/north-america/years/1984/climate.bin.gz": "9b71165150b213b69889ef05402a324e95d40bbf5a6d8c8396643d0d6aef355e",
+    "regions/north-america/years/1984/smoothed.bin.gz": "fde16dd5233b8770e8e73480d07ce65ca4b1cd8ecf99ae91ec4d5381fc7614c4",
+    "regions/north-america/years/1985/climate.bin.gz": "eb410c18db70b4479fbc8fa5a28177bea22c1ce27b4dc40c7ca4273919555a01",
+    "regions/north-america/years/1985/smoothed.bin.gz": "b35fa421f875f2981c7b083349e620ead23f43e725ee6502078e5f017cff3294",
+    "regions/north-america/years/1986/climate.bin.gz": "f54363252f2718fda9f39ffe2aff03ccf5c019ed27e792365dad1755a57842ee",
+    "regions/north-america/years/1986/smoothed.bin.gz": "d6da22d801671b950c79781549bf053e67ec844350b77238f11d355a09dd2b88",
+    "regions/north-america/years/1987/climate.bin.gz": "00787024e5b38bd866086c2a204138e18fd3c74ebf3305c2cd788463dc5e3ae0",
+    "regions/north-america/years/1987/smoothed.bin.gz": "a40afde7362bdaa773769d02b0509677eee9cdeff8c68ab8607937c4b96ffb4c",
+    "regions/north-america/years/1988/climate.bin.gz": "f0a939104ae0ea7f0e0466bdce81702bdcd97a3bb425963ee1cc51228fdf78f8",
+    "regions/north-america/years/1988/smoothed.bin.gz": "6c9de9d33a5369388531552a86c327c8bbaeacf0bafd730b2d155acf6ef99149",
+    "regions/north-america/years/1989/climate.bin.gz": "92851d375770268e9a7e34850c690b2178ec0be84fdec9a4db5e720ccd788bfc",
+    "regions/north-america/years/1989/smoothed.bin.gz": "e3e8957371861d7aa8787a7cb33b56635fef132303cee6576be518b209afff2b",
+    "regions/north-america/years/1990/climate.bin.gz": "05154fef51e9dd108f03df38f7c65cb3416f54d5b167b28490a41fafceba1619",
+    "regions/north-america/years/1990/smoothed.bin.gz": "bc684d07d156a52e03df37dbe74bcb0b7b119e1c3d863f197ec78116d3e38b5e",
+    "regions/north-america/years/1991/climate.bin.gz": "22e1697b238910767a74437166b84ce8db67384d71c78615c1875a4fd40f41ae",
+    "regions/north-america/years/1991/smoothed.bin.gz": "23ab240308676cd392c01af913fc2bd5d8f3ebf02d54ea0c5fbd3e82f79455a3",
+    "regions/north-america/years/1992/climate.bin.gz": "1f9ed230aa3a316fd0bee7e07896f5fd4b4fe2e62058a9d51312bdecf9146c1a",
+    "regions/north-america/years/1992/smoothed.bin.gz": "979606a94a201402af7ca0fec8c21db7ba1ae7680565e29c79775fdbc742e44d",
+    "regions/north-america/years/1993/climate.bin.gz": "134451217e15fd83ed60db28405fc504922bed0e8742ad5cf555c175bab2d546",
+    "regions/north-america/years/1993/smoothed.bin.gz": "896701eb85a97ec46b2c79cbd9a69b1185e7a98577151d93e13710d0b0370f36",
+    "regions/north-america/years/1994/climate.bin.gz": "d25cd567dd78ba33f0080a902fbada293ee5118e3dc1c4ea104f73643177dc09",
+    "regions/north-america/years/1994/smoothed.bin.gz": "3a7e26928f804381c403c477cd311a9be5a038fb911be35ad15cb744c2c34ba9",
+    "regions/north-america/years/1995/climate.bin.gz": "a192c88f96448113d6f87967b5d78cf4337995b37a48ebf34e354f6645b3833a",
+    "regions/north-america/years/1995/smoothed.bin.gz": "1430cf5075be7c919d766c1305691afe1023c85af9d6c9bbe262241df9ec4c84",
+    "regions/north-america/years/1996/climate.bin.gz": "1e8708826eed67fc4a38b3d22e2071bd5af6edca02152322933e278e4fa9d132",
+    "regions/north-america/years/1996/smoothed.bin.gz": "75b47e5135a510ec5e7697ad33cd3e1ece90cbc9fb347de8850a32dbfc4ef778",
+    "regions/north-america/years/1997/climate.bin.gz": "a03cda179676cf33c3789f5141a9c32751aadd03b61e4146ce1fb03e26eccef1",
+    "regions/north-america/years/1997/smoothed.bin.gz": "dcf5b76524cd35f52a166cd9aeae96f284d5a37f4e358d59fe79346bd6973d02",
+    "regions/north-america/years/1998/climate.bin.gz": "4de529b2e09b8cdf327edf537c95fceee26dae80cda8dd3a6f53675a4adea5c6",
+    "regions/north-america/years/1998/smoothed.bin.gz": "44ae30a783de117aedc51454300d818bf0c5cf6700a396e79c4baedcc20489cf",
+    "regions/north-america/years/1999/climate.bin.gz": "b192ffed82243da18a2666f9bd760983711e1a6cd0d20e3d028789da5a9013f1",
+    "regions/north-america/years/1999/smoothed.bin.gz": "6e34844ed493ec96e5b749825231a537b0c4d5eb8035235f634f4a2076377bf9",
+    "regions/north-america/years/2000/climate.bin.gz": "860bad2c82b4d3173c99912736b328acd384912e8aa3884f608553bfdc7b1404",
+    "regions/north-america/years/2000/smoothed.bin.gz": "aa689e3e5f3aeaee5e5bc826f41504205b447925bef08e4109c3251da211cade",
+    "regions/north-america/years/2001/climate.bin.gz": "5ec71987877ca00d478696bdede5240c0f8312c0e030d9979afe07104101588b",
+    "regions/north-america/years/2001/smoothed.bin.gz": "5c61bd33ace6856f7dd616e3872880eeebc1410d0daab45636442688ccdc8c17",
+    "regions/north-america/years/2002/climate.bin.gz": "931a87408f87511402c325f3092ef68d91d7cd1788911dc9468de4dbdd97b5d4",
+    "regions/north-america/years/2002/smoothed.bin.gz": "5f67370d37201d03d87a57de34fb1ec53c5bfd576e4f32e4820b7c86ef677053",
+    "regions/north-america/years/2003/climate.bin.gz": "24b6a70bd871bea2fce0daf1d8eb85bbe09b40d630ffac0cbd64a48acbbd9585",
+    "regions/north-america/years/2003/smoothed.bin.gz": "c9d10017f87259f40ced54b35398ecd1f92b69e1822721b83b221e657a5169de",
+    "regions/north-america/years/2004/climate.bin.gz": "d612d2479519d90630691fc8fa3b4518b77f05de5eb922b7b40a4f6fc2c0da05",
+    "regions/north-america/years/2004/smoothed.bin.gz": "3f625375ac025b8182737a13cecaa3a8c42fde84981593a22314b9085df7327c",
+    "regions/north-america/years/2005/climate.bin.gz": "72d82bdb43c4075eba4b120a893f8522cae346ecebfc0449334519a5dc946e75",
+    "regions/north-america/years/2005/smoothed.bin.gz": "8e7cb9f7840728e92dae18119aa947ee17c201b376cf7baeae84aa23868fbd71",
+    "regions/north-america/years/2006/climate.bin.gz": "fbf8f70400d366cba2eed1cb124664addf80cd11c92447fa30d4aec5655a218f",
+    "regions/north-america/years/2006/smoothed.bin.gz": "269727d5963b544815f89a1375ea6601a46c0663745946fa1c744f4607851b1d",
+    "regions/north-america/years/2007/climate.bin.gz": "4115eeaba253fd079e11b13f95fc754f579e7d0f90e267a2d2bbf48d7d44b2a5",
+    "regions/north-america/years/2007/smoothed.bin.gz": "024f25c73d3424ffb9f3f94bd2178fe4ac637c10a7a8df4853377cbbb24c9d6f",
+    "regions/north-america/years/2008/climate.bin.gz": "7dac6a8b6fb0e1e8fafe0f5cfb812c999c43e6e6d5ff9f42570c953496a6b690",
+    "regions/north-america/years/2008/smoothed.bin.gz": "9730b4d33546bf3eb388b130bf3157453c77375e8007d855d68860e505d1ce02",
+    "regions/north-america/years/2009/climate.bin.gz": "1fdb79da09a04420239f6d6ec0030fe825c58030c4ca090a256dfa6e7a890ba5",
+    "regions/north-america/years/2009/smoothed.bin.gz": "4b197a45d33aa137d4d8ed47d357aadc98f93e46bcd77cbf6d058f6f96d81533",
+    "regions/north-america/years/2010/climate.bin.gz": "0ebe68a153c0869a58bc5ff4527559a555803013052ad98c7d3b0bd73e8c7b78",
+    "regions/north-america/years/2010/smoothed.bin.gz": "204a843ee7f22c82acc99df552e1d78eb5ccfaa0fb6c7ef1162b53e88eb6e28d",
+    "regions/north-america/years/2011/climate.bin.gz": "4079c8e2d31b99d7a55d711e3d16c20e56acb06e1f057b2738f1290579676316",
+    "regions/north-america/years/2011/smoothed.bin.gz": "f550318b4ce960fcab012b6820e19b2c754c242843af64405e344cb3efb41d4b",
+    "regions/north-america/years/2012/climate.bin.gz": "d4ba020f4fa08a89288365e0f4836e872892a0acb7a0a974e672ffe9c95bb846",
+    "regions/north-america/years/2012/smoothed.bin.gz": "38125a77fb3acba37f3003f0dda24bbc81de74f20ea786facad7d0332bc4d33b",
+    "regions/north-america/years/2013/climate.bin.gz": "8609e25ced8d1093c6f34fdeedd67b0517b8d060dca2ece30f17cf4e62d3804b",
+    "regions/north-america/years/2013/smoothed.bin.gz": "216cab1d8ad88bf30aceae5fa6fa69ecd038d3aa34c519cd0c6818c836979fd0",
+    "regions/north-america/years/2014/climate.bin.gz": "4c1fdd2a476ea737c1ebb10b9d2c0cd6b88f7c1be1cffedd9f20534fd79f5d7b",
+    "regions/north-america/years/2014/smoothed.bin.gz": "bec58223c605d34e3538a58cbf19f3ecc237a139aecb59c3f81918e9d32f3a40",
+    "regions/north-america/years/2015/climate.bin.gz": "7180f428be49d78465b425de4f63d65bd04e90f2ab776587d87b54aee8c4698e",
+    "regions/north-america/years/2015/smoothed.bin.gz": "263ade648d264b64ae3884ae810cfafc7596c85108dc69d1a3b18dbd8004e9fe",
+    "regions/north-america/years/2016/climate.bin.gz": "f5c6e5d560ecf13b1497a819ce3e26b1e02dd96449e4284c2a391e3cdb16b5bc",
+    "regions/north-america/years/2016/smoothed.bin.gz": "9dfba803af6ee8aa67cfe1526e7e9db95723ee23e3b783ea30d1960819df15c2",
+    "regions/north-america/years/2017/climate.bin.gz": "ba6018d6fa18547c5675b2e08b3b6cf856a4a7740adaa4368ba1174d050d25a2",
+    "regions/north-america/years/2017/smoothed.bin.gz": "142c94765457e4005ab35ec4e9610c7621462a003403053f828f5ca7bca2aa24",
+    "regions/north-america/years/2018/climate.bin.gz": "d0552c218f1df4b4ab34c2df454db671c851f6e8d0ef8da8fa8d64c219939e84",
+    "regions/north-america/years/2018/smoothed.bin.gz": "311c32ec5102a79c5358f9248922062a74405001f54c99d51d451624bf64d232",
+    "regions/north-america/years/2019/climate.bin.gz": "9f81509a8d61b6bd5c55b52a6f2fcca292cf96cebe449ec2a56324a2b64757dc",
+    "regions/north-america/years/2019/smoothed.bin.gz": "af4a9f0d6af97705c0d439b25a5c6206bd2c2e0bc30930d630397cfdf9a5cb13",
+    "regions/north-america/years/2020/climate.bin.gz": "bcafeacb0a62fac29cb8e18d31e9d88809cf8597309de69d9e68fe320a9d5f0f",
+    "regions/north-america/years/2020/smoothed.bin.gz": "30045b8e27f6296bdee059ba520c94c4913a89026dfa586c1527cf51ca21426a",
+    "regions/north-america/years/2021/climate.bin.gz": "cb9ba0b5842f4bda5f185b055f2e106da7f986c271e1921d953493f2e94e30ad",
+    "regions/north-america/years/2021/smoothed.bin.gz": "ad7b0ebbbe9740c4491f4d00849ff1a7deec999af7fe69414c87a5ca662cbbfa",
+    "regions/north-america/years/2022/climate.bin.gz": "e2eebcc477de03fff88ad0366893d4f16bb981dbb89bfc9dcba3997842cea1d0",
+    "regions/north-america/years/2022/smoothed.bin.gz": "6661c838c7043f8f82380dc0b1714eefeb67f1ddfa5c28db28499be88f04710d",
+    "regions/north-america/years/2023/climate.bin.gz": "080d2d5a9584bd57e129bb827187f8f690ae36edc95c73064733a40d7f242bdd",
+    "regions/north-america/years/2023/smoothed.bin.gz": "edeae84bef3ff391bdf6b757cb4b7e71dca88391965cf6cc29d25aad48a828ab",
+    "regions/north-america/years/2024/climate.bin.gz": "538bb9dabddb911abc4003e8ea64f133b15ff06ba92e82bd4f414eaf1fa1909b",
+    "regions/north-america/years/2024/smoothed.bin.gz": "a6078f2ca669f4a30b107b6249a755c8f00b108b5e6d8befd9a897b3df81af0e",
+    "regions/north-america/years/2025/climate.bin.gz": "b8493903cee460a6e1703f276462afed56e3aea310ea8d91861dfc77e8a0c82d",
+    "regions/north-america/years/2025/smoothed.bin.gz": "29fdc31bd5107e7bdbdc6d44a259531798041605d7f0d4fc52418fcb894fc6e9",
+    "regions/north-america/cells.bin.gz": "0b640fd691ecce76c435cfc6edda2b0a60eb5a677e8268753d9133e82e435ac7",
+    "regions/north-america/borders.geojson": "425a49b7535aed3e44fbf6368eea07378a3149e972f4ae75944a4079ec2965ac"
+  },
+  "totalCompressedBytes": 899248261,
+  "validCells": 2126994,
+  "rawFile": "regions/north-america/years/2025/climate.bin.gz",
+  "smoothedFile": "regions/north-america/years/2025/smoothed.bin.gz",
+  "metadataFile": "regions/north-america/years/2025/metadata.json",
+  "temperatureRange": [
+    -25.5,
+    38.66
+  ],
+  "precipitationRange": [
+    2.0,
+    9573.0
+  ],
+  "representativeValues": [
+    {
+      "name": "New York",
+      "requestedLongitude": -74.006,
+      "requestedLatitude": 40.7128,
+      "longitude": 285.9791666666667,
+      "latitude": 40.72916666666667,
+      "row": 1029,
+      "column": 2723,
+      "valid": false,
+      "tmaxC": null,
+      "pptMm": null
+    },
+    {
+      "name": "Los Angeles",
+      "requestedLongitude": -118.2437,
+      "requestedLatitude": 34.0522,
+      "longitude": 241.77083333333331,
+      "latitude": 34.06250000000001,
+      "row": 1189,
+      "column": 1662,
+      "valid": true,
+      "tmaxC": 25.56,
+      "pptMm": 487
+    },
+    {
+      "name": "Mexico City",
+      "requestedLongitude": -99.1332,
+      "requestedLatitude": 19.4326,
+      "longitude": 260.8541666666667,
+      "latitude": 19.4375,
+      "row": 1540,
+      "column": 2120,
+      "valid": true,
+      "tmaxC": 26.2,
+      "pptMm": 969
+    },
+    {
+      "name": "Toronto",
+      "requestedLongitude": -79.3832,
+      "requestedLatitude": 43.6532,
+      "longitude": 280.60416666666663,
+      "latitude": 43.645833333333336,
+      "row": 959,
+      "column": 2594,
+      "valid": true,
+      "tmaxC": 13.27,
+      "pptMm": 684
+    },
+    {
+      "name": "Vancouver",
+      "requestedLongitude": -123.1207,
+      "requestedLatitude": 49.2827,
+      "longitude": 236.89583333333334,
+      "latitude": 49.270833333333336,
+      "row": 824,
+      "column": 1545,
+      "valid": true,
+      "tmaxC": 15.01,
+      "pptMm": 1518
+    },
+    {
+      "name": "Anchorage",
+      "requestedLongitude": -149.9003,
+      "requestedLatitude": 61.2181,
+      "longitude": 210.10416666666669,
+      "latitude": 61.22916666666667,
+      "row": 537,
+      "column": 902,
+      "valid": true,
+      "tmaxC": 8.43,
+      "pptMm": 1023
+    },
+    {
+      "name": "Honolulu",
+      "requestedLongitude": -157.8583,
+      "requestedLatitude": 21.3069,
+      "longitude": 202.14583333333334,
+      "latitude": 21.3125,
+      "row": 1495,
+      "column": 711,
+      "valid": true,
+      "tmaxC": 30.02,
+      "pptMm": 874
+    },
+    {
+      "name": "Havana",
+      "requestedLongitude": -82.3666,
+      "requestedLatitude": 23.1136,
+      "longitude": 277.64583333333337,
+      "latitude": 23.10416666666667,
+      "row": 1452,
+      "column": 2523,
+      "valid": true,
+      "tmaxC": 30.68,
+      "pptMm": 951
+    },
+    {
+      "name": "Panama City",
+      "requestedLongitude": -79.5199,
+      "requestedLatitude": 8.9824,
+      "longitude": 280.4791666666667,
+      "latitude": 8.979166666666671,
+      "row": 1791,
+      "column": 2591,
+      "valid": true,
+      "tmaxC": 31.34,
+      "pptMm": 2755
+    },
+    {
+      "name": "Nuuk",
+      "requestedLongitude": -51.7216,
+      "requestedLatitude": 64.1835,
+      "longitude": 308.27083333333337,
+      "latitude": 64.1875,
+      "row": 466,
+      "column": 3258,
+      "valid": false,
+      "tmaxC": null,
+      "pptMm": null
+    }
+  ],
+  "pooledValidCellYears": 161651544,
+  "thresholdReference": "Pooled annual North America encoded raw land cells across available years 1950–2025; final target 1950–2025",
+  "temperatureBreaks": [
+    -25.5,
+    -11.52,
+    0.43,
+    9.93,
+    38.66
+  ],
+  "precipitationBreaks": [
+    2.0,
+    548.0,
+    861.0,
+    1158.0,
+    9573.0
+  ],
+  "equalTemperatureBreaks": [
+    -25.5,
+    -8.98,
+    2.18,
+    12.88,
+    38.66
+  ],
+  "equalPrecipitationBreaks": [
+    2.0,
+    257.0,
+    443.0,
+    800.0,
+    9573.0
+  ]
+}

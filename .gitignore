@@ -1,0 +1,18 @@
+# Generated browser assets; static manifests remain versioned.
+/data/years/
+/data/regions/*/years/
+/data/regions/provenance/
+/data/**/*.bin.gz
+/data/**/*.geojson
+
+# Notebook exports, environments and local caches.
+/notebook-output/
+/.venv/
+/.cache/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example

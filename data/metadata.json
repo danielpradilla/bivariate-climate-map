@@ -1,0 +1,2483 @@
+{
+  "width": 2040,
+  "height": 912,
+  "west": -24.979166666666657,
+  "north": 71.97916666666667,
+  "dx": 0.04166666666666666,
+  "dy": 0.041666666666666664,
+  "year": 2025,
+  "validCells": 793338,
+  "temperaturePercentiles": [
+    0,
+    20,
+    45,
+    70,
+    100
+  ],
+  "precipitationPercentiles": [
+    0,
+    60,
+    78,
+    90,
+    100
+  ],
+  "equalPercentiles": [
+    0,
+    25,
+    50,
+    75,
+    100
+  ],
+  "temperatureRange": [
+    -11.31,
+    28.48
+  ],
+  "precipitationRange": [
+    60.0,
+    4987.0
+  ],
+  "fullPrecisionTemperatureRange": [
+    -11.308333333333328,
+    28.475000000000005
+  ],
+  "fullPrecisionPrecipitationRange": [
+    60.3,
+    4986.700000000001
+  ],
+  "temperatureLabel": "Annual mean monthly maximum temperature",
+  "temperatureUnits": "°C",
+  "precipitationLabel": "Annual accumulated precipitation",
+  "precipitationUnits": "mm",
+  "rawFile": "years/2025/climate.bin.gz",
+  "smoothedFile": "years/2025/smoothed.bin.gz",
+  "metadataFile": "years/2025/metadata.json",
+  "borderFile": "europe.geojson",
+  "binary": {
+    "byteOrder": "little-endian",
+    "type": "int16",
+    "layout": "row-major interleaved [tmax × 100, ppt mm]",
+    "nodata": -32768,
+    "bytesPerCell": 4,
+    "rounding": "nearest integer, ties to even (numpy.rint)",
+    "temperaturePrecisionC": 0.01,
+    "precipitationPrecisionMm": 1
+  },
+  "percentileMethod": "Fixed pooled raw annual European land-cell histogram order statistics, NumPy linear interpolation; equal cell-year weighting, no area weighting. Annual valid masks may vary.",
+  "quantization": "Annual fields are aggregated at decoded float64 precision, then rounded to 0.01°C and integer mm. All break arrays and primary ranges use encoded raw values for consistent client classification. Maximum rounding errors are 0.005°C and 0.5mm.",
+  "scope": {
+    "label": "Europe",
+    "bbox": [
+      -25.0,
+      34.0,
+      60.0,
+      72.0
+    ],
+    "continentFilter": "Natural Earth CONTINENT == Europe",
+    "selection": "Unsimplified Natural Earth 1:10m country polygons tagged Europe intersected with [-25,34,60,72]; keep grid-cell centers on or inside that intersection. European mainland, Iceland and islands inside bbox included; overseas territories and far-northern islands outside bbox excluded. Russia is included only within bbox; Turkey, Cyprus and the Caucasus countries tagged Asia are excluded. This is a country-continent selection, not a physical Europe/Asia boundary.",
+    "countries": [
+      "Albania",
+      "Andorra",
+      "Austria",
+      "Belarus",
+      "Belgium",
+      "Bosnia and Herzegovina",
+      "Bulgaria",
+      "Croatia",
+      "Czech Republic",
+      "Denmark",
+      "Estonia",
+      "Faroe Islands",
+      "Finland",
+      "France",
+      "Germany",
+      "Gibraltar",
+      "Greece",
+      "Guernsey",
+      "Hungary",
+      "Iceland",
+      "Ireland",
+      "Isle of Man",
+      "Italy",
+      "Jersey",
+      "Kosovo",
+      "Latvia",
+      "Liechtenstein",
+      "Lithuania",
+      "Luxembourg",
+      "Malta",
+      "Moldova",
+      "Monaco",
+      "Montenegro",
+      "Netherlands",
+      "North Macedonia",
+      "Norway",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Russia",
+      "San Marino",
+      "Serbia",
+      "Slovakia",
+      "Slovenia",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Ukraine",
+      "United Kingdom",
+      "Vatican City",
+      "Åland"
+    ],
+    "europeanLandCells": 793476,
+    "incompleteYearEuropeanCells": 138,
+    "mask": "Both variables finite in all 12 months AND unsimplified European land at grid-cell center; ocean and non-European land are nodata in both binaries.",
+    "borderSimplificationDegrees": 0.01,
+    "borderWinding": "RFC7946 counterclockwise exterior rings"
+  },
+  "smoothing": {
+    "enabledByDefault": true,
+    "method": "scipy.ndimage.gaussian_filter",
+    "sigmaCells": 2,
+    "edgeMode": "reflect",
+    "truncate": 4.0,
+    "description": "Fill every invalid/ocean/non-European cell with the valid-European raw full-precision field mean separately; Gaussian filter sigma=2 native cells; restore original valid mask; quantize same as raw. Raw percentiles remain unchanged.",
+    "meanFillTmaxC": 12.066874753677922,
+    "meanFillPptMm": 658.6368591949459,
+    "caveat": "Mean filling biases coastal and mask-edge smoothed values toward the European mean. Smoothing is visual only; inspection and statistics use the corresponding year's unsmoothed climate.bin.gz."
+  },
+  "sources": {
+    "terraClimate": {
+      "dataset": "TerraClimate",
+      "version": "V1.1",
+      "catalog": "https://thredds.northwestknowledge.net/thredds/catalog/TERRACLIMATE_ALL/data/catalog.xml",
+      "homepage": "https://www.climatologylab.org/terraclimate.html",
+      "nativeResolutionDegrees": 0.041666666666666664,
+      "horizStride": 1,
+      "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)",
+      "licenseSource": "CC0 license attribute in both downloaded NetCDF files",
+      "citation": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+      "foundationalCitation": "Abatzoglou, J.T., Dobrowski, S.Z., Parks, S.A. & Hegewisch, K.C. (2018). TerraClimate, a high-resolution global dataset of monthly climate and climatic water balance from 1958–2015. Scientific Data 5, 170191.",
+      "foundationalDoi": "https://doi.org/10.1038/sdata.2017.191",
+      "tmax": {
+        "url": "https://thredds.northwestknowledge.net/thredds/ncss/grid/TERRACLIMATE_ALL/data/TerraClimate_tmax_2025.nc?var=tmax&south=34&north=72&west=-25&east=60&disableProjSubset=on&addLatLon=true&horizStride=1&accept=netcdf&time_start=2025-01-01T00%3A00%3A00Z&time_end=2025-12-31T23%3A59%3A59Z&timeStride=1",
+        "sha256": "6ef71bea4475967760086c61cf86d259480abf4549b7ebec16df600645d8cd24",
+        "bytes": 44751912,
+        "retrievedAt": "2026-10-02T23:45:10.887051+00:00",
+        "dates": [
+          "2025-01-01",
+          "2025-02-01",
+          "2025-03-01",
+          "2025-04-01",
+          "2025-05-01",
+          "2025-06-01",
+          "2025-07-01",
+          "2025-08-01",
+          "2025-09-01",
+          "2025-10-01",
+          "2025-11-01",
+          "2025-12-01"
+        ],
+        "months": 12,
+        "cfPacking": {
+          "scale_factor": 0.01,
+          "add_offset": -99.0,
+          "_FillValue": -32768,
+          "missing_value": -32768
+        },
+        "units": "degC",
+        "description": "Maximum 2-m Temperature",
+        "globalAttributes": {
+          "method": "These layers from TerraClimate were creating using climatically aided interpolation of monthly anomalies from ERA5 with WorldClim v2.0 climatologies.",
+          "version": "V1.1",
+          "title": "TerraClimate: monthly climate and climatic water balance for global land surfaces",
+          "summary": "This archive contains a dataset of high-spatial resolution (1/24°, ~4-km) monthly climate and climatic water balance for global terrestrial surfaces from 1950-present. These data were created by using climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim version 1.4 and version 2 datasets, with coarser resolution time varying (i.e. monthly) data from ERA5 reanalyses produce a monthly dataset of precipitation, maximum and minimum temperature, wind speed, vapor pressure, and solar radiation. TerraClimate additionally produces monthly surface water balance datasets using a water balance model that incorporates reference evapotranspiration, precipitation, temperature, and interpolated plant extractable soil water capacity. Complementary datasets are also produced for 1950-2025 for counterfactual climate scenarios that remove the first-order influence of climate change, as well as a +2C and +4C scenario that apply a pseudo climate change experiment to observational data. These datasets preserve the observed variability during 1950-2025 but adjust individual climate variables monthly using ensemble median changes derived from CMIP6.",
+          "keywords": "WORLDCLIM,global,monthly, temperature,precipitation,wind,radiation,vapor pressure,evapotranspiration,water balance,soil water capacity,snow water equivalent,runoff",
+          "id": "Blank",
+          "naming_authority": "edu.uidaho.nkn",
+          "keywords_vocabulary": "None",
+          "cdm_data_type": "GRID",
+          "date_created": "2026-06-02",
+          "creator_name": "John Abatzoglou",
+          "creator_url": "https://www.climatologylab.org/terraclimate.html",
+          "creator_role": "Principal Investigator",
+          "creator_email": "jabatzoglou@ucmerced.edu",
+          "institution": "University of California Merced",
+          "project": "Global Dataset of Monthly Climate and Climatic Water Balance (1950-2025)",
+          "processing_level": "Gridded Climate Projections",
+          "acknowledgment": "Please cite the references included herein. We also acknowledge the WorldClim datasets (Fick and Hijmans, 2017; Hijmans et al., 2005) and the ERA5 (Hersbach et al., 2020) datasets.",
+          "geospatial_lat_min": 33.97916666666667,
+          "geospatial_lat_max": 71.97916666666667,
+          "geospatial_lon_min": -24.979166666666657,
+          "geospatial_lon_max": 60.02083333333333,
+          "geospatial_vertical_min": 0.0,
+          "geospatial_vertical_max": 0.0,
+          "time_coverage_start": "2025-01-01T00:0",
+          "time_coverage_end": "2025-12-01T00:0",
+          "time_coverage_duration": "P1Y",
+          "time_coverage_resolution": "P1M",
+          "standard_nam_vocabulary": "CF-1.0",
+          "contributor_name": "Katherine Hegewisch",
+          "contributor_role": "Postdoctoral Fellow",
+          "contributor_email": "khegewisch@ucmerced.edu",
+          "publisher_name": "Northwest Knowledge Network",
+          "publisher_url": "http://www.northwestknowledge.net",
+          "publisher_email": "info@northwestknowledge.net",
+          "date_modified": "2026-06-02",
+          "date_issued": "2026-06-02",
+          "geospatial_lat_units": "decimal degrees north",
+          "geospatial_lat_resolution": -0.0416666679084301,
+          "geospatial_lon_units": "decimal degrees east",
+          "geospatial_lon_resolution": 0.0416666679084301,
+          "geospatial_vertical_units": "None",
+          "geospatial_vertical_resolution": 0.0,
+          "geospatial_vertical_positive": "Up",
+          "Conventions": "CF-1.6",
+          "NCO": "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+          "source": "WorldClim v2.1, ERA5",
+          "references": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+          "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)",
+          "History": "Translated to CF-1.0 Conventions by Netcdf-Java CDM (CFGridWriter2)\nOriginal Dataset = /fastdisk/TERRACLIMATE/data/TerraClimate_tmax_2025.nc; Translation Date = 2026-10-02T23:45:05.819Z"
+        },
+        "completeYearCellsBeforeEuropeMask": 1041009,
+        "aggregation": "arithmetic mean of 12 monthly maximum-temperature fields (not mean temperature; no day weighting)"
+      },
+      "ppt": {
+        "url": "https://thredds.northwestknowledge.net/thredds/ncss/grid/TERRACLIMATE_ALL/data/TerraClimate_ppt_2025.nc?var=ppt&south=34&north=72&west=-25&east=60&disableProjSubset=on&addLatLon=true&horizStride=1&accept=netcdf4&time_start=2025-01-01T00%3A00%3A00Z&time_end=2025-12-31T23%3A59%3A59Z&timeStride=1",
+        "sha256": "cf0da20581e284b339035ccd0f71bcb8768c028cf12ed343ba290ae5d46c96b9",
+        "bytes": 13500290,
+        "retrievedAt": "2026-10-02T23:45:13.278507+00:00",
+        "dates": [
+          "2025-01-01",
+          "2025-02-01",
+          "2025-03-01",
+          "2025-04-01",
+          "2025-05-01",
+          "2025-06-01",
+          "2025-07-01",
+          "2025-08-01",
+          "2025-09-01",
+          "2025-10-01",
+          "2025-11-01",
+          "2025-12-01"
+        ],
+        "months": 12,
+        "cfPacking": {
+          "scale_factor": 0.1,
+          "add_offset": 0.0,
+          "_FillValue": -2147483648,
+          "missing_value": -2147483648
+        },
+        "units": "mm",
+        "description": "Accumulated Precipitation",
+        "globalAttributes": {
+          "method": "These layers from TerraClimate were creating using climatically aided interpolation of monthly anomalies from ERA5 with WorldClim v2.0 climatologies.",
+          "version": "V1.1",
+          "title": "TerraClimate: monthly climate and climatic water balance for global land surfaces",
+          "summary": "This archive contains a dataset of high-spatial resolution (1/24°, ~4-km) monthly climate and climatic water balance for global terrestrial surfaces from 1950-present. These data were created by using climatically aided interpolation, combining high-spatial resolution climatological normals from the WorldClim version 1.4 and version 2 datasets, with coarser resolution time varying (i.e. monthly) data from ERA5 reanalyses produce a monthly dataset of precipitation, maximum and minimum temperature, wind speed, vapor pressure, and solar radiation. TerraClimate additionally produces monthly surface water balance datasets using a water balance model that incorporates reference evapotranspiration, precipitation, temperature, and interpolated plant extractable soil water capacity. Complementary datasets are also produced for 1950-2025 for counterfactual climate scenarios that remove the first-order influence of climate change, as well as a +2C and +4C scenario that apply a pseudo climate change experiment to observational data. These datasets preserve the observed variability during 1950-2025 but adjust individual climate variables monthly using ensemble median changes derived from CMIP6.",
+          "keywords": "WORLDCLIM,global,monthly, temperature,precipitation,wind,radiation,vapor pressure,evapotranspiration,water balance,soil water capacity,snow water equivalent,runoff",
+          "id": "Blank",
+          "naming_authority": "edu.uidaho.nkn",
+          "keywords_vocabulary": "None",
+          "cdm_data_type": "GRID",
+          "date_created": "2026-06-02",
+          "creator_name": "John Abatzoglou",
+          "creator_url": "https://www.climatologylab.org/terraclimate.html",
+          "creator_role": "Principal Investigator",
+          "creator_email": "jabatzoglou@ucmerced.edu",
+          "institution": "University of California Merced",
+          "project": "Global Dataset of Monthly Climate and Climatic Water Balance (1950-2025)",
+          "processing_level": "Gridded Climate Projections",
+          "acknowledgment": "Please cite the references included herein. We also acknowledge the WorldClim datasets (Fick and Hijmans, 2017; Hijmans et al., 2005) and the ERA5 (Hersbach et al., 2020) datasets.",
+          "geospatial_lat_min": 33.97916666666667,
+          "geospatial_lat_max": 71.97916666666667,
+          "geospatial_lon_min": -24.979166666666657,
+          "geospatial_lon_max": 60.02083333333333,
+          "geospatial_vertical_min": 0.0,
+          "geospatial_vertical_max": 0.0,
+          "time_coverage_start": "2025-01-01T00:0",
+          "time_coverage_end": "2025-12-01T00:0",
+          "time_coverage_duration": "P1Y",
+          "time_coverage_resolution": "P1M",
+          "standard_nam_vocabulary": "CF-1.0",
+          "contributor_name": "Katherine Hegewisch",
+          "contributor_role": "Postdoctoral Fellow",
+          "contributor_email": "khegewisch@ucmerced.edu",
+          "publisher_name": "Northwest Knowledge Network",
+          "publisher_url": "http://www.northwestknowledge.net",
+          "publisher_email": "info@northwestknowledge.net",
+          "date_modified": "2026-06-02",
+          "date_issued": "2026-06-02",
+          "geospatial_lat_units": "decimal degrees north",
+          "geospatial_lat_resolution": -0.0416666679084301,
+          "geospatial_lon_units": "decimal degrees east",
+          "geospatial_lon_resolution": 0.0416666679084301,
+          "geospatial_vertical_units": "None",
+          "geospatial_vertical_resolution": 0.0,
+          "geospatial_vertical_positive": "Up",
+          "Conventions": "CF-1.6",
+          "NCO": "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+          "source": "WorldClim v2.1, ERA5",
+          "references": "Abatzoglou, J.T., Hegewisch, K.C., Yin, C. and D.A. Kalashinkov, 2026, TerraClimate v1.1, An Updated Global Climate and Climatic Water Balance Dataset with Climate Scenarios. Scientific Data.",
+          "license": "CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)",
+          "History": "Translated to CF-1.0 Conventions by Netcdf-Java CDM (CFGridWriter2)\nOriginal Dataset = /fastdisk/TERRACLIMATE/data/TerraClimate_ppt_2025.nc; Translation Date = 2026-10-02T23:45:05.850Z"
+        },
+        "completeYearCellsBeforeEuropeMask": 1041009,
+        "aggregation": "sum of 12 monthly accumulated precipitation fields"
+      }
+    },
+    "naturalEarth": {
+      "url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_countries.zip",
+      "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+      "bytes": 4930492,
+      "retrievedAt": "2026-10-02T22:48:06.020466+00:00",
+      "dataset": "Natural Earth 1:10m Admin 0 Countries",
+      "version": "5.1.1",
+      "homepage": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/",
+      "license": "Public domain",
+      "licenseSource": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "boundaries": "Natural Earth de facto country boundaries, not a statement on sovereignty."
+    }
+  },
+  "representativeValues": [
+    {
+      "name": "Madrid",
+      "requestedLongitude": -3.7038,
+      "requestedLatitude": 40.4168,
+      "longitude": -3.6875,
+      "latitude": 40.43750000000001,
+      "row": 757,
+      "column": 511,
+      "valid": true,
+      "tmaxC": 21.18,
+      "pptMm": 543,
+      "unroundedTmaxC": 21.175000000000008,
+      "unroundedPptMm": 543.0
+    },
+    {
+      "name": "London",
+      "requestedLongitude": -0.1276,
+      "requestedLatitude": 51.5072,
+      "longitude": -0.1458333333333428,
+      "latitude": 51.52083333333334,
+      "row": 491,
+      "column": 596,
+      "valid": true,
+      "tmaxC": 17.03,
+      "pptMm": 571,
+      "unroundedTmaxC": 17.033333333333335,
+      "unroundedPptMm": 570.9000000000001
+    },
+    {
+      "name": "Paris",
+      "requestedLongitude": 2.3522,
+      "requestedLatitude": 48.8566,
+      "longitude": 2.354166666666657,
+      "latitude": 48.85416666666667,
+      "row": 555,
+      "column": 656,
+      "valid": true,
+      "tmaxC": 18.53,
+      "pptMm": 631,
+      "unroundedTmaxC": 18.533333333333335,
+      "unroundedPptMm": 631.3
+    },
+    {
+      "name": "Berlin",
+      "requestedLongitude": 13.405,
+      "requestedLatitude": 52.52,
+      "longitude": 13.395833333333343,
+      "latitude": 52.52083333333334,
+      "row": 467,
+      "column": 921,
+      "valid": true,
+      "tmaxC": 16.07,
+      "pptMm": 481,
+      "unroundedTmaxC": 16.066666666666666,
+      "unroundedPptMm": 481.0
+    },
+    {
+      "name": "Rome",
+      "requestedLongitude": 12.4964,
+      "requestedLatitude": 41.9028,
+      "longitude": 12.479166666666657,
+      "latitude": 41.89583333333334,
+      "row": 722,
+      "column": 899,
+      "valid": true,
+      "tmaxC": 22.99,
+      "pptMm": 602,
+      "unroundedTmaxC": 22.991666666666674,
+      "unroundedPptMm": 602.5
+    },
+    {
+      "name": "Oslo",
+      "requestedLongitude": 10.7522,
+      "requestedLatitude": 59.9139,
+      "longitude": 10.770833333333343,
+      "latitude": 59.89583333333334,
+      "row": 290,
+      "column": 858,
+      "valid": true,
+      "tmaxC": 12.68,
+      "pptMm": 822,
+      "unroundedTmaxC": 12.683333333333335,
+      "unroundedPptMm": 821.5
+    },
+    {
+      "name": "Reykjavik",
+      "requestedLongitude": -21.9426,
+      "requestedLatitude": 64.1466,
+      "longitude": -21.9375,
+      "latitude": 64.14583333333334,
+      "row": 188,
+      "column": 73,
+      "valid": true,
+      "tmaxC": 8.65,
+      "pptMm": 893,
+      "unroundedTmaxC": 8.650000000000002,
+      "unroundedPptMm": 893.3
+    },
+    {
+      "name": "Helsinki",
+      "requestedLongitude": 24.9384,
+      "requestedLatitude": 60.1699,
+      "longitude": 24.9375,
+      "latitude": 60.18750000000001,
+      "row": 283,
+      "column": 1198,
+      "valid": true,
+      "tmaxC": 10.88,
+      "pptMm": 639,
+      "unroundedTmaxC": 10.883333333333335,
+      "unroundedPptMm": 639.1
+    }
+  ],
+  "generation": {
+    "script": "scripts/build_data.py",
+    "dependencies": "requirements-data.txt",
+    "command": "uv run --with-requirements requirements-data.txt python scripts/build_data.py --start-year 1950 --end-year 2025 --cache-dir /tmp/bivariate-climate-map-source-cache --output-dir data --download-workers 4",
+    "generatorVersion": 2,
+    "scriptSha256": "6c7f0a104fe38d6a2bf0f4c2b036e29c40bba24707e0999b0943ebfad127676b",
+    "dependenciesSha256": "9303074d8b2afbfeb4edb85bb21f2714805ceaa642564af3654649a3a2c67047",
+    "sourceCacheDefault": "/tmp/bivariate-climate-map-source-cache"
+  },
+  "assetSha256": {
+    "years/1950/climate.bin.gz": "15813b16415b59f54a3d0abbdc8d6d0a75ad10c91d3cd95528ab182bd412902c",
+    "years/1950/smoothed.bin.gz": "9c3587788fd9a6ec672c8efce2c523096107b0ac94f6f585695b0765c317aa0d",
+    "years/1951/climate.bin.gz": "0dd7c0a9afe410da2a20156bd2944b7e997ceac202a2b6e33a3397adcc14f833",
+    "years/1951/smoothed.bin.gz": "64554aa60139917caae2391a8c61eb21c8349ce471f867646fea8d035ef709ab",
+    "years/1952/climate.bin.gz": "71c819ffb16061e57d284b6138449113de12317edf445ec74d4b53f3411427e5",
+    "years/1952/smoothed.bin.gz": "0fd4525a30aef84482f55dbaaeb265d9598e6b574557130f5c445a1c1efbc86b",
+    "years/1953/climate.bin.gz": "3a50ac741f3e10c0a7f4d0e02aab6d0abd49656d69c2122c8286368db5eda874",
+    "years/1953/smoothed.bin.gz": "4f12f4e9557a9e8b902e485877cde646aef8d19fa396b533fee0cb42470e662e",
+    "years/1954/climate.bin.gz": "4dc962b51f5697775984d9e8d54dbab7fe8b04972f8fb35df7f9f63a3bc40349",
+    "years/1954/smoothed.bin.gz": "bf0414b68528dc0929874f034882f27ba158436241b3fe937ad6fcffd707dda5",
+    "years/1955/climate.bin.gz": "4a4c212a1916c4208b17bc81a9b2afb2582401066fd38f7bcd66ae5b9e3eeaad",
+    "years/1955/smoothed.bin.gz": "bb496c055f42bdd95c2596797c6285c43e13e2bc59a1b4280855db09f3d7e270",
+    "years/1956/climate.bin.gz": "dd5ef9340267ad318a76cc854a03dc022318828d652b2973e84dfd6e7cf12d73",
+    "years/1956/smoothed.bin.gz": "640aa61c2486b75fe2a98ea7006f61ed75913308a08f8d0fc36195dbbccd6cc9",
+    "years/1957/climate.bin.gz": "828940fa9834ba0c5751e8815dd73b756173764e5ea334971af9bba8ff441454",
+    "years/1957/smoothed.bin.gz": "450d729bc28304b8c9009eaf820cb4bf60fbf70fb3cb304a08574b1899ee76a3",
+    "years/1958/climate.bin.gz": "f21b61beb66c064e94a30761a97a988c06516aed18806f0f44a7cff1be5ff263",
+    "years/1958/smoothed.bin.gz": "498d4ffb2fad85195a70d20a62bf3459096181416739e429c3c62d1d59b9490c",
+    "years/1959/climate.bin.gz": "0e5154673d65c6e0758407105cfba6fb143ce2572499d72fc535b67304d87b55",
+    "years/1959/smoothed.bin.gz": "9355fd5186768fa3977e783b8af936ee50ff562a70abf1c86751b32adcf0121a",
+    "years/1960/climate.bin.gz": "dab6478c9927e448baec2250cfcfa16eac85c761bb92d2b094824fbb0bbbd8a9",
+    "years/1960/smoothed.bin.gz": "ee013d1e15264d2eb66f139aae80b66bff9ad75c36ecaf6cb365bb032075564d",
+    "years/1961/climate.bin.gz": "76b94a7b1351cb31697605501b47189bec6d8a1921a98956a71315569090842f",
+    "years/1961/smoothed.bin.gz": "5b4b63dada942b7acafec2437d8ae2c0b38c24d33f9fd3cd885a8a1cfb0ba861",
+    "years/1962/climate.bin.gz": "08010412d737e01460184003f5330ecd40b3820c9c6409663d3ae96fcda1a249",
+    "years/1962/smoothed.bin.gz": "ccca018514b6465c7730f2d34ea29d34b8e991b4bad1060daf0e3a4f3f38073f",
+    "years/1963/climate.bin.gz": "4ed527e89b9b9f52f4285537345d7b9393da559792857c5465954dc9b015efdb",
+    "years/1963/smoothed.bin.gz": "531ac9b5588928b20d8821e2ed6ee7254facb5ac22a038216d52d5e9a5d6da8a",
+    "years/1964/climate.bin.gz": "447cf8f99cfea98e78bb78780b4a3aaf7fb2a458c023fab329183e05da2641d2",
+    "years/1964/smoothed.bin.gz": "c4685fa0728dbaa4e0c299fa4ca82e6df5b557d5ead4720f4f6241ef35e66cc6",
+    "years/1965/climate.bin.gz": "1fb40b0dda843ac2ab5841db332620dcc051b78fe90ea9188df9f51caddc7288",
+    "years/1965/smoothed.bin.gz": "4cd120ebab8800b9276e691e4471b31a25582c97ea21cc5862d597b068855cb0",
+    "years/1966/climate.bin.gz": "2b18992705a1eddca2ce371d69e2fa4517c389540797046ea39e27065c09a324",
+    "years/1966/smoothed.bin.gz": "16a126f9c04b5a8a0131c4852e84a1872a9df792edb48c3e675933559773c5ee",
+    "years/1967/climate.bin.gz": "93748f7efe16474a7f82fcc3b5a788b015b2f09dd7c74b67cdd24b80e080c663",
+    "years/1967/smoothed.bin.gz": "a6521e6f9410c93cf8aa4e4e92d528fe9ba6ae0d71710dbd5a74ae7f85040c1e",
+    "years/1968/climate.bin.gz": "93cec6138e98406b5d97934bd9b6d5978f0d4cf0e63d2482d13d900b73e4243c",
+    "years/1968/smoothed.bin.gz": "628dd4c876847974690c992ea79f71e43edc26075d547cd6b571c72109e97816",
+    "years/1969/climate.bin.gz": "32cbda6e125986d5fcb49132b5577357c8ed52406f05df26a2fbddcfc89a4fcd",
+    "years/1969/smoothed.bin.gz": "51b472fe53147e04a0187b995b0f828656e26c75f2b3803d1355ccc297dfb498",
+    "years/1970/climate.bin.gz": "fa59034a8345823dc614b1c3c5808e675497b0b366414f1f322f2f2446ba68f6",
+    "years/1970/smoothed.bin.gz": "0efedb5f82e12e4bbe4ba1dceca5f360ce45dc609082487dcd969a417f95f26f",
+    "years/1971/climate.bin.gz": "f07005b184953881d1abcf9ca3feff30ce3edbf31bfc3ae4cecdefaf70f97de0",
+    "years/1971/smoothed.bin.gz": "0de8ef5b29ff435dee940c307882d1c4863211042617db0010709f610ee6840b",
+    "years/1972/climate.bin.gz": "48c8ac7f0d518041519b2ea1741727dec3369c7eab192f74ff9c7ef28bef6f51",
+    "years/1972/smoothed.bin.gz": "cfeeea827fbe5c7daecf93ac711e882eb02b68cbf6177f6bfd5839d5bf868919",
+    "years/1973/climate.bin.gz": "878dc31f2054cb8f3e07cd3bcc1b682b680958ffc27ac212a08c5ed2f917d134",
+    "years/1973/smoothed.bin.gz": "11908939d2b762786834b55474357b860cbca0086d6fc8212b39a9f4ea9caf4d",
+    "years/1974/climate.bin.gz": "2f60e547ba09219d4618de1350a14592a76c64a333c18f556476bb6d060a6b20",
+    "years/1974/smoothed.bin.gz": "76bd76a53f7b46a5079f9a36beaeb6e0355e7899d97c48ee903c770187f34999",
+    "years/1975/climate.bin.gz": "b13b18200c17deb219236b74a518e822a6a0dffc620a8c8c8e64f4a8323bfd44",
+    "years/1975/smoothed.bin.gz": "35ac4feeb85a07e9845e38ab02b6a6fbff4679466f568994f8ccfda9249338ea",
+    "years/1976/climate.bin.gz": "9151d81dd9470387a912d1d622d08be96a7b1f98fa4fb65d5f39f44f2f369f7d",
+    "years/1976/smoothed.bin.gz": "33c45c2f42d70048760dfeb5b8076adfc22ad66c60a097f784237f40ac62c1a4",
+    "years/1977/climate.bin.gz": "19aa19086806ab68c874ef0e104929ce6aa878e8edc98224812b3ff72f64f1de",
+    "years/1977/smoothed.bin.gz": "0ecd59beebab804c07089e221e9be9bf02e8ef51e9acd12247f864f65faf9050",
+    "years/1978/climate.bin.gz": "b104a3c328ea1f573b3c67fdb4c31f0621968fed8eff0ae598a65370f7c299ec",
+    "years/1978/smoothed.bin.gz": "cfc88aa8ba7ac7732922f3c1fcbb917036ea024811e2966794e8892858ce5ffb",
+    "years/1979/climate.bin.gz": "88b09ed65594e4069b8234db3dfdbea62aee79f74e6712c478d5f66e4346e522",
+    "years/1979/smoothed.bin.gz": "17a46b9d6a348ad4c428bc8a775be6f3753efa64158ff063b894544a5faaf43a",
+    "years/1980/climate.bin.gz": "cfa06e641ead9c689a6aec0412fd3915fa92beef610e81a4f06d0b1be075d3db",
+    "years/1980/smoothed.bin.gz": "ce7a8c1a75c610d05340faab87abe8d033640fc771387717c1e4d11f2d4ae62f",
+    "years/1981/climate.bin.gz": "dee19160cb0c6b53d7bf52cd1892dceb98938e3a459bbce743f0cad147e2e226",
+    "years/1981/smoothed.bin.gz": "2d37b3e4c718882372c3b2c98aef2549d0ec9acdb244328a544942cfd3ea3240",
+    "years/1982/climate.bin.gz": "2d1015ac47ba1a804c75cb20297364bdb3e6b91bc87dc873e40b080b8a03b6f7",
+    "years/1982/smoothed.bin.gz": "bc4d1304266ae875867137829cf92eb9858d0b6a5914e44d154d29067257fbcc",
+    "years/1983/climate.bin.gz": "172fcb19d59ce5b241dfdab1dd2d98028026a3cf3edf008114fec86e78e91cb6",
+    "years/1983/smoothed.bin.gz": "4925e2913322e2b15739e8dd5152b869e76816686b4c78c2d21b68d68efabe83",
+    "years/1984/climate.bin.gz": "bebc049af17cf52ecffea624845ab981173044b2aae4828d0b20aed8ebb2dd64",
+    "years/1984/smoothed.bin.gz": "620ea1b8178a4b5b6cc63f581049aea4596e1d570b1667d97265a0a11d3a39e0",
+    "years/1985/climate.bin.gz": "cc42e7b3160a50b3e1507befd67694c43e97d8d00596c7f9759f067097c5c430",
+    "years/1985/smoothed.bin.gz": "22f4d4ff2512f6e0eb03888700c68f80170d2876052203a260c4613613bd2c92",
+    "years/1986/climate.bin.gz": "acf544372dba477aae8677f212089ed583a23b060d2b0bca01f8309dcad06458",
+    "years/1986/smoothed.bin.gz": "d9a2687e65cc3c1c969f2dfcffc28c652dd38cb03b827d49eae75ed38c5acca3",
+    "years/1987/climate.bin.gz": "b9531690c0876b8101c079f1e147add36172c9dc3c0ba868fc0519e3596da6a3",
+    "years/1987/smoothed.bin.gz": "97cfc2ffd626ff891443e39b0bcbb0b24abd00f98b65d9ed7152f1790b9c8f22",
+    "years/1988/climate.bin.gz": "3308332c98703b9bf8e9bce34a7e1f55c8fa51cc7c65b0b16523c9907a0a121d",
+    "years/1988/smoothed.bin.gz": "8db4599a4f8aae8a66f05860f2fce625daf99899ea0cbeb860f7276e43bbdb3d",
+    "years/1989/climate.bin.gz": "61d040f25b7cefd1df95462e5a3e658981a0872fc3d2922d2e0ee974c5de13b1",
+    "years/1989/smoothed.bin.gz": "34c7e9532f089bafb30f7c05b2b8e875dbda10fcc118a480b7b5db8c50e85ca5",
+    "years/1990/climate.bin.gz": "e50c6a60302da64ffaeab7f6d5c8e50a940fff7aeef8ce98053707146c8b1f5a",
+    "years/1990/smoothed.bin.gz": "1e92c4bd630bc4a96014a9ecd5aa8b7894702de6ef5268e6f0da0ea19995311a",
+    "years/1991/climate.bin.gz": "0f9d3c25680aff4c99c7ddf4aea5e924b06e483e4cf725e3adf53080bc2b2afb",
+    "years/1991/smoothed.bin.gz": "a0820ac72edbfd44e3d0856407edec84d7331aa67b095c7301e9eb76a8943228",
+    "years/1992/climate.bin.gz": "134c14446d2e18921ca63c7cb398f11b14825534086bc530ad108320d0c86098",
+    "years/1992/smoothed.bin.gz": "b99978986acd1f43b36614a5c189693d7476c295aa55f7a198949a5961a71631",
+    "years/1993/climate.bin.gz": "af3778a088cf16da6c1507ee0a395082fcadc409c4a0f7e477766a0ebf0375b7",
+    "years/1993/smoothed.bin.gz": "c634e5474e01d9724e9b89a7da8d64376bf2e730080849edbbfcfe28c39d66d8",
+    "years/1994/climate.bin.gz": "289ac2012625489f2298cc9d6c2eaff7edac1db4344e66d3d88aa693009e6549",
+    "years/1994/smoothed.bin.gz": "7dbf8819bf36e1f69cb4c4adcae9d81d3f3402d456c8e2fc2e046d08137232f0",
+    "years/1995/climate.bin.gz": "afc550e4a528a70ce96cfada002d739f81de2081a907e1dbc7cdfc75b7a5070c",
+    "years/1995/smoothed.bin.gz": "ddc503c28ef7e537965fd2ef6b60b3a059d9ee828829c0810181be30db9207cf",
+    "years/1996/climate.bin.gz": "9e4dab61eb63b3dd9d6f8c84c1cbfd0c10f363932b7c81985ee25b896f66b167",
+    "years/1996/smoothed.bin.gz": "1cb38c0a3a4fb0f04e03bddc05d43a1310fa45ad3f5e72521dfc51e8c63a0577",
+    "years/1997/climate.bin.gz": "6d5b752d18a644f23ab022ac6fddd467d48ee1197b42f29033a47f8e4f656ba1",
+    "years/1997/smoothed.bin.gz": "0a202612b1cf3a6ba84a20e3cfc2b4eebb2b2f7589916f3ed5d6feb04bb7e649",
+    "years/1998/climate.bin.gz": "e1764a37cfaf8fce6a1dc9ebed95b791d633a1ec43d6ce8f3f123df51b0af260",
+    "years/1998/smoothed.bin.gz": "1f32067e1fa1edda01bd89ef4a4c9bad11df6a24fc88970b33547ee19538a1b0",
+    "years/1999/climate.bin.gz": "813f910639c21f315141ac8a6ab0bc0a48ed932197ca85be8cdd2de1e9ffd973",
+    "years/1999/smoothed.bin.gz": "2740e365d7752d0634c736b1678a1e5937513311aed95fb294c77e81dda9bc4a",
+    "years/2000/climate.bin.gz": "95e3cebe8c10ddca60750ce4e1f1b28fa0e5e5c721404e022e8cdb354b779fbe",
+    "years/2000/smoothed.bin.gz": "c16b1f22597000804b576f14ce82fe751be75a98295fc83035c628de59f41f65",
+    "years/2001/climate.bin.gz": "51e9d847a2d705097787a400ff7cdc2941ec08d1781c813e9035f5d41a63ec6e",
+    "years/2001/smoothed.bin.gz": "4141d512e667d434a41930b980d805acb2d69b1cf4f919f3f6bb7a9601d94341",
+    "years/2002/climate.bin.gz": "549e2478542e1978192d8053451c4c9a31b515111b02214117bf2ce4396b18f2",
+    "years/2002/smoothed.bin.gz": "106cb6697062bfa08763118522b0be2864e6ad928c3c4c1f44e0eecc24ed5a2e",
+    "years/2003/climate.bin.gz": "5031ea9f8fccd82509ed9b5aaf670afeeb864f1899bd302694176bf1077ed377",
+    "years/2003/smoothed.bin.gz": "b76850952f777ebe65f13b7548ec38b838a2ecafe8e01a75953d1aa8123a05ea",
+    "years/2004/climate.bin.gz": "fa64bf231fa29fde692ae046a74db8efda40dc3f4e4b04c2017899cfe84622a1",
+    "years/2004/smoothed.bin.gz": "55db4fcf2ccf2a04a9aeb25d54446a3b3234852016e1ef2f97e94562c3167d4f",
+    "years/2005/climate.bin.gz": "ae8c89b806305b6b2ec61687455f248988d8125f749c327671fd4c34fe52e0cb",
+    "years/2005/smoothed.bin.gz": "143b50818373aaf080a5e826e36d20f408b604b7f3e9acb5e798a6c30e589f43",
+    "years/2006/climate.bin.gz": "682848b5e7eae6f3dfe04529d42c70894fb708f4af001466f2f0f26a5956a9a1",
+    "years/2006/smoothed.bin.gz": "4ce0f3afeb597d7d36743b71402f2511483b4d9aaee00a778c30201a0288a713",
+    "years/2007/climate.bin.gz": "4c4fbe0ca51953df9094ec969e167e4cbbb87e4c36604be72f308cd749000deb",
+    "years/2007/smoothed.bin.gz": "0e4e3d2a80d9d77368308ceec67e4add5d42153768df255f2ccbe1b9bafd95b6",
+    "years/2008/climate.bin.gz": "4a69e5a81ac57ed83717a365cff761947ddc1fd05d096b5ae430921b9ce53f2d",
+    "years/2008/smoothed.bin.gz": "5dcd3f0dae8cedd9e60e18a825203ae9ae5f04ae08f57d5005dffbcf610f31bd",
+    "years/2009/climate.bin.gz": "f03d7d9ba72769f74ee3ffef833bd2aa78e66301fb5785bc7a77b2a2d6b7bc52",
+    "years/2009/smoothed.bin.gz": "67783f6a33393395694c4b95958f3b7abe92998597aa5a957d6b1223a8a480e5",
+    "years/2010/climate.bin.gz": "dfcba6546083f26011a670e26dd57ad7ef33a8e61c9f3befc3e5067b7dc258cd",
+    "years/2010/smoothed.bin.gz": "8735cf574f6ccb1776eef82307a564dd067ced6e575138629d0ab2c616b9beae",
+    "years/2011/climate.bin.gz": "16140bccdcef06ec682122512aae5a266e344e6145b7e277a28d017ca9c63c3a",
+    "years/2011/smoothed.bin.gz": "1c26ba681d28da803616ff26e6e65fbcaeb45d95f6eca83c4ba3323d1ca5c934",
+    "years/2012/climate.bin.gz": "759c046c5faee563175afbfd1076475389d65fc34bda88c4e7f20f89a3238ce9",
+    "years/2012/smoothed.bin.gz": "423dbc88bbd8a8f7762120cf9f3ec1171913b5dc3801cf6134128be671bd4439",
+    "years/2013/climate.bin.gz": "9b1ade31e6f09627fd5d646f7830d06005ed6caa54bb5354e1fae92d5fba2fee",
+    "years/2013/smoothed.bin.gz": "5e3e710ee837d78ff4257500c6752bbcfde7e8b22f48bac8281e5b4081b733c8",
+    "years/2014/climate.bin.gz": "2c7aafdf48b737d67fae1a10d2da27a0db366c3d8813c5b22f98ed749844cd26",
+    "years/2014/smoothed.bin.gz": "ad0ce8863d2b303f8bf62394b1b7cfca69f1a38fe57afc0900828d82ab6786f9",
+    "years/2015/climate.bin.gz": "62c49085771a841909cd66c6c9ae3520ee5d847acfd3716688bb23f82b704608",
+    "years/2015/smoothed.bin.gz": "55c4ca30d7378b3c04b9fa6c009c5582461d1eaa49ace8db712fb6be7202a4bc",
+    "years/2016/climate.bin.gz": "7d711d6fd151783484e56b0d0699a24297221003e16eab4488e39b72a5fdda04",
+    "years/2016/smoothed.bin.gz": "800dabd6918c1fcf847c1458962d1800507c38d3b9eff6ab748292b5f023387d",
+    "years/2017/climate.bin.gz": "39dab1d29842c88e8c4058ecca9bd8cb19bd5290e6988d3f031cd0946c50a58a",
+    "years/2017/smoothed.bin.gz": "974875c0ce6565ccd32c505d1707dc8100ae6ba4aa2f6c7e10b6c0b7f1a5196d",
+    "years/2018/climate.bin.gz": "c84b3dd518546ff8f65f8653396eb90ac629ee4aabc63f6777aebfaaabbfaeb0",
+    "years/2018/smoothed.bin.gz": "000d02609030681f9d7caecfe7e60c86124df2dca96373871a3079a552eb1eaa",
+    "years/2019/climate.bin.gz": "d4a39961c3f4f4c3499c528a83f8ce8a46491b6fc16397ebb98ab3ac457cf66a",
+    "years/2019/smoothed.bin.gz": "43ab392c2a04d037f4ca49a8e8e72e215b42bd82616d610798657d6f36a2f583",
+    "years/2020/climate.bin.gz": "985132099090d699b6b8ae4b51dce65718045b4af7657260766935acd7ced220",
+    "years/2020/smoothed.bin.gz": "31f12ccec51c38d7ab707cf6b46f87ab705b25458cf3e759e02b1f31dbc9db49",
+    "years/2021/climate.bin.gz": "eca696c6678afef6f63477a5cb74a46e6779a0d1cd7879be03057ed1d3cbf69d",
+    "years/2021/smoothed.bin.gz": "f90734716e2ea6281002533494b5ccbde45e06ae35d6eacc3f1ac22f67b52afc",
+    "years/2022/climate.bin.gz": "fb4bbe2c866b444b34ba98fa3e5b1e102f4a8210c13175fa5d9e152604a87026",
+    "years/2022/smoothed.bin.gz": "f6a53bb9770623b3e0cf1fca8f39d6f801a8961f0aa0b0325bced579990a94cf",
+    "years/2023/climate.bin.gz": "071add1de62d746cad32cc1c3f0d34de548edc02b3f40e5a275271d9fce6235e",
+    "years/2023/smoothed.bin.gz": "00abf3d773a6b963a0fe9cc53019718b8b2b0cd662f47dd20ccd9f55dafe3a87",
+    "years/2024/climate.bin.gz": "366e6c3e1fbdd68b4298b7a9d787f2edc43999a37dc75b2e8870799afe7be8a5",
+    "years/2024/smoothed.bin.gz": "e48eac0ff320d43a506c54ee487260861a00120b7c9e73bfdfe7843af89a5e36",
+    "years/2025/climate.bin.gz": "0f3887df9b6add1c5626c21a47d6f104c20c2f9f1f3fcf6a2801b1aa92ec7a7d",
+    "years/2025/smoothed.bin.gz": "80a0b6b79ad9dc4f3731c2373045488535985568b35a29847f5ea759e5de58cb",
+    "europe.geojson": "7529f8aaf1ca1561afb8bf391978bcf66413ffa1de39c0f8eb2dca0e326cb1bf"
+  },
+  "years": [
+    1950,
+    1951,
+    1952,
+    1953,
+    1954,
+    1955,
+    1956,
+    1957,
+    1958,
+    1959,
+    1960,
+    1961,
+    1962,
+    1963,
+    1964,
+    1965,
+    1966,
+    1967,
+    1968,
+    1969,
+    1970,
+    1971,
+    1972,
+    1973,
+    1974,
+    1975,
+    1976,
+    1977,
+    1978,
+    1979,
+    1980,
+    1981,
+    1982,
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "defaultYear": 2025,
+  "frames": {
+    "1950": {
+      "year": 1950,
+      "rawFile": "years/1950/climate.bin.gz",
+      "smoothedFile": "years/1950/smoothed.bin.gz",
+      "metadataFile": "years/1950/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.29,
+        25.4
+      ],
+      "precipitationRange": [
+        60.0,
+        3849.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.291666666666664,
+        25.400000000000002
+      ],
+      "fullPrecisionPrecipitationRange": [
+        60.3,
+        3849.2000000000003
+      ]
+    },
+    "1951": {
+      "year": 1951,
+      "rawFile": "years/1951/climate.bin.gz",
+      "smoothedFile": "years/1951/smoothed.bin.gz",
+      "metadataFile": "years/1951/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.16,
+        24.45
+      ],
+      "precipitationRange": [
+        117.0,
+        3166.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.15833333333333,
+        24.450000000000003
+      ],
+      "fullPrecisionPrecipitationRange": [
+        116.60000000000001,
+        3165.8
+      ]
+    },
+    "1952": {
+      "year": 1952,
+      "rawFile": "years/1952/climate.bin.gz",
+      "smoothedFile": "years/1952/smoothed.bin.gz",
+      "metadataFile": "years/1952/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.71,
+        24.78
+      ],
+      "precipitationRange": [
+        97.0,
+        3134.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.70833333333333,
+        24.783333333333335
+      ],
+      "fullPrecisionPrecipitationRange": [
+        96.60000000000001,
+        3133.5
+      ]
+    },
+    "1953": {
+      "year": 1953,
+      "rawFile": "years/1953/climate.bin.gz",
+      "smoothedFile": "years/1953/smoothed.bin.gz",
+      "metadataFile": "years/1953/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.09,
+        25.71
+      ],
+      "precipitationRange": [
+        102.0,
+        4027.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.091666666666663,
+        25.708333333333332
+      ],
+      "fullPrecisionPrecipitationRange": [
+        101.5,
+        4026.9
+      ]
+    },
+    "1954": {
+      "year": 1954,
+      "rawFile": "years/1954/climate.bin.gz",
+      "smoothedFile": "years/1954/smoothed.bin.gz",
+      "metadataFile": "years/1954/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.38,
+        25.54
+      ],
+      "precipitationRange": [
+        109.0,
+        3502.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.383333333333331,
+        25.54166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        109.0,
+        3502.5
+      ]
+    },
+    "1955": {
+      "year": 1955,
+      "rawFile": "years/1955/climate.bin.gz",
+      "smoothedFile": "years/1955/smoothed.bin.gz",
+      "metadataFile": "years/1955/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.42,
+        25.39
+      ],
+      "precipitationRange": [
+        96.0,
+        3064.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.416666666666663,
+        25.39166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        95.80000000000001,
+        3063.7
+      ]
+    },
+    "1956": {
+      "year": 1956,
+      "rawFile": "years/1956/climate.bin.gz",
+      "smoothedFile": "years/1956/smoothed.bin.gz",
+      "metadataFile": "years/1956/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -11.14,
+        23.52
+      ],
+      "precipitationRange": [
+        98.0,
+        3244.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -11.14166666666666,
+        23.525000000000002
+      ],
+      "fullPrecisionPrecipitationRange": [
+        97.8,
+        3243.6000000000004
+      ]
+    },
+    "1957": {
+      "year": 1957,
+      "rawFile": "years/1957/climate.bin.gz",
+      "smoothedFile": "years/1957/smoothed.bin.gz",
+      "metadataFile": "years/1957/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.45,
+        24.22
+      ],
+      "precipitationRange": [
+        104.0,
+        4018.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.449999999999998,
+        24.21666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        103.8,
+        4017.8
+      ]
+    },
+    "1958": {
+      "year": 1958,
+      "rawFile": "years/1958/climate.bin.gz",
+      "smoothedFile": "years/1958/smoothed.bin.gz",
+      "metadataFile": "years/1958/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.12,
+        24.76
+      ],
+      "precipitationRange": [
+        104.0,
+        2987.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.124999999999998,
+        24.758333333333336
+      ],
+      "fullPrecisionPrecipitationRange": [
+        104.5,
+        2987.1000000000004
+      ]
+    },
+    "1959": {
+      "year": 1959,
+      "rawFile": "years/1959/climate.bin.gz",
+      "smoothedFile": "years/1959/smoothed.bin.gz",
+      "metadataFile": "years/1959/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.62,
+        24.29
+      ],
+      "precipitationRange": [
+        85.0,
+        3124.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.624999999999996,
+        24.291666666666668
+      ],
+      "fullPrecisionPrecipitationRange": [
+        85.00000000000001,
+        3124.2000000000003
+      ]
+    },
+    "1960": {
+      "year": 1960,
+      "rawFile": "years/1960/climate.bin.gz",
+      "smoothedFile": "years/1960/smoothed.bin.gz",
+      "metadataFile": "years/1960/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.76,
+        24.48
+      ],
+      "precipitationRange": [
+        101.0,
+        3358.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.758333333333331,
+        24.483333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        101.1,
+        3358.3
+      ]
+    },
+    "1961": {
+      "year": 1961,
+      "rawFile": "years/1961/climate.bin.gz",
+      "smoothedFile": "years/1961/smoothed.bin.gz",
+      "metadataFile": "years/1961/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.53,
+        25.09
+      ],
+      "precipitationRange": [
+        89.0,
+        3626.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.53333333333333,
+        25.09166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        88.7,
+        3625.5
+      ]
+    },
+    "1962": {
+      "year": 1962,
+      "rawFile": "years/1962/climate.bin.gz",
+      "smoothedFile": "years/1962/smoothed.bin.gz",
+      "metadataFile": "years/1962/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.5,
+        24.43
+      ],
+      "precipitationRange": [
+        89.0,
+        3357.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.499999999999996,
+        24.433333333333337
+      ],
+      "fullPrecisionPrecipitationRange": [
+        89.30000000000001,
+        3356.600000000001
+      ]
+    },
+    "1963": {
+      "year": 1963,
+      "rawFile": "years/1963/climate.bin.gz",
+      "smoothedFile": "years/1963/smoothed.bin.gz",
+      "metadataFile": "years/1963/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.66,
+        24.24
+      ],
+      "precipitationRange": [
+        125.0,
+        3004.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.65833333333333,
+        24.24166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        125.2,
+        3004.0
+      ]
+    },
+    "1964": {
+      "year": 1964,
+      "rawFile": "years/1964/climate.bin.gz",
+      "smoothedFile": "years/1964/smoothed.bin.gz",
+      "metadataFile": "years/1964/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.3,
+        25.18
+      ],
+      "precipitationRange": [
+        132.0,
+        3992.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.299999999999997,
+        25.175
+      ],
+      "fullPrecisionPrecipitationRange": [
+        131.9,
+        3991.5
+      ]
+    },
+    "1965": {
+      "year": 1965,
+      "rawFile": "years/1965/climate.bin.gz",
+      "smoothedFile": "years/1965/smoothed.bin.gz",
+      "metadataFile": "years/1965/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.78,
+        24.41
+      ],
+      "precipitationRange": [
+        92.0,
+        3611.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.78333333333333,
+        24.408333333333342
+      ],
+      "fullPrecisionPrecipitationRange": [
+        91.80000000000001,
+        3611.4
+      ]
+    },
+    "1966": {
+      "year": 1966,
+      "rawFile": "years/1966/climate.bin.gz",
+      "smoothedFile": "years/1966/smoothed.bin.gz",
+      "metadataFile": "years/1966/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.71,
+        24.69
+      ],
+      "precipitationRange": [
+        113.0,
+        3340.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.708333333333331,
+        24.691666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        113.40000000000003,
+        3340.1000000000004
+      ]
+    },
+    "1967": {
+      "year": 1967,
+      "rawFile": "years/1967/climate.bin.gz",
+      "smoothedFile": "years/1967/smoothed.bin.gz",
+      "metadataFile": "years/1967/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.04,
+        24.55
+      ],
+      "precipitationRange": [
+        113.0,
+        4751.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.041666666666663,
+        24.55
+      ],
+      "fullPrecisionPrecipitationRange": [
+        113.4,
+        4751.200000000001
+      ]
+    },
+    "1968": {
+      "year": 1968,
+      "rawFile": "years/1968/climate.bin.gz",
+      "smoothedFile": "years/1968/smoothed.bin.gz",
+      "metadataFile": "years/1968/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.43,
+        24.82
+      ],
+      "precipitationRange": [
+        129.0,
+        2836.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.433333333333332,
+        24.816666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        129.0,
+        2836.0
+      ]
+    },
+    "1969": {
+      "year": 1969,
+      "rawFile": "years/1969/climate.bin.gz",
+      "smoothedFile": "years/1969/smoothed.bin.gz",
+      "metadataFile": "years/1969/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.43,
+        24.22
+      ],
+      "precipitationRange": [
+        138.0,
+        3430.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.43333333333333,
+        24.21666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        138.10000000000002,
+        3430.5
+      ]
+    },
+    "1970": {
+      "year": 1970,
+      "rawFile": "years/1970/climate.bin.gz",
+      "smoothedFile": "years/1970/smoothed.bin.gz",
+      "metadataFile": "years/1970/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.77,
+        24.86
+      ],
+      "precipitationRange": [
+        97.0,
+        3098.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.774999999999999,
+        24.858333333333338
+      ],
+      "fullPrecisionPrecipitationRange": [
+        97.2,
+        3098.1
+      ]
+    },
+    "1971": {
+      "year": 1971,
+      "rawFile": "years/1971/climate.bin.gz",
+      "smoothedFile": "years/1971/smoothed.bin.gz",
+      "metadataFile": "years/1971/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.35,
+        24.1
+      ],
+      "precipitationRange": [
+        115.0,
+        4571.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.349999999999998,
+        24.099999999999998
+      ],
+      "fullPrecisionPrecipitationRange": [
+        114.69999999999999,
+        4571.2
+      ]
+    },
+    "1972": {
+      "year": 1972,
+      "rawFile": "years/1972/climate.bin.gz",
+      "smoothedFile": "years/1972/smoothed.bin.gz",
+      "metadataFile": "years/1972/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.38,
+        23.73
+      ],
+      "precipitationRange": [
+        109.0,
+        3492.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.383333333333331,
+        23.733333333333338
+      ],
+      "fullPrecisionPrecipitationRange": [
+        108.80000000000001,
+        3491.8999999999996
+      ]
+    },
+    "1973": {
+      "year": 1973,
+      "rawFile": "years/1973/climate.bin.gz",
+      "smoothedFile": "years/1973/smoothed.bin.gz",
+      "metadataFile": "years/1973/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.14,
+        24.68
+      ],
+      "precipitationRange": [
+        114.0,
+        4588.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.141666666666664,
+        24.683333333333337
+      ],
+      "fullPrecisionPrecipitationRange": [
+        114.00000000000003,
+        4587.599999999999
+      ]
+    },
+    "1974": {
+      "year": 1974,
+      "rawFile": "years/1974/climate.bin.gz",
+      "smoothedFile": "years/1974/smoothed.bin.gz",
+      "metadataFile": "years/1974/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.72,
+        24.6
+      ],
+      "precipitationRange": [
+        109.0,
+        3534.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.724999999999996,
+        24.600000000000005
+      ],
+      "fullPrecisionPrecipitationRange": [
+        108.70000000000002,
+        3534.2
+      ]
+    },
+    "1975": {
+      "year": 1975,
+      "rawFile": "years/1975/climate.bin.gz",
+      "smoothedFile": "years/1975/smoothed.bin.gz",
+      "metadataFile": "years/1975/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.33,
+        24.26
+      ],
+      "precipitationRange": [
+        92.0,
+        4290.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.333333333333334,
+        24.258333333333336
+      ],
+      "fullPrecisionPrecipitationRange": [
+        92.4,
+        4289.7
+      ]
+    },
+    "1976": {
+      "year": 1976,
+      "rawFile": "years/1976/climate.bin.gz",
+      "smoothedFile": "years/1976/smoothed.bin.gz",
+      "metadataFile": "years/1976/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.25,
+        24.06
+      ],
+      "precipitationRange": [
+        138.0,
+        2923.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.249999999999998,
+        24.058333333333337
+      ],
+      "fullPrecisionPrecipitationRange": [
+        137.8,
+        2922.7
+      ]
+    },
+    "1977": {
+      "year": 1977,
+      "rawFile": "years/1977/climate.bin.gz",
+      "smoothedFile": "years/1977/smoothed.bin.gz",
+      "metadataFile": "years/1977/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.85,
+        24.29
+      ],
+      "precipitationRange": [
+        74.0,
+        3022.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.849999999999996,
+        24.291666666666668
+      ],
+      "fullPrecisionPrecipitationRange": [
+        74.2,
+        3021.9999999999995
+      ]
+    },
+    "1978": {
+      "year": 1978,
+      "rawFile": "years/1978/climate.bin.gz",
+      "smoothedFile": "years/1978/smoothed.bin.gz",
+      "metadataFile": "years/1978/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.78,
+        24.71
+      ],
+      "precipitationRange": [
+        108.0,
+        3373.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.78333333333333,
+        24.70833333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        108.20000000000002,
+        3373.3
+      ]
+    },
+    "1979": {
+      "year": 1979,
+      "rawFile": "years/1979/climate.bin.gz",
+      "smoothedFile": "years/1979/smoothed.bin.gz",
+      "metadataFile": "years/1979/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.6,
+        24.61
+      ],
+      "precipitationRange": [
+        125.0,
+        3755.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.599999999999998,
+        24.60833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        125.0,
+        3755.3
+      ]
+    },
+    "1980": {
+      "year": 1980,
+      "rawFile": "years/1980/climate.bin.gz",
+      "smoothedFile": "years/1980/smoothed.bin.gz",
+      "metadataFile": "years/1980/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.44,
+        25.12
+      ],
+      "precipitationRange": [
+        123.0,
+        3482.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.441666666666665,
+        25.11666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        122.50000000000001,
+        3481.8
+      ]
+    },
+    "1981": {
+      "year": 1981,
+      "rawFile": "years/1981/climate.bin.gz",
+      "smoothedFile": "years/1981/smoothed.bin.gz",
+      "metadataFile": "years/1981/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.99,
+        26.11
+      ],
+      "precipitationRange": [
+        95.0,
+        3382.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.991666666666662,
+        26.108333333333338
+      ],
+      "fullPrecisionPrecipitationRange": [
+        95.30000000000001,
+        3381.5
+      ]
+    },
+    "1982": {
+      "year": 1982,
+      "rawFile": "years/1982/climate.bin.gz",
+      "smoothedFile": "years/1982/smoothed.bin.gz",
+      "metadataFile": "years/1982/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.77,
+        24.99
+      ],
+      "precipitationRange": [
+        88.0,
+        3963.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.766666666666664,
+        24.99166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        87.9,
+        3962.9000000000005
+      ]
+    },
+    "1983": {
+      "year": 1983,
+      "rawFile": "years/1983/climate.bin.gz",
+      "smoothedFile": "years/1983/smoothed.bin.gz",
+      "metadataFile": "years/1983/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.65,
+        25.58
+      ],
+      "precipitationRange": [
+        93.0,
+        4758.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.649999999999997,
+        25.575
+      ],
+      "fullPrecisionPrecipitationRange": [
+        93.2,
+        4757.8
+      ]
+    },
+    "1984": {
+      "year": 1984,
+      "rawFile": "years/1984/climate.bin.gz",
+      "smoothedFile": "years/1984/smoothed.bin.gz",
+      "metadataFile": "years/1984/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.55,
+        24.25
+      ],
+      "precipitationRange": [
+        104.0,
+        2964.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.549999999999995,
+        24.250000000000004
+      ],
+      "fullPrecisionPrecipitationRange": [
+        103.7,
+        2963.8
+      ]
+    },
+    "1985": {
+      "year": 1985,
+      "rawFile": "years/1985/climate.bin.gz",
+      "smoothedFile": "years/1985/smoothed.bin.gz",
+      "metadataFile": "years/1985/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.69,
+        25.33
+      ],
+      "precipitationRange": [
+        99.0,
+        3280.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.691666666666665,
+        25.333333333333332
+      ],
+      "fullPrecisionPrecipitationRange": [
+        98.9,
+        3279.800000000001
+      ]
+    },
+    "1986": {
+      "year": 1986,
+      "rawFile": "years/1986/climate.bin.gz",
+      "smoothedFile": "years/1986/smoothed.bin.gz",
+      "metadataFile": "years/1986/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.91,
+        24.74
+      ],
+      "precipitationRange": [
+        87.0,
+        4252.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.908333333333331,
+        24.74166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        86.80000000000003,
+        4251.5
+      ]
+    },
+    "1987": {
+      "year": 1987,
+      "rawFile": "years/1987/climate.bin.gz",
+      "smoothedFile": "years/1987/smoothed.bin.gz",
+      "metadataFile": "years/1987/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.52,
+        25.21
+      ],
+      "precipitationRange": [
+        92.0,
+        2940.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.524999999999997,
+        25.208333333333332
+      ],
+      "fullPrecisionPrecipitationRange": [
+        92.3,
+        2939.6
+      ]
+    },
+    "1988": {
+      "year": 1988,
+      "rawFile": "years/1988/climate.bin.gz",
+      "smoothedFile": "years/1988/smoothed.bin.gz",
+      "metadataFile": "years/1988/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.67,
+        25.05
+      ],
+      "precipitationRange": [
+        88.0,
+        3575.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.674999999999997,
+        25.049999999999997
+      ],
+      "fullPrecisionPrecipitationRange": [
+        87.5,
+        3575.2000000000003
+      ]
+    },
+    "1989": {
+      "year": 1989,
+      "rawFile": "years/1989/climate.bin.gz",
+      "smoothedFile": "years/1989/smoothed.bin.gz",
+      "metadataFile": "years/1989/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.03,
+        25.84
+      ],
+      "precipitationRange": [
+        99.0,
+        4872.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.03333333333333,
+        25.84166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        98.7,
+        4872.0
+      ]
+    },
+    "1990": {
+      "year": 1990,
+      "rawFile": "years/1990/climate.bin.gz",
+      "smoothedFile": "years/1990/smoothed.bin.gz",
+      "metadataFile": "years/1990/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.37,
+        25.53
+      ],
+      "precipitationRange": [
+        81.0,
+        4987.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.366666666666665,
+        25.533333333333335
+      ],
+      "fullPrecisionPrecipitationRange": [
+        81.4,
+        4986.700000000001
+      ]
+    },
+    "1991": {
+      "year": 1991,
+      "rawFile": "years/1991/climate.bin.gz",
+      "smoothedFile": "years/1991/smoothed.bin.gz",
+      "metadataFile": "years/1991/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.02,
+        24.52
+      ],
+      "precipitationRange": [
+        86.0,
+        3561.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.016666666666664,
+        24.516666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        85.9,
+        3560.8000000000006
+      ]
+    },
+    "1992": {
+      "year": 1992,
+      "rawFile": "years/1992/climate.bin.gz",
+      "smoothedFile": "years/1992/smoothed.bin.gz",
+      "metadataFile": "years/1992/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -11.31,
+        24.91
+      ],
+      "precipitationRange": [
+        69.0,
+        4323.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -11.308333333333328,
+        24.908333333333342
+      ],
+      "fullPrecisionPrecipitationRange": [
+        69.30000000000001,
+        4323.3
+      ]
+    },
+    "1993": {
+      "year": 1993,
+      "rawFile": "years/1993/climate.bin.gz",
+      "smoothedFile": "years/1993/smoothed.bin.gz",
+      "metadataFile": "years/1993/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -10.02,
+        24.31
+      ],
+      "precipitationRange": [
+        89.0,
+        3171.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -10.024999999999997,
+        24.308333333333337
+      ],
+      "fullPrecisionPrecipitationRange": [
+        88.9,
+        3171.1000000000004
+      ]
+    },
+    "1994": {
+      "year": 1994,
+      "rawFile": "years/1994/climate.bin.gz",
+      "smoothedFile": "years/1994/smoothed.bin.gz",
+      "metadataFile": "years/1994/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.91,
+        25.98
+      ],
+      "precipitationRange": [
+        94.0,
+        3821.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.90833333333333,
+        25.983333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        94.5,
+        3820.9000000000005
+      ]
+    },
+    "1995": {
+      "year": 1995,
+      "rawFile": "years/1995/climate.bin.gz",
+      "smoothedFile": "years/1995/smoothed.bin.gz",
+      "metadataFile": "years/1995/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.97,
+        26.53
+      ],
+      "precipitationRange": [
+        107.0,
+        3774.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.974999999999996,
+        26.53333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        106.8,
+        3773.6000000000004
+      ]
+    },
+    "1996": {
+      "year": 1996,
+      "rawFile": "years/1996/climate.bin.gz",
+      "smoothedFile": "years/1996/smoothed.bin.gz",
+      "metadataFile": "years/1996/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.71,
+        24.84
+      ],
+      "precipitationRange": [
+        131.0,
+        3052.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.70833333333333,
+        24.84166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        130.9,
+        3051.9000000000005
+      ]
+    },
+    "1997": {
+      "year": 1997,
+      "rawFile": "years/1997/climate.bin.gz",
+      "smoothedFile": "years/1997/smoothed.bin.gz",
+      "metadataFile": "years/1997/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.8,
+        25.88
+      ],
+      "precipitationRange": [
+        89.0,
+        3723.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.799999999999995,
+        25.883333333333336
+      ],
+      "fullPrecisionPrecipitationRange": [
+        88.6,
+        3723.4000000000005
+      ]
+    },
+    "1998": {
+      "year": 1998,
+      "rawFile": "years/1998/climate.bin.gz",
+      "smoothedFile": "years/1998/smoothed.bin.gz",
+      "metadataFile": "years/1998/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.63,
+        25.86
+      ],
+      "precipitationRange": [
+        91.0,
+        3891.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.633333333333331,
+        25.858333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        91.3,
+        3891.3999999999996
+      ]
+    },
+    "1999": {
+      "year": 1999,
+      "rawFile": "years/1999/climate.bin.gz",
+      "smoothedFile": "years/1999/smoothed.bin.gz",
+      "metadataFile": "years/1999/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.75,
+        25.6
+      ],
+      "precipitationRange": [
+        93.0,
+        4210.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.749999999999998,
+        25.600000000000005
+      ],
+      "fullPrecisionPrecipitationRange": [
+        93.3,
+        4210.0
+      ]
+    },
+    "2000": {
+      "year": 2000,
+      "rawFile": "years/2000/climate.bin.gz",
+      "smoothedFile": "years/2000/smoothed.bin.gz",
+      "metadataFile": "years/2000/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.97,
+        26.19
+      ],
+      "precipitationRange": [
+        91.0,
+        3800.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.966666666666661,
+        26.191666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        91.00000000000001,
+        3800.2
+      ]
+    },
+    "2001": {
+      "year": 2001,
+      "rawFile": "years/2001/climate.bin.gz",
+      "smoothedFile": "years/2001/smoothed.bin.gz",
+      "metadataFile": "years/2001/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.52,
+        25.82
+      ],
+      "precipitationRange": [
+        84.0,
+        3065.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.516666666666664,
+        25.816666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        84.4,
+        3064.7000000000003
+      ]
+    },
+    "2002": {
+      "year": 2002,
+      "rawFile": "years/2002/climate.bin.gz",
+      "smoothedFile": "years/2002/smoothed.bin.gz",
+      "metadataFile": "years/2002/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.12,
+        25.98
+      ],
+      "precipitationRange": [
+        132.0,
+        2940.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.116666666666664,
+        25.983333333333338
+      ],
+      "fullPrecisionPrecipitationRange": [
+        132.4,
+        2940.0000000000005
+      ]
+    },
+    "2003": {
+      "year": 2003,
+      "rawFile": "years/2003/climate.bin.gz",
+      "smoothedFile": "years/2003/smoothed.bin.gz",
+      "metadataFile": "years/2003/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.55,
+        26.07
+      ],
+      "precipitationRange": [
+        105.0,
+        3657.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.549999999999999,
+        26.066666666666666
+      ],
+      "fullPrecisionPrecipitationRange": [
+        105.30000000000001,
+        3657.2999999999997
+      ]
+    },
+    "2004": {
+      "year": 2004,
+      "rawFile": "years/2004/climate.bin.gz",
+      "smoothedFile": "years/2004/smoothed.bin.gz",
+      "metadataFile": "years/2004/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.36,
+        25.82
+      ],
+      "precipitationRange": [
+        135.0,
+        3857.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.358333333333329,
+        25.816666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        134.6,
+        3856.7000000000003
+      ]
+    },
+    "2005": {
+      "year": 2005,
+      "rawFile": "years/2005/climate.bin.gz",
+      "smoothedFile": "years/2005/smoothed.bin.gz",
+      "metadataFile": "years/2005/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.53,
+        26.68
+      ],
+      "precipitationRange": [
+        123.0,
+        4658.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.53333333333333,
+        26.683333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        122.8,
+        4658.200000000001
+      ]
+    },
+    "2006": {
+      "year": 2006,
+      "rawFile": "years/2006/climate.bin.gz",
+      "smoothedFile": "years/2006/smoothed.bin.gz",
+      "metadataFile": "years/2006/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.16,
+        26.68
+      ],
+      "precipitationRange": [
+        91.0,
+        3838.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.15833333333333,
+        26.675
+      ],
+      "fullPrecisionPrecipitationRange": [
+        90.6,
+        3838.5
+      ]
+    },
+    "2007": {
+      "year": 2007,
+      "rawFile": "years/2007/climate.bin.gz",
+      "smoothedFile": "years/2007/smoothed.bin.gz",
+      "metadataFile": "years/2007/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.11,
+        25.94
+      ],
+      "precipitationRange": [
+        101.0,
+        4480.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.10833333333333,
+        25.941666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        101.30000000000001,
+        4479.7
+      ]
+    },
+    "2008": {
+      "year": 2008,
+      "rawFile": "years/2008/climate.bin.gz",
+      "smoothedFile": "years/2008/smoothed.bin.gz",
+      "metadataFile": "years/2008/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.91,
+        25.68
+      ],
+      "precipitationRange": [
+        107.0,
+        3837.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.908333333333331,
+        25.675000000000008
+      ],
+      "fullPrecisionPrecipitationRange": [
+        106.9,
+        3837.0
+      ]
+    },
+    "2009": {
+      "year": 2009,
+      "rawFile": "years/2009/climate.bin.gz",
+      "smoothedFile": "years/2009/smoothed.bin.gz",
+      "metadataFile": "years/2009/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.21,
+        26.83
+      ],
+      "precipitationRange": [
+        144.0,
+        3492.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.20833333333333,
+        26.825000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        143.70000000000002,
+        3492.5
+      ]
+    },
+    "2010": {
+      "year": 2010,
+      "rawFile": "years/2010/climate.bin.gz",
+      "smoothedFile": "years/2010/smoothed.bin.gz",
+      "metadataFile": "years/2010/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.69,
+        25.54
+      ],
+      "precipitationRange": [
+        122.0,
+        3184.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.6916666666666655,
+        25.54166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        122.49999999999999,
+        3183.7000000000003
+      ]
+    },
+    "2011": {
+      "year": 2011,
+      "rawFile": "years/2011/climate.bin.gz",
+      "smoothedFile": "years/2011/smoothed.bin.gz",
+      "metadataFile": "years/2011/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -9.73,
+        26.72
+      ],
+      "precipitationRange": [
+        82.0,
+        4942.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -9.733333333333329,
+        26.71666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        81.70000000000002,
+        4942.200000000001
+      ]
+    },
+    "2012": {
+      "year": 2012,
+      "rawFile": "years/2012/climate.bin.gz",
+      "smoothedFile": "years/2012/smoothed.bin.gz",
+      "metadataFile": "years/2012/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.24,
+        26.28
+      ],
+      "precipitationRange": [
+        115.0,
+        3839.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.241666666666665,
+        26.275000000000002
+      ],
+      "fullPrecisionPrecipitationRange": [
+        114.60000000000002,
+        3839.3999999999996
+      ]
+    },
+    "2013": {
+      "year": 2013,
+      "rawFile": "years/2013/climate.bin.gz",
+      "smoothedFile": "years/2013/smoothed.bin.gz",
+      "metadataFile": "years/2013/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.63,
+        25.72
+      ],
+      "precipitationRange": [
+        97.0,
+        3909.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.633333333333331,
+        25.716666666666672
+      ],
+      "fullPrecisionPrecipitationRange": [
+        97.0,
+        3908.7000000000003
+      ]
+    },
+    "2014": {
+      "year": 2014,
+      "rawFile": "years/2014/climate.bin.gz",
+      "smoothedFile": "years/2014/smoothed.bin.gz",
+      "metadataFile": "years/2014/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.81,
+        26.4
+      ],
+      "precipitationRange": [
+        94.0,
+        3898.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.808333333333333,
+        26.400000000000006
+      ],
+      "fullPrecisionPrecipitationRange": [
+        93.89999999999999,
+        3898.5
+      ]
+    },
+    "2015": {
+      "year": 2015,
+      "rawFile": "years/2015/climate.bin.gz",
+      "smoothedFile": "years/2015/smoothed.bin.gz",
+      "metadataFile": "years/2015/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.87,
+        27.59
+      ],
+      "precipitationRange": [
+        99.0,
+        4916.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.866666666666664,
+        27.59166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        98.90000000000002,
+        4915.599999999999
+      ]
+    },
+    "2016": {
+      "year": 2016,
+      "rawFile": "years/2016/climate.bin.gz",
+      "smoothedFile": "years/2016/smoothed.bin.gz",
+      "metadataFile": "years/2016/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.75,
+        26.78
+      ],
+      "precipitationRange": [
+        118.0,
+        3833.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.749999999999995,
+        26.78333333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        118.5,
+        3833.0
+      ]
+    },
+    "2017": {
+      "year": 2017,
+      "rawFile": "years/2017/climate.bin.gz",
+      "smoothedFile": "years/2017/smoothed.bin.gz",
+      "metadataFile": "years/2017/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.45,
+        27.98
+      ],
+      "precipitationRange": [
+        101.0,
+        4379.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.449999999999998,
+        27.983333333333334
+      ],
+      "fullPrecisionPrecipitationRange": [
+        101.00000000000001,
+        4378.700000000001
+      ]
+    },
+    "2018": {
+      "year": 2018,
+      "rawFile": "years/2018/climate.bin.gz",
+      "smoothedFile": "years/2018/smoothed.bin.gz",
+      "metadataFile": "years/2018/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.07,
+        25.67
+      ],
+      "precipitationRange": [
+        104.0,
+        3823.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.066666666666663,
+        25.66666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        103.7,
+        3823.0
+      ]
+    },
+    "2019": {
+      "year": 2019,
+      "rawFile": "years/2019/climate.bin.gz",
+      "smoothedFile": "years/2019/smoothed.bin.gz",
+      "metadataFile": "years/2019/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.38,
+        26.86
+      ],
+      "precipitationRange": [
+        118.0,
+        3503.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.383333333333329,
+        26.85833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        117.50000000000003,
+        3502.9000000000005
+      ]
+    },
+    "2020": {
+      "year": 2020,
+      "rawFile": "years/2020/climate.bin.gz",
+      "smoothedFile": "years/2020/smoothed.bin.gz",
+      "metadataFile": "years/2020/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.54,
+        27.17
+      ],
+      "precipitationRange": [
+        87.0,
+        4875.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.541666666666664,
+        27.174999999999997
+      ],
+      "fullPrecisionPrecipitationRange": [
+        86.6,
+        4875.1
+      ]
+    },
+    "2021": {
+      "year": 2021,
+      "rawFile": "years/2021/climate.bin.gz",
+      "smoothedFile": "years/2021/smoothed.bin.gz",
+      "metadataFile": "years/2021/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.08,
+        27.16
+      ],
+      "precipitationRange": [
+        90.0,
+        3253.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.08333333333333,
+        27.15833333333333
+      ],
+      "fullPrecisionPrecipitationRange": [
+        89.9,
+        3253.1
+      ]
+    },
+    "2022": {
+      "year": 2022,
+      "rawFile": "years/2022/climate.bin.gz",
+      "smoothedFile": "years/2022/smoothed.bin.gz",
+      "metadataFile": "years/2022/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -8.55,
+        28.48
+      ],
+      "precipitationRange": [
+        87.0,
+        4035.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -8.549999999999995,
+        28.475000000000005
+      ],
+      "fullPrecisionPrecipitationRange": [
+        87.2,
+        4035.3000000000006
+      ]
+    },
+    "2023": {
+      "year": 2023,
+      "rawFile": "years/2023/climate.bin.gz",
+      "smoothedFile": "years/2023/smoothed.bin.gz",
+      "metadataFile": "years/2023/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.47,
+        28.29
+      ],
+      "precipitationRange": [
+        108.0,
+        3668.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.474999999999998,
+        28.29166666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        108.3,
+        3668.1000000000004
+      ]
+    },
+    "2024": {
+      "year": 2024,
+      "rawFile": "years/2024/climate.bin.gz",
+      "smoothedFile": "years/2024/smoothed.bin.gz",
+      "metadataFile": "years/2024/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.57,
+        27.87
+      ],
+      "precipitationRange": [
+        106.0,
+        4476.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.566666666666663,
+        27.86666666666667
+      ],
+      "fullPrecisionPrecipitationRange": [
+        106.19999999999999,
+        4475.900000000001
+      ]
+    },
+    "2025": {
+      "year": 2025,
+      "rawFile": "years/2025/climate.bin.gz",
+      "smoothedFile": "years/2025/smoothed.bin.gz",
+      "metadataFile": "years/2025/metadata.json",
+      "validCells": 793338,
+      "temperatureRange": [
+        -7.57,
+        27.87
+      ],
+      "precipitationRange": [
+        97.0,
+        3896.0
+      ],
+      "fullPrecisionTemperatureRange": [
+        -7.574999999999996,
+        27.866666666666674
+      ],
+      "fullPrecisionPrecipitationRange": [
+        96.9,
+        3895.8
+      ]
+    }
+  },
+  "thresholdReference": "Pooled annual European land cells, 1950–2025",
+  "pooledValidCellYears": 60293688,
+  "validCellsRange": [
+    793338,
+    793338
+  ],
+  "temperatureBreaks": [
+    -11.31,
+    5.14,
+    8.93,
+    12.78,
+    28.48
+  ],
+  "precipitationBreaks": [
+    60.0,
+    635.0,
+    744.0,
+    964.0,
+    4987.0
+  ],
+  "equalTemperatureBreaks": [
+    -11.31,
+    5.93,
+    9.68,
+    13.54,
+    28.48
+  ],
+  "equalPrecipitationBreaks": [
+    60.0,
+    500.0,
+    595.0,
+    718.0,
+    4987.0
+  ],
+  "annualMaskVariation": "Each year independently requires all 12 finite monthly values of both variables. Masks may vary across years; raw and smoothed masks are identical within each year.",
+  "totalCompressedBytes": 336984917
+}

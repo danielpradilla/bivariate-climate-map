@@ -1,0 +1,478 @@
+{
+  "defaultRegion": "europe",
+  "regions": [
+    {
+      "id": "europe",
+      "label": "Europe",
+      "title": "European",
+      "metadataFile": "metadata.json",
+      "projection": {
+        "type": "azimuthalEqualArea",
+        "rotate": [
+          -17,
+          -55
+        ]
+      },
+      "cities": [
+        ["Reykjavík", -21.94, 64.15],
+        ["Lisbon", -9.14, 38.72],
+        ["Madrid", -3.70, 40.42],
+        ["London", -0.13, 51.51],
+        ["Paris", 2.35, 48.86],
+        ["Bergen", 5.32, 60.39],
+        ["Oslo", 10.75, 59.91],
+        ["Stockholm", 18.07, 59.33],
+        ["Helsinki", 24.94, 60.17],
+        ["Berlin", 13.40, 52.52],
+        ["Zürich", 8.54, 47.38],
+        ["Rome", 12.50, 41.90],
+        ["Athens", 23.73, 37.98],
+        ["Warsaw", 21.01, 52.23],
+        ["Kyiv", 30.52, 50.45],
+        ["Bucharest", 26.10, 44.43],
+        ["Moscow", 37.62, 55.75]
+      ]
+    },
+    {
+      "id": "asia",
+      "label": "Asia",
+      "title": "Asian",
+      "metadataFile": "regions/asia/metadata.json",
+      "projection": {
+        "type": "azimuthalEqualArea",
+        "rotate": [
+          -95,
+          -30
+        ]
+      },
+      "cities": [
+        [
+          "Tokyo",
+          139.6917,
+          35.6895
+        ],
+        [
+          "Beijing",
+          116.4074,
+          39.9042
+        ],
+        [
+          "Delhi",
+          77.209,
+          28.6139
+        ],
+        [
+          "Mumbai",
+          72.8777,
+          19.076
+        ],
+        [
+          "Bangkok",
+          100.5018,
+          13.7563
+        ],
+        [
+          "Singapore",
+          103.8198,
+          1.3521
+        ],
+        [
+          "Jakarta",
+          106.8456,
+          -6.2088
+        ],
+        [
+          "Seoul",
+          126.978,
+          37.5665
+        ],
+        [
+          "Dubai",
+          55.2708,
+          25.2048
+        ],
+        [
+          "Istanbul",
+          28.9784,
+          41.0082
+        ],
+        [
+          "Ulaanbaatar",
+          106.9057,
+          47.8864
+        ]
+      ]
+    },
+    {
+      "id": "africa",
+      "label": "Africa",
+      "title": "African",
+      "metadataFile": "regions/africa/metadata.json",
+      "projection": {
+        "type": "azimuthalEqualArea",
+        "rotate": [
+          -20,
+          0
+        ]
+      },
+      "cities": [
+        [
+          "Cairo",
+          31.2357,
+          30.0444
+        ],
+        [
+          "Lagos",
+          3.3792,
+          6.5244
+        ],
+        [
+          "Nairobi",
+          36.8219,
+          -1.2921
+        ],
+        [
+          "Cape Town",
+          18.4241,
+          -33.9249
+        ],
+        [
+          "Johannesburg",
+          28.0473,
+          -26.2041
+        ],
+        [
+          "Kinshasa",
+          15.2663,
+          -4.4419
+        ],
+        [
+          "Casablanca",
+          -7.5898,
+          33.5731
+        ],
+        [
+          "Accra",
+          -0.187,
+          5.6037
+        ],
+        [
+          "Addis Ababa",
+          38.7578,
+          8.9806
+        ],
+        [
+          "Antananarivo",
+          47.5079,
+          -18.8792
+        ]
+      ]
+    },
+    {
+      "id": "north-america",
+      "label": "North America",
+      "title": "North American",
+      "metadataFile": "regions/north-america/metadata.json",
+      "projection": {
+        "type": "azimuthalEqualArea",
+        "rotate": [
+          100,
+          -45
+        ]
+      },
+      "cities": [
+        [
+          "New York",
+          -74.006,
+          40.7128
+        ],
+        [
+          "Los Angeles",
+          -118.2437,
+          34.0522
+        ],
+        [
+          "Mexico City",
+          -99.1332,
+          19.4326
+        ],
+        [
+          "Toronto",
+          -79.3832,
+          43.6532
+        ],
+        [
+          "Vancouver",
+          -123.1207,
+          49.2827
+        ],
+        [
+          "Anchorage",
+          -149.9003,
+          61.2181
+        ],
+        [
+          "Honolulu",
+          -157.8583,
+          21.3069
+        ],
+        [
+          "Havana",
+          -82.3666,
+          23.1136
+        ],
+        [
+          "Panama City",
+          -79.5199,
+          8.9824
+        ],
+        [
+          "Nuuk",
+          -51.7216,
+          64.1835
+        ]
+      ]
+    },
+    {
+      "id": "south-america",
+      "label": "South America",
+      "title": "South American",
+      "metadataFile": "regions/south-america/metadata.json",
+      "projection": {
+        "type": "azimuthalEqualArea",
+        "rotate": [
+          60,
+          15
+        ]
+      },
+      "cities": [
+        [
+          "São Paulo",
+          -46.6333,
+          -23.5505
+        ],
+        [
+          "Rio de Janeiro",
+          -43.1729,
+          -22.9068
+        ],
+        [
+          "Buenos Aires",
+          -58.3816,
+          -34.6037
+        ],
+        [
+          "Santiago",
+          -70.6693,
+          -33.4489
+        ],
+        [
+          "Lima",
+          -77.0428,
+          -12.0464
+        ],
+        [
+          "Bogotá",
+          -74.0721,
+          4.711
+        ],
+        [
+          "Caracas",
+          -66.9036,
+          10.4806
+        ],
+        [
+          "Quito",
+          -78.4678,
+          -0.1807
+        ],
+        [
+          "Manaus",
+          -60.0217,
+          -3.119
+        ],
+        [
+          "Ushuaia",
+          -68.303,
+          -54.8019
+        ]
+      ]
+    },
+    {
+      "id": "oceania",
+      "label": "Oceania",
+      "title": "Oceanian",
+      "metadataFile": "regions/oceania/metadata.json",
+      "projection": {
+        "type": "azimuthalEqualArea",
+        "rotate": [
+          -150,
+          20
+        ]
+      },
+      "cities": [
+        [
+          "Sydney",
+          151.2093,
+          -33.8688
+        ],
+        [
+          "Melbourne",
+          144.9631,
+          -37.8136
+        ],
+        [
+          "Perth",
+          115.8605,
+          -31.9505
+        ],
+        [
+          "Auckland",
+          174.7633,
+          -36.8485
+        ],
+        [
+          "Wellington",
+          174.7762,
+          -41.2866
+        ],
+        [
+          "Port Moresby",
+          147.1803,
+          -9.4438
+        ],
+        [
+          "Suva",
+          178.4501,
+          -18.1248
+        ],
+        [
+          "Apia",
+          -171.7514,
+          -13.8507
+        ],
+        [
+          "Nukuʻalofa",
+          -175.1982,
+          -21.1394
+        ],
+        [
+          "Papeete",
+          -149.5585,
+          -17.5516
+        ]
+      ]
+    },
+    {
+      "id": "antarctica",
+      "label": "Antarctica",
+      "title": "Antarctic",
+      "metadataFile": "regions/antarctica/metadata.json",
+      "projection": {
+        "type": "stereographic",
+        "rotate": [
+          0,
+          90
+        ]
+      },
+      "cities": [
+        [
+          "McMurdo Station",
+          166.6682,
+          -77.8419
+        ],
+        [
+          "Amundsen–Scott South Pole Station",
+          0,
+          -90
+        ],
+        [
+          "Rothera Station",
+          -68.125,
+          -67.568
+        ],
+        [
+          "Palmer Station",
+          -64.053,
+          -64.774
+        ],
+        [
+          "Dumont d’Urville Station",
+          140.001,
+          -66.663
+        ],
+        [
+          "Vostok Station",
+          106.837,
+          -78.464
+        ]
+      ],
+      "coverageNote": "Antarctic stations are geographic references, not cities. TerraClimate v1.1 has genuine complete monthly coverage in both 1950 and 2025; annual missing coastal cells remain uncoloured."
+    },
+    {
+      "id": "world",
+      "label": "World",
+      "title": "World",
+      "metadataFile": "regions/world/metadata.json",
+      "projection": {
+        "type": "equalEarth",
+        "rotate": [
+          0,
+          0
+        ]
+      },
+      "cities": [
+        [
+          "London",
+          -0.1276,
+          51.5072
+        ],
+        [
+          "New York",
+          -74.006,
+          40.7128
+        ],
+        [
+          "São Paulo",
+          -46.6333,
+          -23.5505
+        ],
+        [
+          "Cairo",
+          31.2357,
+          30.0444
+        ],
+        [
+          "Nairobi",
+          36.8219,
+          -1.2921
+        ],
+        [
+          "Tokyo",
+          139.6917,
+          35.6895
+        ],
+        [
+          "Delhi",
+          77.209,
+          28.6139
+        ],
+        [
+          "Sydney",
+          151.2093,
+          -33.8688
+        ],
+        [
+          "Apia",
+          -171.7514,
+          -13.8507
+        ],
+        [
+          "Anchorage",
+          -149.9003,
+          61.2181
+        ]
+      ]
+    }
+  ]
+}
