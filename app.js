@@ -672,6 +672,12 @@ function downloadMap() {
 async function start() {
   const controls = [...document.querySelectorAll('button, select, input')];
   controls.forEach(control => { control.disabled = true; });
+  const blogPost = $('project-blog-link');
+  const publication = $('project-blog-date');
+  if (blogPost && publication && Date.now() >= Date.parse(publication.querySelector('time').dateTime)) {
+    blogPost.hidden = false;
+    publication.hidden = true;
+  }
   try {
     zoom = d3.zoom().scaleExtent([1, 8]).touchable(true)
       .on('zoom', event => {

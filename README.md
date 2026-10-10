@@ -1,6 +1,8 @@
 # Bivariate climate map
 
-[Open the interactive map](https://www.danielpradilla.info/projects/bivariate-climate-map/) · [Run the explanatory notebook](climate-map.ipynb)
+[Open the interactive map](https://www.danielpradilla.info/projects/bivariate-climate-map/) · [Run the explanatory notebook](climate-map.ipynb) · [Project blog post](https://www.danielpradilla.info/blog/?p=2468) (available from 24 October 2026, 09:00 UTC)
+
+The app shows the blog post's publication date until 24 October 2026 at 09:00 UTC, then enables its link on page load. The reviewed WordPress source is in [BLOG-POST.html](BLOG-POST.html).
 
 Annual temperature and precipitation maps for Europe, Asia, Africa, North America, South America, Oceania, Antarctica and World. The full dataset contains 608 frames: eight views × 76 years, from 1950 through 2025. The browser app supports year playback, raw/smoothed zones, grid-cell inspection and PNG export.
 
