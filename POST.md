@@ -1,7 +1,0 @@
-# Bivariate climate map, 1950 to 2025
-
-This project started from Milan Janosov's article [Bivariate Climate Map: Temperature × Precipitation](https://milanjanosov.substack.com/p/bivariate-climate-map-temperature), which recreates the map in Python. I kept his 4×4 palette, unequal percentile classes and Gaussian smoothing. His version builds on earlier bivariate maps by [Muhammad Mohsin Raza](https://www.datawim.com/post/creating-professional-bivariate-maps-in-r/) and [Fil / Philippe Rivière](https://fil.github.io/pangea/plot/bivariate-map).
-
-The [interactive map](https://www.danielpradilla.info/projects/bivariate-climate-map/) uses TerraClimate v1.1 to show annual mean maximum temperature and annual precipitation for every year from 1950 to 2025. You can switch between Europe, the other continents and World, then play the years or step through them. Each region's class thresholds stay fixed across all years, so a colour stands for the same ranges in 1950 and 2025. You can also turn smoothing off, click the map or pick a city to read its values, and download the current frame as a PNG.
-
-The code is on [GitHub](https://github.com/danielpradilla/bivariate-climate-map). The [notebook](https://github.com/danielpradilla/bivariate-climate-map/blob/main/climate-map.ipynb) downloads TerraClimate's monthly NetCDF files, calculates the annual values and draws one year's map for each of the eight views.

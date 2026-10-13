@@ -1,9 +1,9 @@
-# Generated browser assets; static manifests remain versioned.
-/data/years/
-/data/regions/*/years/
-/data/regions/provenance/
-/data/**/*.bin.gz
-/data/**/*.geojson
+# Downloaded/generated browser assets, including manifests.
+/data/
+
+# Local blog drafts.
+/BLOG-POST.html
+/POST.md
 
 # Notebook exports, environments and local caches.
 /notebook-output/

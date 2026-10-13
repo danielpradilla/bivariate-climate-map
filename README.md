@@ -2,7 +2,7 @@
 
 [Open the interactive map](https://www.danielpradilla.info/projects/bivariate-climate-map/) · [Run the explanatory notebook](climate-map.ipynb) · [Project blog post](https://www.danielpradilla.info/blog/?p=2468) (available from 24 October 2026, 09:00 UTC)
 
-The app shows the blog post's publication date until 24 October 2026 at 09:00 UTC, then enables its link on page load. The reviewed WordPress source is in [BLOG-POST.html](BLOG-POST.html).
+The app shows the blog post's publication date until 24 October 2026 at 09:00 UTC, then enables its link on page load.
 
 Annual temperature and precipitation maps for Europe, Asia, Africa, North America, South America, Oceania, Antarctica and World. The full dataset contains 608 frames: eight views × 76 years, from 1950 through 2025. The browser app supports year playback, raw/smoothed zones, grid-cell inspection and PNG export.
 
@@ -10,7 +10,7 @@ Annual temperature and precipitation maps for Europe, Asia, Africa, North Americ
 
 ## 1. Download assets and run the app
 
-The repository contains source code, the preview above and small published manifests. Generated map assets are downloaded separately. Install [uv](https://docs.astral.sh/uv/), then run these commands from the project root:
+The repository contains source code and previews, not the `data/` folder. The existing `scripts/download_assets.py` script recreates the folder, including manifests, from the published site. Install [uv](https://docs.astral.sh/uv/), then run these commands from the project root:
 
 ```sh
 # Full history for all eight views, approximately 4.4 GB.
@@ -19,6 +19,10 @@ python3 -m http.server 8000
 ```
 
 Open <http://localhost:8000/>. Use HTTP rather than opening `index.html` as a file. D3 is vendored locally; the app needs no build step.
+
+To recover after deleting `data/`, rerun the full download command above. Removing the folder frees approximately 4.4 GB; the local app cannot display maps until assets are downloaded again. Recovery requires network access and the published site to remain available. The upstream rebuild commands in section 3 are an alternative if published assets are unavailable.
+
+The downloader restores browser assets and annual provenance, not builder-only source caches (the Natural Earth ZIP, catalog and dataset XML, and acquisition receipts). The builders reacquire those from upstream; original acquisition timestamps are not reproduced.
 
 For a smaller preview, replace the download command with:
 
@@ -30,7 +34,7 @@ uv run --with-requirements requirements-data.txt python scripts/download_assets.
 
 The downloader uses the fixed [live site's asset root](https://www.danielpradilla.info/projects/bivariate-climate-map/data/regions/index.json), streams files with at most four concurrent HTTP requests, verifies published SHA256 hashes where available, and replaces files atomically. Valid existing hashed assets are reused. Files without a published hash are fetched and checked as JSON or gzip. Nothing outside its own temporary `.part` files is deleted.
 
-A limited download edits local manifests: `years`, `frames` and `defaultYear` advertise only the selected complete frames, while the registry advertises only selected regions. Default-frame file references are updated too. Historical physical thresholds, ranges and baseline fields remain unchanged; `sourceBaseline` is preserved or recorded from the source manifest. Extra files from previous downloads stay on disk but are not advertised. Running the full download restores exact published manifests without recomputing thresholds. Do not commit preview-specific metadata edits.
+A limited download edits local manifests: `years`, `frames` and `defaultYear` advertise only the selected complete frames, while the registry advertises only selected regions. Default-frame file references are updated too. Historical physical thresholds, ranges and baseline fields remain unchanged; `sourceBaseline` is preserved or recorded from the source manifest. Extra files from previous downloads stay on disk but are not advertised. Running the full download restores exact published manifests without recomputing thresholds. All downloaded assets and manifests are ignored by Git.
 
 ## 2. Run the notebook from monthly source data
 
@@ -50,7 +54,7 @@ uv run --with-requirements requirements-notebook.txt jupyter nbconvert \
   --ExecutePreprocessor.timeout=-1
 ```
 
-Upstream sources are cached outside the repository at `~/.cache/bivariate-climate-map/notebook`. Figures, provenance and the executed notebook go in `notebook-output/`. The committed notebook has no outputs. It uses tracked historical manifests for published thresholds, with the live site as a fallback. Downloading browser assets is not a prerequisite for notebook execution. Global sources and native-resolution continent plots require substantial disk space and memory.
+Upstream sources are cached outside the repository at `~/.cache/bivariate-climate-map/notebook`. Figures, provenance and the executed notebook go in `notebook-output/`. The committed notebook has no outputs. It uses downloaded historical manifests for published thresholds when available, otherwise it fetches them from the live site. Downloading browser assets is not a prerequisite for notebook execution. Global sources and native-resolution continent plots require substantial disk space and memory.
 
 Verified with the default 2025 execution: all eight PNGs were generated, and complete-cell counts matched the published 2025 frames. A two-region, two-year asset preview exercised the notebook's canonical-manifest fallback without changing the preview files.
 
@@ -86,9 +90,9 @@ TerraClimate v1.1 revises the data used by earlier tutorials. The same palette a
 
 ## 5. Repository data policy
 
-Git tracks application code, builders, the downloader, dependency files, the output-free notebook, previews, D3 and its license, and the small static manifests `data/metadata.json`, `data/regions/index.json` and `data/regions/<id>/metadata.json`.
+Git tracks application code, builders, the downloader, dependency files, the output-free notebook, previews, D3 and its license.
 
-Generated `.bin.gz` grids and cell indices, `.geojson` display geometry, annual `years/` directories and their metadata, provenance/source caches, and `notebook-output/` are excluded. They are recreated by the downloader, builders or notebook. A source-only clone therefore needs an asset download before the browser app can display climate frames.
+The entire `data/` folder, source caches and `notebook-output/` are excluded. They are recreated by the downloader, builders or notebook. A source-only clone therefore needs an asset download before the browser app can display climate frames. Local blog drafts `BLOG-POST.html` and `POST.md` are also ignored.
 
 ## 6. Credits and source licenses
 
