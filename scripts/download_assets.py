@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 import copy
+from datetime import date
 import gzip
 import hashlib
 import json
@@ -210,25 +211,31 @@ def preview_manifest(source, years, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--region", action="append", help="Region id; repeat to select several (default: all eight)")
-    parser.add_argument("--year", type=int, action="append", help="Year; repeat to select several (default: 1950–2025)")
+    current_year = date.today().year
+    parser.add_argument("--start-year", type=int, default=current_year, help="First year, inclusive (default: current year)")
+    parser.add_argument("--end-year", type=int, default=current_year, help="Last year, inclusive (default: current year)")
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parents[1] / "data")
     args = parser.parse_args()
+    if not 1950 <= args.start_year <= args.end_year <= current_year:
+        parser.error(f"Year range must be inclusive and within 1950–{current_year}, with start <= end")
+    years = list(range(args.start_year, args.end_year + 1))
     registry_bytes, registry = fetch_document("regions/index.json")
     known = {region["id"] for region in registry["regions"]}
     requested = set(args.region) if args.region else known
     unknown = requested - known
     if unknown:
         parser.error(f"Unknown region(s): {', '.join(sorted(unknown))}; choose from {', '.join(sorted(known))}")
-    years = sorted(set(args.year if args.year else range(1950, 2026)))
-    if any(year < 1950 or year > 2025 for year in years):
-        parser.error("Years must lie within 1950–2025")
     regions = [region for region in registry["regions"] if region["id"] in requested]
     manifests = []
     for region in regions:
         payload, manifest = fetch_document(region["metadataFile"])
         missing = set(years) - set(manifest["years"])
         if missing:
-            raise ValueError(f"{region['id']}: published frames unavailable for {sorted(missing)}")
+            raise ValueError(
+                f"{region['id']}: published frames unavailable for {sorted(missing)}; "
+                f"published years: {min(manifest['years'])}–{max(manifest['years'])}. "
+                "Choose --start-year and --end-year within the published history."
+            )
         for year in years:
             frame = manifest["frames"][str(year)]
             if frame["year"] != year:

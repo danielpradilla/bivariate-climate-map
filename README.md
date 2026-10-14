@@ -13,8 +13,8 @@ Annual temperature and precipitation maps for Europe, Asia, Africa, North Americ
 The repository contains source code and previews, not the `data/` folder. The existing `scripts/download_assets.py` script recreates the folder, including manifests, from the published site. Install [uv](https://docs.astral.sh/uv/), then run these commands from the project root:
 
 ```sh
-# Full history for all eight views, approximately 4.4 GB.
-uv run --with-requirements requirements-data.txt python scripts/download_assets.py
+# Full published history for all eight views, approximately 4.4 GB.
+uv run --with-requirements requirements-data.txt python scripts/download_assets.py --start-year 1950 --end-year 2025
 python3 -m http.server 8000
 ```
 
@@ -27,10 +27,18 @@ The downloader restores browser assets and annual provenance, not builder-only s
 For a smaller preview, replace the download command with:
 
 ```sh
-uv run --with-requirements requirements-data.txt python scripts/download_assets.py --region world --year 2025
+uv run --with-requirements requirements-data.txt python scripts/download_assets.py --region world --start-year 2024 --end-year 2025
 ```
 
-`--region` and `--year` are repeatable, for example `--region europe --region asia --year 2024 --year 2025`. Region ids are `europe`, `asia`, `africa`, `north-america`, `south-america`, `oceania`, `antarctica` and `world`. `--output-dir PATH` chooses another asset directory; the app normally reads `data/`.
+`--start-year` and `--end-year` select an inclusive period. Both default to the current calendar year when omitted. For one year, pass the same value to both. Published assets currently cover 1950 through 2025, so the current-year default reports unavailable frames until that year's assets are published; it never silently substitutes the latest available year.
+
+To request only the current year:
+
+```sh
+uv run --with-requirements requirements-data.txt python scripts/download_assets.py
+```
+
+`--region` is repeatable, for example `--region europe --region asia`. Region ids are `europe`, `asia`, `africa`, `north-america`, `south-america`, `oceania`, `antarctica` and `world`. `--output-dir PATH` chooses another asset directory; the app normally reads `data/`.
 
 The downloader uses the fixed [live site's asset root](https://www.danielpradilla.info/projects/bivariate-climate-map/data/regions/index.json), streams files with at most four concurrent HTTP requests, verifies published SHA256 hashes where available, and replaces files atomically. Valid existing hashed assets are reused. Files without a published hash are fetched and checked as JSON or gzip. Nothing outside its own temporary `.part` files is deleted.
 
