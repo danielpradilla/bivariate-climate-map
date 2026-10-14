@@ -100,7 +100,7 @@ TerraClimate v1.1 revises the data used by earlier tutorials. The same palette a
 
 Git tracks application code, builders, the downloader, dependency files, the output-free notebook, previews, D3 and its license.
 
-The entire `data/` folder, source caches and `notebook-output/` are excluded. They are recreated by the downloader, builders or notebook. A source-only clone therefore needs an asset download before the browser app can display climate frames. Local publication drafts `BLOG-POST.html`, `POST.md` and `REDDIT.md` are also ignored.
+The entire `data/` folder, source caches and `notebook-output/` are excluded. They are recreated by the downloader, builders or notebook. A source-only clone therefore needs an asset download before the browser app can display climate frames. Local publication drafts `POST.md` and `REDDIT.md` are also ignored.
 
 ## 6. Credits and source licenses
 
