@@ -1,9 +1,10 @@
 # Downloaded/generated browser assets, including manifests.
 /data/
 
-# Local blog drafts.
+# Local publication drafts.
 /BLOG-POST.html
 /POST.md
+/REDDIT.md
 
 # Notebook exports, environments and local caches.
 /notebook-output/
